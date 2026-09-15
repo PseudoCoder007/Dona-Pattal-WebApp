@@ -469,6 +469,48 @@
     items.forEach(function (el) { observer.observe(el); });
   }
 
+  var PROCESS_ICON_SVG = [
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="10" width="36" height="44" rx="4" stroke="#C1502E" stroke-width="3"/><path d="M20 20h24M20 30h24M20 40h16" stroke="#F4A63A" stroke-width="3" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="20" stroke="#C1502E" stroke-width="3"/><path d="M32 16v16l12 8" stroke="#F4A63A" stroke-width="3" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 32l12 12 24-24" stroke="#C1502E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="22" width="44" height="30" rx="3" stroke="#C1502E" stroke-width="3"/><path d="M10 30h44" stroke="#C1502E" stroke-width="3"/><path d="M32 22v-8m-8 8l8-8 8 8" stroke="#F4A63A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  ];
+
+  var PROCESS_STEPS = [
+    { nameEn: 'Paper Sourced', nameHi: 'कागज़ की खरीद', descEn: 'Quality paper rolls sourced and checked for GSM and strength.', descHi: 'गुणवत्तापूर्ण पेपर रोल की खरीद, GSM और मजबूती की जांच के साथ।' },
+    { nameEn: 'Pressed & Moulded', nameHi: 'प्रेस और मोल्ड', descEn: 'Machine-pressed into shape using heat and precision dies.', descHi: 'गर्मी और सटीक डाई का उपयोग करके मशीन से आकार में ढाला जाता है।' },
+    { nameEn: 'Quality Checked', nameHi: 'गुणवत्ता जांच', descEn: 'Each batch checked for rigidity, finish and leak-resistance.', descHi: 'हर बैच की मजबूती, फिनिश और रिसाव-रोधी क्षमता की जांच की जाती है।' },
+    { nameEn: 'Packed for Delivery', nameHi: 'डिलीवरी के लिए पैकिंग', descEn: 'Counted, bundled and packed ready for bulk dispatch.', descHi: 'गिनती, बंडलिंग और थोक डिस्पैच के लिए पैकिंग।' }
+  ];
+
+  function renderProcessSteps() {
+    var wrap = document.getElementById('process-steps');
+    PROCESS_STEPS.forEach(function (step, index) {
+      var el = document.createElement('div');
+      el.className = 'process__step reveal';
+      var num = document.createElement('div');
+      num.className = 'process__step-number';
+      num.textContent = String(index + 1);
+      var icon = document.createElement('div');
+      icon.className = 'product-card__icon';
+      icon.style.margin = '0 auto 12px';
+      icon.innerHTML = PROCESS_ICON_SVG[index];
+      var name = document.createElement('h3');
+      name.style.fontSize = '1.05rem';
+      name.setAttribute('data-en', step.nameEn);
+      name.setAttribute('data-hi', step.nameHi);
+      var desc = document.createElement('p');
+      desc.style.fontSize = '0.9rem';
+      desc.setAttribute('data-en', step.descEn);
+      desc.setAttribute('data-hi', step.descHi);
+      el.appendChild(num);
+      el.appendChild(icon);
+      el.appendChild(name);
+      el.appendChild(desc);
+      wrap.appendChild(el);
+    });
+  }
+
   function renderHeroArt(targetId, size) {
     var el = document.getElementById(targetId);
     if (!el) { return; }
@@ -486,6 +528,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     renderHeroArt('hero-art', 220);
     renderHeroArt('about-art', 160);
+    renderProcessSteps();
 
     var toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
