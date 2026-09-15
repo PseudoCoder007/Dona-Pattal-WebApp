@@ -14,16 +14,20 @@ The v1 landing page shipped with custom inline-SVG illustrations (stacked-plates
 - Make the page read as hand-crafted/artisanal rather than templated: photo-forward cards, torn-paper/tilted photo framing, a subtle paper-grain texture, and a less generic button shape.
 - Keep everything else from v1 intact: bilingual EN/HI engine, WhatsApp CTAs, scroll-reveal, mobile nav, palette, process/why-us/contact sections.
 
+## Scope: v2 is a separate copy, not an edit to the live file
+
+Per explicit instruction: the root `index.html` (the "real"/live file, already pushed to `main`) gets **no further changes** as part of this v2 work — it stays exactly as it is now (contact info: owner Alok Dwivedi, phone/WhatsApp +91 87872 01971, already fixed and pushed separately from this spec). All v2 work (photography, torn-paper framing, grain texture, button restyle) happens in a new `v2/` folder — `v2/index.html` plus `v2/assets/images/` — starting as a copy of the current root `index.html` (so it inherits the corrected contact info) and diverging from there. The two are independent files; nothing here modifies the root file.
+
 ## Non-goals
 
 - No real photos of *this specific* factory/products (none exist — business is pre-launch). Images are real, freely-licensed stock photography that authentically depicts the *category* (paper donas/plates, Indian street food, catering scenes), not a claim that these are photos of Sahlok Eco Products' own operation.
-- No CMS/upload mechanism for swapping images later — that's a manual file replacement in `assets/images/` whenever real photos become available (noted as an open item).
+- No CMS/upload mechanism for swapping images later — that's a manual file replacement in `v2/assets/images/` whenever real photos become available (noted as an open item).
 - No change to bilingual text content, WhatsApp behavior, product data, or page structure/sections — this is a visual-layer pass only.
 
 ## Image sourcing
 
 - Source: Unsplash (free for commercial use, no attribution required). During implementation, use WebSearch/WebFetch to find and verify specific real photo pages/URLs — never fabricate a photo URL from memory.
-- Download images to a local `assets/images/` folder and reference them locally (not hotlinked), so the site doesn't depend on an external host staying up. This means the page is no longer a single self-standing file — it becomes `index.html` + an `assets/images/` folder, which supersedes the v1 spec's "single file" constraint.
+- Download images to a local `v2/assets/images/` folder and reference them locally (not hotlinked), so the site doesn't depend on an external host staying up. `v2/index.html` is no longer a single self-standing file — it's `v2/index.html` + a `v2/assets/images/` folder, which supersedes the v1 spec's "single file" constraint (for the v2 copy only — the root `index.html` remains a single file).
 - Four images needed, each with a specific real-world subject to search for:
   1. **Hero** — Indian street food/chaat served in paper donas or bowls (wide/landscape orientation).
   2. **About** — a bhandara/wedding-catering buffet scene, or a Varanasi ghats/cultural shot, reinforcing the "made for Varanasi" narrative (portrait or square orientation).
@@ -58,9 +62,10 @@ Left as SVG (these are 4 abstract steps, not a photographable "thing"), but rest
 
 ## File structure changes
 
-- New: `assets/images/hero-food.jpg`, `assets/images/about-varanasi.jpg`, `assets/images/product-dona.jpg`, `assets/images/product-plate.jpg` (exact filenames may adjust slightly based on what's actually sourced; downloaded and committed to the repo).
-- Modified: `index.html` — CSS additions (torn-photo, grain overlay, button restyle classes), hero/about markup swapped from SVG containers to `<img>` tags, product-card render function updated to render an `<img>` instead of an icon SVG.
-- The process-icon hand-sketch filter is added to the existing inline `<svg>` icon strings in the script block (no new files).
+- New: `v2/index.html` (copy of the current root `index.html`, then modified as described above).
+- New: `v2/assets/images/hero-food.jpg`, `v2/assets/images/about-varanasi.jpg`, `v2/assets/images/product-dona.jpg`, `v2/assets/images/product-plate.jpg` (exact filenames may adjust slightly based on what's actually sourced; downloaded and committed to the repo).
+- Not modified: root `index.html` (frozen as-is per the scope note above).
+- Within `v2/index.html`: CSS additions (torn-photo, grain overlay, button restyle classes), hero/about markup swapped from SVG containers to `<img>` tags, product-card render function updated to render an `<img>` instead of an icon SVG. The process-icon hand-sketch filter is added to the existing inline `<svg>` icon strings in the script block (no new files beyond the four images above).
 
 ## Testing / validation
 
