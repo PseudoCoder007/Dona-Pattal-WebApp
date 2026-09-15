@@ -575,6 +575,31 @@
     });
   }
 
+  var WHY_US = [
+    { nameEn: 'Eco-Friendly & Biodegradable', nameHi: 'इको-फ्रेंडली और बायोडिग्रेडेबल', descEn: '100% paper, no plastic — a safer choice for food and the environment.', descHi: '100% कागज़, कोई प्लास्टिक नहीं — भोजन और पर्यावरण के लिए एक सुरक्षित विकल्प।' },
+    { nameEn: 'Food-Safe & Hygienic', nameHi: 'खाद्य-सुरक्षित और स्वच्छ', descEn: 'Made and packed with hygiene in mind, safe for direct food contact.', descHi: 'स्वच्छता को ध्यान में रखते हुए बनाया और पैक किया गया।' },
+    { nameEn: 'Wholesale Bulk Pricing', nameHi: 'थोक मूल्य पर आपूर्ति', descEn: 'Straightforward per-100-piece pricing built for hotels, caterers & shops.', descHi: 'होटल, कैटरर्स और दुकानों के लिए सीधी प्रति-100-पीस मूल्य निर्धारण।' },
+    { nameEn: 'Local, Reachable, Reliable', nameHi: 'स्थानीय, सुलभ, भरोसेमंद', descEn: 'Based in Varanasi — easy to call, visit, and build a long-term supply relationship with.', descHi: 'वाराणसी में स्थित — कॉल करना, मिलना और लंबे समय तक आपूर्ति संबंध बनाना आसान।' }
+  ];
+
+  function renderWhyUs() {
+    var wrap = document.getElementById('why-us-grid');
+    WHY_US.forEach(function (item) {
+      var tile = document.createElement('div');
+      tile.className = 'why-us__tile reveal';
+      var name = document.createElement('h3');
+      name.style.fontSize = '1.05rem';
+      name.setAttribute('data-en', item.nameEn);
+      name.setAttribute('data-hi', item.nameHi);
+      var desc = document.createElement('p');
+      desc.setAttribute('data-en', item.descEn);
+      desc.setAttribute('data-hi', item.descHi);
+      tile.appendChild(name);
+      tile.appendChild(desc);
+      wrap.appendChild(tile);
+    });
+  }
+
   function renderHeroArt(targetId, size) {
     var el = document.getElementById(targetId);
     if (!el) { return; }
@@ -594,6 +619,7 @@
     renderHeroArt('about-art', 160);
     renderProcessSteps();
     renderProducts();
+    renderWhyUs();
 
     var toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
