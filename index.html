@@ -511,6 +511,70 @@
     });
   }
 
+  var DONA_ICON_SVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M8 28c0 14 10.7 24 24 24s24-10 24-24" stroke="#C1502E" stroke-width="4" stroke-linecap="round"/>' +
+    '<ellipse cx="32" cy="28" rx="26" ry="7" fill="#F4A63A" stroke="#8C3A20" stroke-width="2"/>' +
+    '</svg>';
+
+  var PLATE_ICON_SVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<ellipse cx="32" cy="34" rx="27" ry="11" fill="#FDECD8" stroke="#8C3A20" stroke-width="2"/>' +
+    '<ellipse cx="32" cy="30" rx="27" ry="11" fill="#F4A63A" stroke="#C1502E" stroke-width="3"/>' +
+    '<ellipse cx="32" cy="30" rx="13" ry="5" fill="#FFF8F0" stroke="#C1502E" stroke-width="1.5"/>' +
+    '</svg>';
+
+  var PRODUCTS = [
+    { id: 'dona-4', type: 'dona', nameEn: '4" Mini Paper Dona', nameHi: '4" मिनी पेपर दोना', useEn: 'Sweets & dry snacks', useHi: 'मिठाई और सूखे नाश्ते', gsm: '80–100 GSM', pack: '100 pcs/pack' },
+    { id: 'dona-6', type: 'dona', nameEn: '6" Paper Dona', nameHi: '6" पेपर दोना', useEn: 'Chaat & curry bowls', useHi: 'चाट और करी बाउल', gsm: '80–110 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-7', type: 'plate', nameEn: '7" Paper Plate', nameHi: '7" पेपर प्लेट', useEn: 'Snacks & light meals', useHi: 'नाश्ता और हल्का भोजन', gsm: '100–130 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-8', type: 'plate', nameEn: '8" Paper Plate', nameHi: '8" पेपर प्लेट', useEn: 'Full meals', useHi: 'पूरा भोजन', gsm: '120–150 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-10', type: 'plate', nameEn: '10" Paper Plate', nameHi: '10" पेपर प्लेट', useEn: 'Buffets & parties', useHi: 'बुफे और पार्टियां', gsm: '150–180 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-12', type: 'plate', nameEn: '12" Paper Plate', nameHi: '12" पेपर प्लेट', useEn: 'Banquets & bulk catering', useHi: 'बैंक्वेट और थोक कैटरिंग', gsm: '180–220 GSM', pack: '50 pcs/pack' }
+  ];
+
+  // Elements are built with DOM APIs (not innerHTML string concatenation)
+  // because product names contain literal double-quote characters (e.g. 4").
+  function renderProducts() {
+    var grid = document.getElementById('products-grid');
+    PRODUCTS.forEach(function (p) {
+      var card = document.createElement('article');
+      card.className = 'product-card reveal';
+
+      var icon = document.createElement('div');
+      icon.className = 'product-card__icon';
+      icon.innerHTML = p.type === 'plate' ? PLATE_ICON_SVG : DONA_ICON_SVG;
+
+      var name = document.createElement('h3');
+      name.className = 'product-card__name';
+      name.setAttribute('data-en', p.nameEn);
+      name.setAttribute('data-hi', p.nameHi);
+
+      var use = document.createElement('p');
+      use.className = 'product-card__use';
+      use.setAttribute('data-en', p.useEn);
+      use.setAttribute('data-hi', p.useHi);
+
+      var spec = document.createElement('p');
+      spec.className = 'product-card__spec';
+      spec.textContent = p.gsm + ' · ' + p.pack;
+
+      var link = document.createElement('a');
+      link.className = 'product-card__link whatsapp-link';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.setAttribute('data-en', 'Ask for this size →');
+      link.setAttribute('data-hi', 'इस साइज़ के लिए पूछें →');
+      link.setAttribute('data-msg-en', 'Hi, I am interested in bulk pricing for the ' + p.nameEn + '. Could you share details?');
+      link.setAttribute('data-msg-hi', 'नमस्ते, मुझे ' + p.nameHi + ' के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।');
+
+      card.appendChild(icon);
+      card.appendChild(name);
+      card.appendChild(use);
+      card.appendChild(spec);
+      card.appendChild(link);
+      grid.appendChild(card);
+    });
+  }
+
   function renderHeroArt(targetId, size) {
     var el = document.getElementById(targetId);
     if (!el) { return; }
@@ -529,6 +593,7 @@
     renderHeroArt('hero-art', 220);
     renderHeroArt('about-art', 160);
     renderProcessSteps();
+    renderProducts();
 
     var toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
