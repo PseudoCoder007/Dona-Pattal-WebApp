@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahlok Eco Products LLP — Paper Foodware, Mirzapur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --paper: #F4EFE6;
+    --ink: #2B2521;
+    --ink-soft: #6B5D52;
+    --brick: #B24A2E;
+    --brass: #A87C3F;
+    --oxblood: #4A1F1C;
+    --stone: #C9C0B4;
+    --card: #FFFFFF;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-body-hi: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', system-ui, sans-serif;
+    --section-pad: clamp(64px, 8vw, 140px);
+    --max-width: 1200px;
+    --radius: 4px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3, .brand-name { font-family: var(--font-display); color: var(--ink); margin: 0 0 0.5em; font-weight: 600; }
+  .display { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.05; }
+  .heading { font-size: clamp(1.75rem, 3.5vw, 2.75rem); line-height: 1.1; }
+  p { margin: 0 0 1em; color: var(--ink-soft); }
+  a { color: inherit; }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+  .section { padding: var(--section-pad) 0; position: relative; }
+  .section__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    color: var(--brass);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  /* Hindi typography: Fraunces has no Devanagari glyphs, so headings fall
+     back to the body face at a reduced size when lang=hi. */
+  html[lang="hi"] .display { font-family: var(--font-body-hi); font-size: clamp(2rem, 4.5vw, 4rem); }
+  html[lang="hi"] .heading { font-family: var(--font-body-hi); font-size: clamp(1.5rem, 3vw, 2.2rem); }
+  html[lang="hi"] .brand-name { font-family: var(--font-body-hi); }
+  html[lang="hi"] .product-card__name { font-family: var(--font-body-hi); }
+
+  .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+  .span-7 { grid-column: span 7; }
+  .span-5 { grid-column: span 5; }
+  @media (max-width: 860px) {
+    .grid-12 { grid-template-columns: 1fr; }
+    .span-7, .span-5 { grid-column: 1; }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: var(--font-body);
+  }
+  .btn--primary { background: var(--brick); color: var(--paper); border-color: var(--brick); }
+  .btn--primary:hover { background: var(--oxblood); border-color: var(--oxblood); }
+  .btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244, 239, 230, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--stone);
+  }
+  .site-header__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand-name { font-size: 1.4rem; margin: 0; }
+  .brand-name span { color: var(--brick); }
+  .nav-links { display: flex; gap: 22px; align-items: center; }
+  .nav-links a { text-decoration: none; font-weight: 500; color: var(--ink); font-size: 0.92rem; }
+  .nav-links a:hover { color: var(--brick); }
+  .lang-toggle {
+    border: 1px solid var(--brass);
+    background: transparent;
+    color: var(--ink);
+    border-radius: var(--radius);
+    padding: 6px 12px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+  .header-cta { display: none; }
+  @media (min-width: 720px) { .header-cta { display: inline-flex; } }
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--ink); cursor: pointer; }
+  @media (max-width: 720px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px 24px 24px;
+      border-bottom: 1px solid var(--stone);
+      gap: 14px;
+    }
+    .nav-links.is-open { display: flex; }
+    .nav-toggle { display: inline-flex; }
+  }
+
+  /* Hero */
+  .hero { padding-top: 48px; }
+  .hero__sub { font-size: 1.1rem; max-width: 46ch; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .hero__photo { width: 100%; height: clamp(320px, 40vw, 520px); object-fit: cover; border: 1px solid var(--stone); display: block; }
+
+  /* Footer */
+  .site-footer { background: var(--oxblood); color: rgba(244,239,230,0.8); padding: 40px 0; font-size: 0.9rem; }
+  .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <p class="brand-name">Sahlok <span>Eco</span> Products</p>
+    <nav class="nav-links">
+      <a href="#product-range" data-en="Products" data-hi="उत्पाद">Products</a>
+      <a href="#who-we-supply" data-en="Who We Supply" data-hi="हम किसे आपूर्ति करते हैं">Who We Supply</a>
+      <a href="#making-story" data-en="Making Story" data-hi="निर्माण कहानी">Making Story</a>
+      <a href="#mirzapur" data-en="Mirzapur" data-hi="मिर्ज़ापुर">Mirzapur</a>
+      <a href="#wholesale" data-en="Wholesale" data-hi="थोक">Wholesale</a>
+      <a href="#contact" data-en="Contact" data-hi="संपर्क करें">Contact</a>
+      <button class="lang-toggle" id="lang-toggle" type="button">हिंदी</button>
+    </nav>
+    <a href="#wholesale" class="btn btn--primary header-cta" data-en="Get Bulk Pricing" data-hi="थोक मूल्य जानें"></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="section hero" id="hero">
+    <div class="container grid-12">
+      <div class="span-7 reveal">
+        <p class="section__eyebrow" data-en="Mirzapur, Uttar Pradesh — Pre-Launch" data-hi="मिर्ज़ापुर, उत्तर प्रदेश — लॉन्च-पूर्व"></p>
+        <h1 class="display" data-en="Paper Foodware, Made For Everyday India" data-hi="रोज़मर्रा के भारत के लिए बना पेपर फूडवेयर"></h1>
+        <p class="hero__sub" data-en="Bulk-ready paper donas and plates for hotels, restaurants, sweet shops, caterers and banquet halls in Mirzapur." data-hi="मिर्ज़ापुर में होटल, रेस्टोरेंट, मिठाई की दुकानों, कैटरर्स और बैंक्वेट हॉल के लिए थोक में तैयार पेपर दोना और पत्तल।"></p>
+        <div class="hero__actions">
+          <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+             data-en="Get Bulk Pricing on WhatsApp" data-hi="व्हाट्सएप पर थोक मूल्य जानें"
+             data-msg-en="Hi, I'm interested in bulk wholesale pricing for paper dona/pattal. Could you share details?"
+             data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
+        </div>
+      </div>
+      <div class="span-5 reveal">
+        <img class="hero__photo" src="../v2/assets/images/hero-food.jpg" alt="Chef preparing Indian street food chaat with fresh toppings and spices" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-range" id="product-range">
+    <div class="container">
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="Product Range" data-hi="उत्पाद श्रृंखला"></p>
+        <h2 class="heading" data-en="Six Sizes, One Reliable Supply" data-hi="छह आकार, एक भरोसेमंद आपूर्ति"></h2>
+      </div>
+      <div class="product-grid" id="products-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand-name" style="color:var(--paper); font-size:1.1rem;">Sahlok Eco Products LLP</p>
+      <p data-en="Mirzapur, Uttar Pradesh · Eco-friendly paper packaging" data-hi="मिर्ज़ापुर, उत्तर प्रदेश · इको-फ्रेंडली पेपर पैकेजिंग"></p>
+    </div>
+    <div>
+      <p>+91 87872 01971</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'sahlok_lang';
+  var WHATSAPP_NUMBER = '918787201971';
+  window.currentLang = 'en';
+
+  function getStoredLang() {
+    try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch (e) { return 'en'; }
+  }
+  function setStoredLang(lang) {
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* private mode etc: ignore */ }
+  }
+  function buildWhatsAppLink(message) {
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+  }
+  function refreshWhatsAppLinks() {
+    document.querySelectorAll('.whatsapp-link').forEach(function (el) {
+      var msg = window.currentLang === 'hi' ? el.getAttribute('data-msg-hi') : el.getAttribute('data-msg-en');
+      if (msg) { el.href = buildWhatsAppLink(msg); }
+    });
+  }
+  function applyLanguage(lang) {
+    window.currentLang = lang;
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      var text = lang === 'hi' ? el.getAttribute('data-hi') : el.getAttribute('data-en');
+      if (text !== null) { el.textContent = text; }
+    });
+    document.documentElement.setAttribute('lang', lang === 'hi' ? 'hi' : 'en');
+    var toggleBtn = document.getElementById('lang-toggle');
+    if (toggleBtn) { toggleBtn.textContent = lang === 'hi' ? 'English' : 'हिंदी'; }
+    refreshWhatsAppLinks();
+  }
+  function toggleLanguage() {
+    var next = window.currentLang === 'hi' ? 'en' : 'hi';
+    setStoredLang(next);
+    applyLanguage(next);
+  }
+
+  function initScrollReveal() {
+    var items = document.querySelectorAll('.reveal');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      items.forEach(function (el) { el.style.opacity = 1; });
+      return;
+    }
+    gsap.registerPlugin(ScrollTrigger);
+    items.forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: reduceMotion ? 0 : 24 });
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.7,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggleBtn = document.getElementById('lang-toggle');
+    if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
+
+    var navToggle = document.getElementById('nav-toggle');
+    var navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('is-open');
+      });
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { navLinks.classList.remove('is-open'); });
+      });
+    }
+
+    applyLanguage(getStoredLang());
+    initScrollReveal();
+  });
+})();
+</script>
+</body>
+</html>
