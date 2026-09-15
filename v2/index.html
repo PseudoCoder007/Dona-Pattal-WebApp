@@ -157,7 +157,8 @@
   .hero h1 { font-size: clamp(2rem, 4vw, 2.9rem); }
   .hero__sub { font-size: 1.1rem; max-width: 46ch; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .hero__art { opacity: 0; transform: translateY(16px) scale(0.96); animation: hero-in 0.9s ease 0.15s forwards; }
+  .hero__art { opacity: 0; transform: translateY(16px) scale(0.96); animation: hero-in 0.9s ease 0.15s forwards; max-width: 420px; }
+  .hero__art .torn-photo { height: 320px; }
   .hero__text { opacity: 0; transform: translateY(16px); animation: hero-in 0.9s ease forwards; }
   @keyframes hero-in { to { opacity: 1; transform: translateY(0) scale(1); } }
   .hero__badge {
@@ -170,6 +171,17 @@
     border-radius: 999px;
     margin-bottom: 16px;
   }
+
+  /* Real-photo framing */
+  .torn-photo {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 95% 96%, 90% 91%, 85% 97%, 80% 92%, 75% 98%, 70% 93%, 65% 97%, 60% 91%, 55% 96%, 50% 92%, 45% 97%, 40% 93%, 35% 98%, 30% 92%, 25% 96%, 20% 91%, 15% 97%, 10% 93%, 5% 98%, 0% 92%);
+    box-shadow: 0 20px 40px rgba(58,35,24,0.25);
+  }
+  .tilt-left { transform: rotate(-3deg); }
+  .tilt-right { transform: rotate(2deg); }
 
   /* Divider */
   .divider--wave {
@@ -186,7 +198,8 @@
   @media (min-width: 860px) {
     .about__inner { grid-template-columns: 0.85fr 1.15fr; align-items: center; }
   }
-  .about__art { justify-self: center; }
+  .about__art { justify-self: center; max-width: 280px; }
+  .about__art .torn-photo { height: 360px; }
 
   /* Process */
   .process { background-color: var(--color-bg-soft); background-image: var(--grain); }
@@ -350,13 +363,13 @@
           <a class="btn btn--ghost" href="#products" data-en="See Our Products" data-hi="हमारे उत्पाद देखें"></a>
         </div>
       </div>
-      <div class="hero__art" id="hero-art"></div>
+      <div class="hero__art"><img class="torn-photo tilt-left" src="assets/images/hero-food.jpg" alt="Chef preparing Indian street food chaat with fresh toppings and spices" loading="lazy"></div>
     </div>
   </section>
 
   <section class="section about" id="about">
     <div class="container about__inner">
-      <div class="about__art reveal" id="about-art"></div>
+      <div class="about__art reveal"><img class="torn-photo tilt-right" src="assets/images/about-varanasi.jpg" alt="Street food vendor at a traditional stall in Mirzapur, India" loading="lazy"></div>
       <div class="reveal">
         <p class="section__eyebrow" data-en="About Us" data-hi="हमारे बारे में"></p>
         <h2 data-en="Made From Paper, Made For Mirzapur" data-hi="कागज़ से बना, मिर्ज़ापुर के लिए बना"></h2>
@@ -614,23 +627,7 @@
     });
   }
 
-  function renderHeroArt(targetId, size) {
-    var el = document.getElementById(targetId);
-    if (!el) { return; }
-    el.innerHTML = '<svg viewBox="0 0 220 220" width="' + size + '" height="' + size + '" xmlns="http://www.w3.org/2000/svg">' +
-      '<ellipse cx="110" cy="190" rx="90" ry="14" fill="#F4A63A" opacity="0.35"/>' +
-      '<ellipse cx="110" cy="150" rx="80" ry="16" fill="#FDECD8" stroke="#8C3A20" stroke-width="3"/>' +
-      '<ellipse cx="110" cy="120" rx="70" ry="15" fill="#FFF8F0" stroke="#C1502E" stroke-width="3"/>' +
-      '<ellipse cx="110" cy="92" rx="60" ry="14" fill="#FDECD8" stroke="#8C3A20" stroke-width="3"/>' +
-      '<g transform="translate(140,40)">' +
-      '<circle cx="0" cy="0" r="10" fill="#F4A63A"/><circle cx="16" cy="6" r="10" fill="#F4A63A"/>' +
-      '<circle cx="-16" cy="6" r="10" fill="#F4A63A"/><circle cx="0" cy="16" r="10" fill="#C1502E"/>' +
-      '</g></svg>';
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
-    renderHeroArt('hero-art', 220);
-    renderHeroArt('about-art', 160);
     renderProcessSteps();
     renderProducts();
     renderWhyUs();
