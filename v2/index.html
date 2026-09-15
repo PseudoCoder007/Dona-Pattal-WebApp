@@ -23,6 +23,7 @@
     --radius: 16px;
     --shadow-soft: 0 8px 24px rgba(107,30,35,0.12);
     --max-width: 1120px;
+    --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.06'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
   * { box-sizing: border-box; }
@@ -30,7 +31,8 @@
   body {
     margin: 0;
     font-family: var(--font-body);
-    background: var(--color-bg);
+    background-color: var(--color-bg);
+    background-image: var(--grain);
     color: var(--color-text);
     line-height: 1.55;
   }
@@ -187,7 +189,7 @@
   .about__art { justify-self: center; }
 
   /* Process */
-  .process { background: var(--color-bg-soft); }
+  .process { background-color: var(--color-bg-soft); background-image: var(--grain); }
   .process__steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -267,7 +269,7 @@
   @media (max-width: 720px) { .why-us__tile:nth-child(2n) { margin-top: 0; } }
 
   /* Contact */
-  .contact { background: var(--color-maroon); color: #fff; }
+  .contact { background-color: var(--color-maroon); background-image: var(--grain); color: #fff; }
   .contact h2, .contact .section__eyebrow { color: #fff; }
   .contact p { color: rgba(255,255,255,0.85); }
   .contact__card {
