@@ -1,0 +1,890 @@
+# Sahlok Eco Products LLP Landing Page Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Build a single self-contained, bilingual (EN/HI), animated static HTML landing page for Sahlok Eco Products LLP (Varanasi paper dona & pattal manufacturing, pre-launch, B2B wholesale).
+
+**Architecture:** One file, `index.html`, with inline `<style>` and `<script>` — no build step, no dependencies besides a Google Fonts `<link>`. Content sections are either static markup (header, hero, about, contact, footer) or rendered from small JS data arrays at load time (process steps, products, why-us tiles), all driven by a shared bilingual text-swap engine and a shared WhatsApp-link builder.
+
+**Tech Stack:** Plain HTML5, CSS3 (custom properties, Grid/Flexbox, CSS animations), vanilla JS (ES5-compatible, no framework, no bundler). Google Font: Baloo 2 (Latin + Devanagari).
+
+**Spec:** [docs/superpowers/specs/2026-09-15-website-landing-page-design.md](../specs/2026-09-15-website-landing-page-design.md)
+
+## Global Constraints
+
+- Single file `index.html`, inline CSS/JS only, no build tooling, no npm packages.
+- No backend — the only "form submission" is prefilled WhatsApp deep links to `919320624706` (owner: Sahil Gupta). No email or physical address anywhere (none was provided).
+- No stock photography — all visuals are inline SVG built with plain strings/DOM APIs.
+- Palette (exact values): `--color-bg:#FFF8F0; --color-bg-soft:#FDECD8; --color-primary:#C1502E; --color-primary-dark:#8C3A20; --color-maroon:#6B1E23; --color-accent:#F4A63A; --color-text:#3A2318; --color-text-light:#7A5C4A;`
+- Heading font: Google Font **Baloo 2** (`https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap`), body: system font stack.
+- Every visible string has an English and a Hindi version. Static markup carries both as `data-en`/`data-hi` attributes (element starts empty, text is filled in by `applyLanguage()`). JS-rendered elements set the same attributes when they're created.
+- Bilingual toggle persists to `localStorage` key `sahlok_lang`, guarded with try/catch (private-mode/file:// origins can throw).
+- Avoid a generic/AI-templated look (explicit user requirement): asymmetric section layouts, a recurring hand-illustrated motif (stacked-dona/marigold SVG) instead of stock icons, scroll-reveal + hover motion, a custom SVG wave divider instead of a plain straight section boundary.
+- This project has no git repository yet — Task 1 initializes one.
+
+---
+
+### Task 1: Scaffold, design tokens, bilingual/WhatsApp engine, header/hero/about/contact/footer
+
+**Files:**
+- Create: `index.html`
+- Create: `.claude/launch.json` (local preview server config, for the verification steps below)
+
+**Interfaces:**
+- Produces (globals later tasks depend on): `window.currentLang` (string `'en'|'hi'`), `applyLanguage(lang)`, `toggleLanguage()`, `getStoredLang()`, `buildWhatsAppLink(message)`, `refreshWhatsAppLinks()`, `initScrollReveal()`. Later tasks call `applyLanguage(window.currentLang)`-equivalent behavior indirectly by appending their `.reveal`/`[data-en]`/`.whatsapp-link` elements **before** the `DOMContentLoaded` handler's final `applyLanguage(getStoredLang()); initScrollReveal();` calls run.
+- Produces (DOM containers later tasks render into): `#process-steps`, `#products-grid`, `#why-us-grid` (all empty in this task).
+
+- [ ] **Step 1: Initialize git**
+
+```bash
+git init
+```
+
+- [ ] **Step 2: Create `.claude/launch.json`** so later verification steps can open the page via a real `http://localhost` origin (needed for `localStorage` and full browser-tool interactivity — plain `file://` works too, but some browser automation tools restrict interactivity on `file://`).
+
+```json
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "preview-server",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8199"],
+      "port": 8199
+    }
+  ]
+}
+```
+
+- [ ] **Step 3: Create `index.html`** with the full document below.
+
+```html
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahlok Eco Products LLP — Paper Dona &amp; Pattal, Varanasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #FFF8F0;
+    --color-bg-soft: #FDECD8;
+    --color-primary: #C1502E;
+    --color-primary-dark: #8C3A20;
+    --color-maroon: #6B1E23;
+    --color-accent: #F4A63A;
+    --color-text: #3A2318;
+    --color-text-light: #7A5C4A;
+    --color-card: #FFFFFF;
+    --font-heading: 'Baloo 2', system-ui, sans-serif;
+    --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    --radius: 16px;
+    --shadow-soft: 0 8px 24px rgba(107,30,35,0.12);
+    --max-width: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.55;
+  }
+  h1, h2, h3, .brand-name {
+    font-family: var(--font-heading);
+    color: var(--color-maroon);
+    margin: 0 0 0.5em;
+    line-height: 1.15;
+  }
+  p { margin: 0 0 1em; color: var(--color-text-light); }
+  a { color: inherit; }
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .section { padding: 72px 0; position: relative; }
+  .section__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+  .btn--primary { background: var(--color-primary); color: #fff; }
+  .btn--primary:hover { background: var(--color-primary-dark); }
+  .btn--ghost { background: transparent; border-color: var(--color-maroon); color: var(--color-maroon); }
+
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 248, 240, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(107,30,35,0.08);
+  }
+  .site-header__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand-name { font-size: 1.3rem; margin: 0; }
+  .brand-name span { color: var(--color-primary); }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+  .nav-links a:hover { color: var(--color-primary); }
+  .lang-toggle {
+    border: 2px solid var(--color-accent);
+    background: var(--color-bg-soft);
+    color: var(--color-maroon);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .header-cta { display: none; }
+  @media (min-width: 720px) {
+    .header-cta { display: inline-flex; }
+  }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-maroon);
+    cursor: pointer;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Hero */
+  .hero { padding-top: 56px; overflow: hidden; }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero h1 { font-size: clamp(2rem, 4vw, 2.9rem); }
+  .hero__sub { font-size: 1.1rem; max-width: 46ch; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .hero__art { opacity: 0; transform: translateY(16px) scale(0.96); animation: hero-in 0.9s ease 0.15s forwards; }
+  .hero__text { opacity: 0; transform: translateY(16px); animation: hero-in 0.9s ease forwards; }
+  @keyframes hero-in { to { opacity: 1; transform: translateY(0) scale(1); } }
+  .hero__badge {
+    display: inline-block;
+    background: var(--color-accent);
+    color: var(--color-maroon);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+
+  /* Divider */
+  .divider--wave {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    display: block;
+  }
+
+  /* About */
+  .about__inner { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 860px) {
+    .about__inner { grid-template-columns: 0.85fr 1.15fr; align-items: center; }
+  }
+  .about__art { justify-self: center; }
+
+  /* Process */
+  .process { background: var(--color-bg-soft); }
+  .process__steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+    position: relative;
+  }
+  .process__step {
+    background: var(--color-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+  }
+  .process__step-number {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    margin: 0 auto 12px;
+  }
+
+  /* Products */
+  .products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .product-card {
+    background: var(--color-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .product-card:hover {
+    transform: translateY(-6px) rotate(-0.5deg);
+    box-shadow: 0 16px 32px rgba(107,30,35,0.18);
+  }
+  .product-card__icon { width: 56px; height: 56px; margin-bottom: 8px; }
+  .product-card__name { font-size: 1.15rem; margin-bottom: 2px; }
+  .product-card__use { font-size: 0.9rem; margin-bottom: 4px; }
+  .product-card__spec { font-size: 0.85rem; color: var(--color-primary-dark); font-weight: 600; margin-bottom: 12px; }
+  .product-card__link {
+    margin-top: auto;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .product-card__link:hover { color: var(--color-maroon); }
+  .products__note { font-size: 0.85rem; margin-top: 24px; }
+
+  /* Why us */
+  .why-us__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .why-us__tile {
+    padding: 20px;
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-card);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    box-shadow: var(--shadow-soft);
+  }
+  .why-us__tile:nth-child(2n) { border-left-color: var(--color-primary); margin-top: 24px; }
+  @media (max-width: 720px) { .why-us__tile:nth-child(2n) { margin-top: 0; } }
+
+  /* Contact */
+  .contact { background: var(--color-maroon); color: #fff; }
+  .contact h2, .contact .section__eyebrow { color: #fff; }
+  .contact p { color: rgba(255,255,255,0.85); }
+  .contact__card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-top: 32px;
+    display: grid;
+    gap: 16px;
+  }
+  .contact__row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-weight: 600; }
+  .contact__row span:first-child { color: rgba(255,255,255,0.65); font-weight: 500; }
+
+  /* Footer */
+  .site-footer {
+    background: #2C1410;
+    color: rgba(255,255,255,0.75);
+    padding: 32px 0;
+    font-size: 0.9rem;
+  }
+  .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (max-width: 860px) {
+    .hero__inner { grid-template-columns: 1fr; }
+    .hero__art { order: -1; max-width: 240px; margin: 0 auto; }
+  }
+  @media (max-width: 720px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px 24px 24px;
+      border-bottom: 1px solid rgba(107,30,35,0.08);
+      gap: 14px;
+    }
+    .nav-links.is-open { display: flex; }
+    .nav-toggle { display: inline-flex; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <p class="brand-name">Sahlok <span>Eco</span> Products</p>
+    <nav class="nav-links">
+      <a href="#about" data-en="About" data-hi="हमारे बारे में">About</a>
+      <a href="#products" data-en="Products" data-hi="उत्पाद">Products</a>
+      <a href="#process" data-en="Process" data-hi="प्रक्रिया">Process</a>
+      <a href="#why-us" data-en="Why Us" data-hi="हमें क्यों चुनें">Why Us</a>
+      <a href="#contact" data-en="Contact" data-hi="संपर्क करें">Contact</a>
+      <button class="lang-toggle" id="lang-toggle" type="button">हिंदी</button>
+    </nav>
+    <a href="#contact" class="btn btn--primary header-cta" data-en="Get Bulk Pricing" data-hi="थोक मूल्य जानें"></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="section hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <span class="hero__badge" data-en="Launching Soon in Varanasi" data-hi="जल्द ही वाराणसी में लॉन्च हो रहा है"></span>
+        <h1 data-en="Launching Varanasi's Newest Eco-Friendly Dona &amp; Pattal Unit" data-hi="वाराणसी की नई इको-फ्रेंडली दोना और पत्तल यूनिट लॉन्च हो रही है"></h1>
+        <p class="hero__sub" data-en="Bulk-ready paper donas and plates for hotels, restaurants, sweet shops, caterers and banquet halls. Book your introductory wholesale rate before we go live." data-hi="होटल, रेस्टोरेंट, मिठाई की दुकानों, कैटरर्स और बैंक्वेट हॉल के लिए थोक में तैयार पेपर दोना और पत्तल। लॉन्च से पहले अपनी परिचयात्मक थोक दर बुक करें।"></p>
+        <div class="hero__actions">
+          <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+             data-en="Get Bulk Pricing on WhatsApp" data-hi="व्हाट्सएप पर थोक मूल्य जानें"
+             data-msg-en="Hi, I'm interested in bulk wholesale pricing for paper dona/pattal. Could you share details?"
+             data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
+          <a class="btn btn--ghost" href="#products" data-en="See Our Products" data-hi="हमारे उत्पाद देखें"></a>
+        </div>
+      </div>
+      <div class="hero__art" id="hero-art"></div>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="container about__inner">
+      <div class="about__art reveal" id="about-art"></div>
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="About Us" data-hi="हमारे बारे में"></p>
+        <h2 data-en="Made From Paper, Made For Varanasi" data-hi="कागज़ से बना, वाराणसी के लिए बना"></h2>
+        <p data-en="Sahlok Eco Products LLP is setting up a new paper dona and pattal manufacturing unit in Varanasi, built to serve the city's daily demand from weddings, bhandaras, sweet shops and restaurants with a reliable, eco-friendly alternative to plastic." data-hi="साहलोक इको प्रोडक्ट्स एलएलपी वाराणसी में एक नई पेपर दोना और पत्तल निर्माण इकाई स्थापित कर रही है — जो शादियों, भंडारों, मिठाई की दुकानों और रेस्टोरेंट की रोज़ की ज़रूरत के लिए प्लास्टिक का एक भरोसेमंद, इको-फ्रेंडली विकल्प देने के लिए बनाई गई है।"></p>
+        <p data-en="We're currently pre-launch and taking early wholesale inquiries. As an introductory offer, our first buyers get a limited-time discounted rate on their first orders — a great time to lock in a reliable local supplier before we scale up." data-hi="हम फ़िलहाल लॉन्च-पूर्व चरण में हैं और शुरुआती थोक पूछताछ ले रहे हैं। परिचयात्मक ऑफ़र के तहत, हमारे पहले खरीदारों को उनके पहले ऑर्डर पर सीमित समय के लिए विशेष दर मिलेगी।"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process" id="process">
+    <div class="container">
+      <p class="section__eyebrow reveal" data-en="Our Process" data-hi="हमारी प्रक्रिया"></p>
+      <h2 class="reveal" data-en="How It's Made" data-hi="यह कैसे बनता है"></h2>
+      <div class="process__steps" id="process-steps"></div>
+    </div>
+  </section>
+
+  <section class="section products" id="products">
+    <div class="container">
+      <p class="section__eyebrow reveal" data-en="Our Range" data-hi="हमारी श्रृंखला"></p>
+      <h2 class="reveal" data-en="Core Product Sizes" data-hi="मुख्य उत्पाद आकार"></h2>
+      <p class="reveal" data-en="From small donas to full banquet-size plates — pick a size and ask us for your custom bulk quote." data-hi="छोटे दोने से लेकर बड़े बैंक्वेट आकार की प्लेट तक — एक साइज़ चुनें और अपने थोक कोटेशन के लिए हमसे पूछें।"></p>
+      <div class="products__grid" id="products-grid"></div>
+      <p class="products__note reveal" data-en="GSM ranges shown are indicative and confirmed at order time based on your exact requirement." data-hi="दिखाए गए GSM रेंज संकेतात्मक हैं और ऑर्डर के समय आपकी सटीक आवश्यकता के अनुसार तय किए जाते हैं।"></p>
+    </div>
+  </section>
+
+  <section class="section why-us" id="why-us">
+    <div class="container">
+      <p class="section__eyebrow reveal" data-en="Why Choose Us" data-hi="हमें क्यों चुनें"></p>
+      <h2 class="reveal" data-en="Built For Reliable Bulk Supply" data-hi="भरोसेमंद थोक आपूर्ति के लिए बनाया गया"></h2>
+      <div class="why-us__grid" id="why-us-grid"></div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <svg class="divider--wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,80 C240,10 480,0 720,32 C960,64 1200,72 1440,16 L1440,80 L0,80 Z" fill="#6B1E23"></path>
+    </svg>
+    <div class="container">
+      <p class="section__eyebrow reveal" data-en="Get In Touch" data-hi="संपर्क करें"></p>
+      <h2 class="reveal" data-en="Let's Talk Bulk Pricing" data-hi="थोक मूल्य पर बात करें"></h2>
+      <p class="reveal" data-en="Have a size in mind, or want to request samples? Message us directly — we reply fast." data-hi="कोई खास साइज़ चाहिए या सैंपल मंगवाना है? सीधे मैसेज करें — हम जल्दी जवाब देते हैं।"></p>
+      <div class="contact__card reveal">
+        <div class="contact__row"><span data-en="Owner" data-hi="स्वामी"></span><span>Sahil Gupta</span></div>
+        <div class="contact__row"><span data-en="Call / WhatsApp" data-hi="कॉल / व्हाट्सएप"></span><span>+91 93206 24706</span></div>
+        <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+           data-en="Chat on WhatsApp" data-hi="व्हाट्सएप पर चैट करें"
+           data-msg-en="Hi, I'd like to enquire about ordering paper dona/pattal in bulk."
+           data-msg-hi="नमस्ते, मुझे थोक में पेपर दोना/पत्तल ऑर्डर करने के बारे में पूछताछ करनी है।"></a>
+        <a class="btn btn--ghost" id="tel-link" href="tel:+919320624706" data-en="Or Call Directly" data-hi="या सीधे कॉल करें"></a>
+        <p data-en="Ask about a free sample pack before placing your first bulk order." data-hi="अपना पहला थोक ऑर्डर देने से पहले मुफ़्त सैंपल पैक के बारे में पूछें।"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brand-name" style="color:#fff; font-size:1.1rem;">Sahlok Eco Products LLP</p>
+      <p data-en="Varanasi, Uttar Pradesh · Eco-friendly paper packaging" data-hi="वाराणसी, उत्तर प्रदेश · इको-फ्रेंडली पेपर पैकेजिंग"></p>
+    </div>
+    <div>
+      <p>+91 93206 24706</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'sahlok_lang';
+  var WHATSAPP_NUMBER = '919320624706';
+  window.currentLang = 'en';
+
+  function getStoredLang() {
+    try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch (e) { return 'en'; }
+  }
+  function setStoredLang(lang) {
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* private mode etc: ignore */ }
+  }
+  function buildWhatsAppLink(message) {
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+  }
+  function refreshWhatsAppLinks() {
+    document.querySelectorAll('.whatsapp-link').forEach(function (el) {
+      var msg = window.currentLang === 'hi' ? el.getAttribute('data-msg-hi') : el.getAttribute('data-msg-en');
+      if (msg) { el.href = buildWhatsAppLink(msg); }
+    });
+  }
+  function applyLanguage(lang) {
+    window.currentLang = lang;
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      var text = lang === 'hi' ? el.getAttribute('data-hi') : el.getAttribute('data-en');
+      if (text !== null) { el.textContent = text; }
+    });
+    document.documentElement.setAttribute('lang', lang === 'hi' ? 'hi' : 'en');
+    var toggleBtn = document.getElementById('lang-toggle');
+    if (toggleBtn) { toggleBtn.textContent = lang === 'hi' ? 'English' : 'हिंदी'; }
+    refreshWhatsAppLinks();
+  }
+  function toggleLanguage() {
+    var next = window.currentLang === 'hi' ? 'en' : 'hi';
+    setStoredLang(next);
+    applyLanguage(next);
+  }
+
+  function initScrollReveal() {
+    var items = document.querySelectorAll('.reveal:not(.is-visible)');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { observer.observe(el); });
+  }
+
+  function renderHeroArt(targetId, size) {
+    var el = document.getElementById(targetId);
+    if (!el) { return; }
+    el.innerHTML = '<svg viewBox="0 0 220 220" width="' + size + '" height="' + size + '" xmlns="http://www.w3.org/2000/svg">' +
+      '<ellipse cx="110" cy="190" rx="90" ry="14" fill="#F4A63A" opacity="0.35"/>' +
+      '<ellipse cx="110" cy="150" rx="80" ry="16" fill="#FDECD8" stroke="#8C3A20" stroke-width="3"/>' +
+      '<ellipse cx="110" cy="120" rx="70" ry="15" fill="#FFF8F0" stroke="#C1502E" stroke-width="3"/>' +
+      '<ellipse cx="110" cy="92" rx="60" ry="14" fill="#FDECD8" stroke="#8C3A20" stroke-width="3"/>' +
+      '<g transform="translate(140,40)">' +
+      '<circle cx="0" cy="0" r="10" fill="#F4A63A"/><circle cx="16" cy="6" r="10" fill="#F4A63A"/>' +
+      '<circle cx="-16" cy="6" r="10" fill="#F4A63A"/><circle cx="0" cy="16" r="10" fill="#C1502E"/>' +
+      '</g></svg>';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    renderHeroArt('hero-art', 220);
+    renderHeroArt('about-art', 160);
+
+    var toggleBtn = document.getElementById('lang-toggle');
+    if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
+
+    var navToggle = document.getElementById('nav-toggle');
+    var navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('is-open');
+      });
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { navLinks.classList.remove('is-open'); });
+      });
+    }
+
+    applyLanguage(getStoredLang());
+    initScrollReveal();
+  });
+})();
+</script>
+</body>
+</html>
+```
+
+- [ ] **Step 4: Verify in browser**
+
+Run: `python -m http.server 8199` from the project root (or use the `preview-server` launch config), then open `http://localhost:8199/index.html`.
+
+Expected:
+- Header, hero, about, and contact sections show real English text and the illustrated stack-of-plates/marigold SVG art (no broken images, no stock photos).
+- Process/Products/Why-Us sections show only their heading (the grids below are empty — expected until Tasks 2-4).
+- Clicking the "हिंदी" pill switches header/hero/about/contact text to Hindi and the pill now reads "English"; reloading the page keeps the last-chosen language (via `localStorage`).
+- The "Get Bulk Pricing on WhatsApp" and "Chat on WhatsApp" buttons' `href` (inspect via devtools) is `https://wa.me/919320624706?text=...` with the message matching the current language.
+- At a narrow viewport (< 720px), the nav links are hidden behind a "☰" button; clicking it shows/hides a dropdown list of nav links, and clicking any nav link closes it again.
+- Browser console has no errors.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add index.html .claude/launch.json docs/
+git commit -m "Add landing page scaffold, bilingual engine, and static sections"
+```
+
+---
+
+### Task 2: "How It's Made" process steps
+
+**Files:**
+- Modify: `index.html` (insert before the closing `document.addEventListener('DOMContentLoaded', ...)` block's existing body, i.e. add new consts above the `document.addEventListener` line, and add one new call inside it)
+
+**Interfaces:**
+- Consumes: none beyond Task 1's `applyLanguage`/`initScrollReveal` (called by the existing `DOMContentLoaded` handler after this task's render call runs).
+- Produces: `renderProcessSteps()` — appends 4 `.process__step.reveal` elements into `#process-steps`.
+
+- [ ] **Step 1: Add the process data, icon set, and render function** — insert this directly above the existing `function renderHeroArt(...)` function in the `<script>` block:
+
+```js
+  var PROCESS_ICON_SVG = [
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="10" width="36" height="44" rx="4" stroke="#C1502E" stroke-width="3"/><path d="M20 20h24M20 30h24M20 40h16" stroke="#F4A63A" stroke-width="3" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="20" stroke="#C1502E" stroke-width="3"/><path d="M32 16v16l12 8" stroke="#F4A63A" stroke-width="3" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 32l12 12 24-24" stroke="#C1502E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="22" width="44" height="30" rx="3" stroke="#C1502E" stroke-width="3"/><path d="M10 30h44" stroke="#C1502E" stroke-width="3"/><path d="M32 22v-8m-8 8l8-8 8 8" stroke="#F4A63A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  ];
+
+  var PROCESS_STEPS = [
+    { nameEn: 'Paper Sourced', nameHi: 'कागज़ की खरीद', descEn: 'Quality paper rolls sourced and checked for GSM and strength.', descHi: 'गुणवत्तापूर्ण पेपर रोल की खरीद, GSM और मजबूती की जांच के साथ।' },
+    { nameEn: 'Pressed & Moulded', nameHi: 'प्रेस और मोल्ड', descEn: 'Machine-pressed into shape using heat and precision dies.', descHi: 'गर्मी और सटीक डाई का उपयोग करके मशीन से आकार में ढाला जाता है।' },
+    { nameEn: 'Quality Checked', nameHi: 'गुणवत्ता जांच', descEn: 'Each batch checked for rigidity, finish and leak-resistance.', descHi: 'हर बैच की मजबूती, फिनिश और रिसाव-रोधी क्षमता की जांच की जाती है।' },
+    { nameEn: 'Packed for Delivery', nameHi: 'डिलीवरी के लिए पैकिंग', descEn: 'Counted, bundled and packed ready for bulk dispatch.', descHi: 'गिनती, बंडलिंग और थोक डिस्पैच के लिए पैकिंग।' }
+  ];
+
+  function renderProcessSteps() {
+    var wrap = document.getElementById('process-steps');
+    PROCESS_STEPS.forEach(function (step, index) {
+      var el = document.createElement('div');
+      el.className = 'process__step reveal';
+      var num = document.createElement('div');
+      num.className = 'process__step-number';
+      num.textContent = String(index + 1);
+      var icon = document.createElement('div');
+      icon.className = 'product-card__icon';
+      icon.style.margin = '0 auto 12px';
+      icon.innerHTML = PROCESS_ICON_SVG[index];
+      var name = document.createElement('h3');
+      name.style.fontSize = '1.05rem';
+      name.setAttribute('data-en', step.nameEn);
+      name.setAttribute('data-hi', step.nameHi);
+      var desc = document.createElement('p');
+      desc.style.fontSize = '0.9rem';
+      desc.setAttribute('data-en', step.descEn);
+      desc.setAttribute('data-hi', step.descHi);
+      el.appendChild(num);
+      el.appendChild(icon);
+      el.appendChild(name);
+      el.appendChild(desc);
+      wrap.appendChild(el);
+    });
+  }
+
+```
+
+- [ ] **Step 2: Call it from `DOMContentLoaded`** — change:
+
+```js
+  document.addEventListener('DOMContentLoaded', function () {
+    renderHeroArt('hero-art', 220);
+    renderHeroArt('about-art', 160);
+```
+
+to:
+
+```js
+  document.addEventListener('DOMContentLoaded', function () {
+    renderHeroArt('hero-art', 220);
+    renderHeroArt('about-art', 160);
+    renderProcessSteps();
+```
+
+- [ ] **Step 3: Verify in browser**
+
+Reload `http://localhost:8199/index.html`. Expected:
+- The "How It's Made" section now shows 4 numbered cards (Paper Sourced → Pressed & Moulded → Quality Checked → Packed for Delivery), each with a distinct SVG icon, fading/sliding into view as you scroll to them.
+- Toggling to Hindi switches all 4 step names/descriptions correctly.
+- No console errors.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add index.html
+git commit -m "Add How It's Made process steps section"
+```
+
+---
+
+### Task 3: Product catalog (dona & plate sizes)
+
+**Files:**
+- Modify: `index.html`
+
+**Interfaces:**
+- Consumes: same `DOMContentLoaded` handler as Task 2.
+- Produces: `renderProducts()` — appends 6 `.product-card.reveal.whatsapp-link`-containing cards into `#products-grid`, each card's WhatsApp link carries `data-msg-en`/`data-msg-hi` that Task 1's `refreshWhatsAppLinks()` (called from `applyLanguage`) turns into a real `href`.
+
+- [ ] **Step 1: Add the product icons, data, and render function** — insert above `function renderHeroArt(...)`:
+
+```js
+  var DONA_ICON_SVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M8 28c0 14 10.7 24 24 24s24-10 24-24" stroke="#C1502E" stroke-width="4" stroke-linecap="round"/>' +
+    '<ellipse cx="32" cy="28" rx="26" ry="7" fill="#F4A63A" stroke="#8C3A20" stroke-width="2"/>' +
+    '</svg>';
+
+  var PLATE_ICON_SVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<ellipse cx="32" cy="34" rx="27" ry="11" fill="#FDECD8" stroke="#8C3A20" stroke-width="2"/>' +
+    '<ellipse cx="32" cy="30" rx="27" ry="11" fill="#F4A63A" stroke="#C1502E" stroke-width="3"/>' +
+    '<ellipse cx="32" cy="30" rx="13" ry="5" fill="#FFF8F0" stroke="#C1502E" stroke-width="1.5"/>' +
+    '</svg>';
+
+  var PRODUCTS = [
+    { id: 'dona-4', type: 'dona', nameEn: '4" Mini Paper Dona', nameHi: '4" मिनी पेपर दोना', useEn: 'Sweets & dry snacks', useHi: 'मिठाई और सूखे नाश्ते', gsm: '80–100 GSM', pack: '100 pcs/pack' },
+    { id: 'dona-6', type: 'dona', nameEn: '6" Paper Dona', nameHi: '6" पेपर दोना', useEn: 'Chaat & curry bowls', useHi: 'चाट और करी बाउल', gsm: '80–110 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-7', type: 'plate', nameEn: '7" Paper Plate', nameHi: '7" पेपर प्लेट', useEn: 'Snacks & light meals', useHi: 'नाश्ता और हल्का भोजन', gsm: '100–130 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-8', type: 'plate', nameEn: '8" Paper Plate', nameHi: '8" पेपर प्लेट', useEn: 'Full meals', useHi: 'पूरा भोजन', gsm: '120–150 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-10', type: 'plate', nameEn: '10" Paper Plate', nameHi: '10" पेपर प्लेट', useEn: 'Buffets & parties', useHi: 'बुफे और पार्टियां', gsm: '150–180 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-12', type: 'plate', nameEn: '12" Paper Plate', nameHi: '12" पेपर प्लेट', useEn: 'Banquets & bulk catering', useHi: 'बैंक्वेट और थोक कैटरिंग', gsm: '180–220 GSM', pack: '50 pcs/pack' }
+  ];
+
+  // Elements are built with DOM APIs (not innerHTML string concatenation)
+  // because product names contain literal double-quote characters (e.g. 4").
+  function renderProducts() {
+    var grid = document.getElementById('products-grid');
+    PRODUCTS.forEach(function (p) {
+      var card = document.createElement('article');
+      card.className = 'product-card reveal';
+
+      var icon = document.createElement('div');
+      icon.className = 'product-card__icon';
+      icon.innerHTML = p.type === 'plate' ? PLATE_ICON_SVG : DONA_ICON_SVG;
+
+      var name = document.createElement('h3');
+      name.className = 'product-card__name';
+      name.setAttribute('data-en', p.nameEn);
+      name.setAttribute('data-hi', p.nameHi);
+
+      var use = document.createElement('p');
+      use.className = 'product-card__use';
+      use.setAttribute('data-en', p.useEn);
+      use.setAttribute('data-hi', p.useHi);
+
+      var spec = document.createElement('p');
+      spec.className = 'product-card__spec';
+      spec.textContent = p.gsm + ' · ' + p.pack;
+
+      var link = document.createElement('a');
+      link.className = 'product-card__link whatsapp-link';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.setAttribute('data-en', 'Ask for this size →');
+      link.setAttribute('data-hi', 'इस साइज़ के लिए पूछें →');
+      link.setAttribute('data-msg-en', 'Hi, I am interested in bulk pricing for the ' + p.nameEn + '. Could you share details?');
+      link.setAttribute('data-msg-hi', 'नमस्ते, मुझे ' + p.nameHi + ' के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।');
+
+      card.appendChild(icon);
+      card.appendChild(name);
+      card.appendChild(use);
+      card.appendChild(spec);
+      card.appendChild(link);
+      grid.appendChild(card);
+    });
+  }
+
+```
+
+- [ ] **Step 2: Call it from `DOMContentLoaded`** — add `renderProducts();` on its own line right after `renderProcessSteps();`.
+
+- [ ] **Step 3: Verify in browser**
+
+Reload the page. Expected:
+- 6 product cards render: 4"/6" show the rounder "dona" (bowl) icon, 7"/8"/10"/12" show the flatter "plate" icon.
+- Hovering a card lifts it slightly with a tilt and a deeper shadow.
+- Open devtools console and run:
+  ```js
+  Array.from(document.querySelectorAll('#products-grid .whatsapp-link')).map(a => a.href)
+  ```
+  Expected: 6 URLs, each `https://wa.me/919320624706?text=...` with the specific product's size/name URL-encoded in the message (e.g. the 4" card's message contains `4%22` for the inch mark).
+- Toggling to Hindi updates every card's name/use-case/link label and rebuilds the WhatsApp messages in Hindi.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add index.html
+git commit -m "Add product catalog with per-size WhatsApp inquiry links"
+```
+
+---
+
+### Task 4: "Why Choose Us" tiles
+
+**Files:**
+- Modify: `index.html`
+
+**Interfaces:**
+- Consumes: same `DOMContentLoaded` handler.
+- Produces: `renderWhyUs()` — appends 4 `.why-us__tile.reveal` elements into `#why-us-grid`.
+
+- [ ] **Step 1: Add the data and render function** — insert above `function renderHeroArt(...)`:
+
+```js
+  var WHY_US = [
+    { nameEn: 'Eco-Friendly & Biodegradable', nameHi: 'इको-फ्रेंडली और बायोडिग्रेडेबल', descEn: '100% paper, no plastic — a safer choice for food and the environment.', descHi: '100% कागज़, कोई प्लास्टिक नहीं — भोजन और पर्यावरण के लिए एक सुरक्षित विकल्प।' },
+    { nameEn: 'Food-Safe & Hygienic', nameHi: 'खाद्य-सुरक्षित और स्वच्छ', descEn: 'Made and packed with hygiene in mind, safe for direct food contact.', descHi: 'स्वच्छता को ध्यान में रखते हुए बनाया और पैक किया गया।' },
+    { nameEn: 'Wholesale Bulk Pricing', nameHi: 'थोक मूल्य पर आपूर्ति', descEn: 'Straightforward per-100-piece pricing built for hotels, caterers & shops.', descHi: 'होटल, कैटरर्स और दुकानों के लिए सीधी प्रति-100-पीस मूल्य निर्धारण।' },
+    { nameEn: 'Local, Reachable, Reliable', nameHi: 'स्थानीय, सुलभ, भरोसेमंद', descEn: 'Based in Varanasi — easy to call, visit, and build a long-term supply relationship with.', descHi: 'वाराणसी में स्थित — कॉल करना, मिलना और लंबे समय तक आपूर्ति संबंध बनाना आसान।' }
+  ];
+
+  function renderWhyUs() {
+    var wrap = document.getElementById('why-us-grid');
+    WHY_US.forEach(function (item) {
+      var tile = document.createElement('div');
+      tile.className = 'why-us__tile reveal';
+      var name = document.createElement('h3');
+      name.style.fontSize = '1.05rem';
+      name.setAttribute('data-en', item.nameEn);
+      name.setAttribute('data-hi', item.nameHi);
+      var desc = document.createElement('p');
+      desc.setAttribute('data-en', item.descEn);
+      desc.setAttribute('data-hi', item.descHi);
+      tile.appendChild(name);
+      tile.appendChild(desc);
+      wrap.appendChild(tile);
+    });
+  }
+
+```
+
+- [ ] **Step 2: Call it from `DOMContentLoaded`** — add `renderWhyUs();` right after `renderProducts();`.
+
+- [ ] **Step 3: Verify in browser**
+
+Reload. Expected:
+- 4 tiles render under "Why Choose Us", alternating accent-color left borders (odd tiles: marigold border; even tiles: terracotta border, and on wide screens the even tiles sit slightly lower — a deliberate staggered layout, not a bug).
+- Toggling language updates all 4 tiles.
+- Scroll-reveal animates them in as you scroll down.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add index.html
+git commit -m "Add Why Choose Us section"
+```
+
+---
+
+### Task 5: Full cross-check pass (responsive, bilingual, links, no dead code)
+
+**Files:**
+- Modify: `index.html` (only if the checks below surface a real issue)
+
+**Interfaces:** none (verification-only task; no new functions).
+
+- [ ] **Step 1: Full-page desktop check**
+
+Open `http://localhost:8199/index.html` at a wide viewport (≥1200px). Confirm, scrolling top to bottom: header nav fully visible (no hamburger), hero animates in on load, about/process/products/why-us/contact all render with real content (no empty grids), the maroon contact section's top edge shows a curved wave transition (not a hard straight line), footer shows brand name, tagline and phone.
+
+- [ ] **Step 2: Full-page mobile check**
+
+Resize to a narrow viewport (~375-400px width) and reload. Confirm: header collapses to a "☰" button that opens/closes a dropdown nav; all sections stack to a single column; no element causes horizontal page scrolling (check `document.documentElement.scrollWidth <= window.innerWidth + 1` in devtools).
+
+- [ ] **Step 3: Bilingual round-trip check**
+
+In devtools console:
+```js
+document.getElementById('lang-toggle').click();
+document.querySelectorAll('[data-en]').length === document.querySelectorAll('[data-hi]').length
+```
+Expected: `true` (every translatable element has both attributes — if this is `false`, find the element missing one and add the missing attribute). Click the toggle again to confirm it switches back to English, and that `document.documentElement.lang` matches (`"hi"` then `"en"`).
+
+- [ ] **Step 4: WhatsApp link check**
+
+In devtools console:
+```js
+Array.from(document.querySelectorAll('.whatsapp-link')).every(a => a.href.indexOf('https://wa.me/919320624706?text=') === 0)
+```
+Expected: `true`. Also confirm the plain `tel:` link (`#tel-link`) still reads `tel:+919320624706`.
+
+- [ ] **Step 5: Console/error check**
+
+Confirm devtools console shows zero errors or warnings on load, on language toggle, and on mobile-nav open/close.
+
+- [ ] **Step 6: Remove any temporary preview artifacts**
+
+Confirm no stray preview/scratch copies of the page were left in the project root (only `index.html`, `.claude/launch.json`, and the `docs/` tree should be tracked).
+
+- [ ] **Step 7: Final commit**
+
+```bash
+git add -A
+git status
+git commit -m "Final cross-check pass for landing page" --allow-empty
+```
+
+(Use `--allow-empty` only if Steps 1-6 found nothing to fix; if you changed `index.html` to fix a real issue, drop `--allow-empty` and write a commit message describing the fix instead.)
