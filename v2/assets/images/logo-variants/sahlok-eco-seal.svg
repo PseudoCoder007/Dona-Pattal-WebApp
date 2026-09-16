@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 128" role="img" aria-labelledby="title">
+  <title id="title">Sahlok Eco Products circular seal logo</title>
+  <g transform="translate(8 8)">
+    <circle cx="56" cy="56" r="52" fill="#FFF8F0" stroke="#6B1E23" stroke-width="4"/>
+    <circle cx="56" cy="56" r="43" fill="none" stroke="#C1502E" stroke-width="2" stroke-dasharray="3 4"/>
+    <path d="M30 67c13 8 39 8 52 0" fill="none" stroke="#8C3A20" stroke-width="4" stroke-linecap="round"/>
+    <path d="M33 57c0 11 10 17 23 17s23-6 23-17" fill="#F4A63A" stroke="#8C3A20" stroke-width="3"/>
+    <ellipse cx="56" cy="57" rx="23" ry="8" fill="#FFF8F0" stroke="#C1502E" stroke-width="3"/>
+    <path d="M57 49c-2-18 8-29 24-32 4 15-6 29-24 32Z" fill="#93A85B" stroke="#56743C" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M59 44l15-18M66 36l9 2" fill="none" stroke="#FFF8F0" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <text x="130" y="59" fill="#6B1E23" font-size="39" font-weight="700">Sahlok</text>
+    <text x="270" y="59" fill="#C1502E" font-size="39" font-weight="700">Eco</text>
+    <text x="132" y="87" fill="#7A5C4A" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing=".5">PRODUCTS</text>
+    <path d="M132 101h246" stroke="#F4A63A" stroke-width="3"/>
+    <text x="132" y="118" fill="#7A5C4A" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">PAPER DONA &amp; PATTAL</text>
+  </g>
+</svg>

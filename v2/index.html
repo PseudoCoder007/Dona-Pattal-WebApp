@@ -107,6 +107,7 @@
   }
   .brand-name { font-size: 1.3rem; margin: 0; }
   .brand-name span { color: var(--color-primary); }
+  .site-logo { display: block; width: min(250px, 48vw); height: auto; }
   .nav-links { display: flex; gap: 20px; align-items: center; }
   .nav-links a {
     text-decoration: none;
@@ -343,7 +344,7 @@
 
 <header class="site-header">
   <div class="site-header__inner">
-    <p class="brand-name">Sahlok <span>Eco</span> Products</p>
+    <a href="#hero" aria-label="Sahlok Eco Products home"><img class="site-logo" src="assets/images/sahlok-eco-logo.svg" alt="Sahlok Eco Products — Paper Dona and Pattal"></a>
     <nav class="nav-links">
       <a href="#about" data-en="About" data-hi="हमारे बारे में">About</a>
       <a href="#products" data-en="Products" data-hi="उत्पाद">Products</a>
