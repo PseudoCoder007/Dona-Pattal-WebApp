@@ -59,14 +59,6 @@
   html[lang="hi"] .brand-name { font-family: var(--font-body-hi); }
   html[lang="hi"] .product-card__name { font-family: var(--font-body-hi); }
 
-  .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
-  .span-7 { grid-column: span 7; }
-  .span-5 { grid-column: span 5; }
-  @media (max-width: 860px) {
-    .grid-12 { grid-template-columns: 1fr; }
-    .span-7, .span-5 { grid-column: 1; }
-  }
-
   .btn {
     display: inline-flex;
     align-items: center;
@@ -141,47 +133,9 @@
   }
 
   /* Hero */
-  .hero {
-    padding-top: 48px;
-    background-image: url('v2/assets/images/hero-cover-bg.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-  }
-  .hero__content {
-    background: rgba(244, 239, 230, 0.92);
-    padding: clamp(24px, 4vw, 48px);
-    z-index: 2;
-    margin-right: -60px;
-  }
-  @media (max-width: 860px) {
-    .hero__content { margin-right: 0; padding: 24px; }
-    .hero__photo-wrap { margin-top: 24px; border: 1px solid var(--stone); }
-  }
-  .hero__headline { display: flex; flex-direction: column; gap: 0.1em; }
-  .hero__line { display: block; overflow: hidden; }
-  .hero__line .char { display: inline-block; transform: translateY(100%); }
-  .hero__sub { font-size: 1.1rem; max-width: 46ch; }
-  .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .hero__photo-wrap { position: relative; z-index: 1; border: 1px solid var(--stone); }
-  .hero__meta {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.7rem;
-    color: var(--brass);
-    font-weight: 600;
-    font-family: var(--font-body);
-  }
-  html[lang="hi"] .hero__meta { font-family: var(--font-body-hi); font-size: 0.65rem; }
-  .hero__photo {
-    width: 100%;
-    height: clamp(320px, 40vw, 520px);
-    object-fit: cover;
-    display: block;
-  }
+  .hero { padding: 0 0 40px; }
+  .hero__cover { width: 100%; height: auto; display: block; }
+  .hero__cta-row { padding-top: 28px; text-align: center; }
 
   /* Product range */
   .product-grid {
@@ -291,26 +245,12 @@
 <main>
 
   <section class="section hero" id="hero">
-    <div class="container grid-12">
-      <div class="span-7 hero__content reveal">
-        <p class="section__eyebrow" data-en="Mirzapur, Uttar Pradesh — Pre-Launch" data-hi="मिर्ज़ापुर, उत्तर प्रदेश — लॉन्च-पूर्व"></p>
-        <h1 class="display hero__headline">
-          <span class="hero__line" data-en="Paper Foodware," data-hi="पेपर फूडवेयर,"></span>
-          <span class="hero__line" data-en="Made For" data-hi="बना रोज़मर्रा के"></span>
-          <span class="hero__line" data-en="Everyday India" data-hi="भारत के लिए"></span>
-        </h1>
-        <p class="hero__sub" data-en="Bulk-ready paper donas and plates for hotels, restaurants, sweet shops, caterers and banquet halls in Mirzapur." data-hi="मिर्ज़ापुर में होटल, रेस्टोरेंट, मिठाई की दुकानों, कैटरर्स और बैंक्वेट हॉल के लिए थोक में तैयार पेपर दोना और पत्तल।"></p>
-        <div class="hero__actions">
-          <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
-             data-en="Get Bulk Pricing on WhatsApp" data-hi="व्हाट्सएप पर थोक मूल्य जानें"
-             data-msg-en="Hi, I'm interested in bulk wholesale pricing for paper dona/pattal. Could you share details?"
-             data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
-        </div>
-      </div>
-      <div class="span-5 hero__photo-wrap reveal">
-        <span class="hero__meta" data-en="MIRZAPUR / U.P." data-hi="मिर्ज़ापुर / उ.प्र."></span>
-        <img class="hero__photo" src="v2/assets/images/hero-food.jpg" alt="Chef preparing Indian street food chaat with fresh toppings and spices" loading="lazy">
-      </div>
+    <img class="hero__cover" src="v2/assets/images/hero-cover-bg.png" alt="Sahlok Eco Products — paper dona and pattal, Mirzapur" loading="eager">
+    <div class="container hero__cta-row reveal">
+      <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+         data-en="Get Bulk Pricing on WhatsApp" data-hi="व्हाट्सएप पर थोक मूल्य जानें"
+         data-msg-en="Hi, I'm interested in bulk wholesale pricing for paper dona/pattal. Could you share details?"
+         data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
     </div>
   </section>
 
@@ -526,55 +466,6 @@
     });
   }
 
-  function initHeroAnimations() {
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var lines = document.querySelectorAll('.hero__line');
-    var photoWrap = document.querySelector('.hero__photo-wrap');
-
-    // Safety net: force the hero visible after a delay no matter what, so a
-    // stalled or failed animation (slow device, backgrounded tab, a GSAP CDN
-    // hiccup) can never leave the headline/photo permanently invisible.
-    var revealed = false;
-    function forceReveal() {
-      if (revealed) { return; }
-      revealed = true;
-      lines.forEach(function (line) { line.style.clipPath = 'inset(0 0% 0 0)'; });
-      if (photoWrap) { photoWrap.style.opacity = '1'; photoWrap.style.transform = 'none'; }
-    }
-    setTimeout(forceReveal, 2000);
-
-    if (typeof gsap === 'undefined') { forceReveal(); return; }
-
-    // Staggered line-by-line reveal using clip-path
-    lines.forEach(function (line) {
-      gsap.set(line, { clipPath: 'inset(0 100% 0 0)' });
-    });
-
-    var tl = gsap.timeline({ delay: 0.2, onComplete: function () { revealed = true; } });
-    tl.to(lines, {
-      clipPath: 'inset(0 0% 0 0)',
-      duration: reduceMotion ? 0.01 : 0.8,
-      ease: 'power3.out',
-      stagger: 0.12
-    });
-
-    // Photo fade + slide up (replaces clip-path unveil for reliability)
-    if (photoWrap) {
-      gsap.set(photoWrap, { opacity: 0, y: reduceMotion ? 0 : 30 });
-      tl.to(photoWrap, {
-        opacity: 1,
-        y: 0,
-        duration: reduceMotion ? 0.01 : 0.9,
-        ease: 'power3.out'
-      }, '-=0.3');
-    }
-  }
-
-  function splitHeroLines() {
-    // Split each .hero__line text into character spans for potential char-level animation
-    // Currently using line-level clip-path, so this is a no-op but kept for future enhancement
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     renderProducts();
 
@@ -593,7 +484,6 @@
     }
 
     applyLanguage(getStoredLang());
-    initHeroAnimations();
     initScrollReveal();
   });
 })();
