@@ -3,26 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sahlok Eco Products LLP — Paper Dona &amp; Pattal, Mirzapur</title>
+<title>Sahlok Eco Products LLP — Paper Foodware, Mirzapur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   :root {
-    --color-bg: #FFF8F0;
-    --color-bg-soft: #FDECD8;
-    --color-primary: #C1502E;
-    --color-primary-dark: #8C3A20;
-    --color-maroon: #6B1E23;
-    --color-accent: #F4A63A;
-    --color-text: #3A2318;
-    --color-text-light: #7A5C4A;
-    --color-card: #FFFFFF;
-    --font-heading: 'Baloo 2', system-ui, sans-serif;
-    --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-    --radius: 16px;
-    --shadow-soft: 0 8px 24px rgba(107,30,35,0.12);
-    --max-width: 1120px;
+    --paper: #F4EFE6;
+    --ink: #2B2521;
+    --ink-soft: #6B5D52;
+    --brick: #B24A2E;
+    --brass: #A87C3F;
+    --oxblood: #4A1F1C;
+    --stone: #C9C0B4;
+    --card: #FFFFFF;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'IBM Plex Sans', 'IBM Plex Sans Devanagari', system-ui, sans-serif;
+    --font-body-hi: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', system-ui, sans-serif;
+    --section-pad: clamp(64px, 8vw, 140px);
+    --max-width: 1200px;
+    --radius: 4px;
   }
 
   * { box-sizing: border-box; }
@@ -30,260 +32,96 @@
   body {
     margin: 0;
     font-family: var(--font-body);
-    background: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.55;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
   }
-  h1, h2, h3, .brand-name {
-    font-family: var(--font-heading);
-    color: var(--color-maroon);
-    margin: 0 0 0.5em;
-    line-height: 1.15;
-  }
-  p { margin: 0 0 1em; color: var(--color-text-light); }
+  h1, h2, h3, .brand-name { font-family: var(--font-display); color: var(--ink); margin: 0 0 0.5em; font-weight: 600; }
+  .display { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.05; }
+  .heading { font-size: clamp(1.75rem, 3.5vw, 2.75rem); line-height: 1.1; }
+  p { margin: 0 0 1em; color: var(--ink-soft); }
   a { color: inherit; }
-  .container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  .section { padding: 72px 0; position: relative; }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+  .section { padding: var(--section-pad) 0; position: relative; }
   .section__eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.8rem;
-    color: var(--color-primary);
-    font-weight: 700;
-    margin-bottom: 8px;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    color: var(--brass);
+    font-weight: 600;
+    margin-bottom: 12px;
   }
+
+  /* Hindi typography: Fraunces has no Devanagari glyphs, so headings fall
+     back to the body face at a reduced size when lang=hi. */
+  html[lang="hi"] .display { font-family: var(--font-body-hi); font-size: clamp(2rem, 4.5vw, 4rem); }
+  html[lang="hi"] .heading { font-family: var(--font-body-hi); font-size: clamp(1.5rem, 3vw, 2.2rem); }
+  html[lang="hi"] .brand-name { font-family: var(--font-body-hi); }
+  html[lang="hi"] .product-card__name { font-family: var(--font-body-hi); }
+
+  .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+  .span-7 { grid-column: span 7; }
+  .span-5 { grid-column: span 5; }
+  @media (max-width: 860px) {
+    .grid-12 { grid-template-columns: 1fr; }
+    .span-7, .span-5 { grid-column: 1; }
+  }
+
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 26px;
-    border-radius: 999px;
-    font-weight: 700;
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    font-weight: 600;
     text-decoration: none;
-    border: 2px solid transparent;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--ink);
+    transition: background-color 0.2s ease, color 0.2s ease;
     cursor: pointer;
     font-size: 1rem;
+    font-family: var(--font-body);
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
-  .btn--primary { background: var(--color-primary); color: #fff; }
-  .btn--primary:hover { background: var(--color-primary-dark); }
-  .btn--ghost { background: transparent; border-color: var(--color-maroon); color: var(--color-maroon); }
+  .btn--primary { background: var(--brick); color: var(--paper); border-color: var(--brick); }
+  .btn--primary:hover { background: var(--oxblood); border-color: var(--oxblood); }
+  .btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
 
   /* Header */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255, 248, 240, 0.92);
+    background: rgba(244, 239, 230, 0.94);
     backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(107,30,35,0.08);
+    border-bottom: 1px solid var(--stone);
   }
   .site-header__inner {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
   }
-  .brand-name { font-size: 1.3rem; margin: 0; }
-  .brand-name span { color: var(--color-primary); }
-  .nav-links { display: flex; gap: 20px; align-items: center; }
-  .nav-links a {
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--color-text);
-    font-size: 0.95rem;
-  }
-  .nav-links a:hover { color: var(--color-primary); }
+  .brand-name { font-size: 1.4rem; margin: 0; }
+  .brand-name span { color: var(--brick); }
+  .nav-links { display: flex; gap: 22px; align-items: center; }
+  .nav-links a { text-decoration: none; font-weight: 500; color: var(--ink); font-size: 0.92rem; }
+  .nav-links a:hover { color: var(--brick); }
   .lang-toggle {
-    border: 2px solid var(--color-accent);
-    background: var(--color-bg-soft);
-    color: var(--color-maroon);
-    border-radius: 999px;
-    padding: 6px 14px;
-    font-weight: 700;
-    font-size: 0.85rem;
+    border: 1px solid var(--brass);
+    background: transparent;
+    color: var(--ink);
+    border-radius: var(--radius);
+    padding: 6px 12px;
+    font-weight: 600;
+    font-size: 0.82rem;
     cursor: pointer;
   }
   .header-cta { display: none; }
-  @media (min-width: 720px) {
-    .header-cta { display: inline-flex; }
-  }
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--color-maroon);
-    cursor: pointer;
-  }
-
-  /* Reveal animation */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-  /* Hero */
-  .hero { padding-top: 56px; overflow: hidden; }
-  .hero__inner {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-    align-items: center;
-  }
-  .hero h1 { font-size: clamp(2rem, 4vw, 2.9rem); }
-  .hero__sub { font-size: 1.1rem; max-width: 46ch; }
-  .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .hero__art { opacity: 0; transform: translateY(16px) scale(0.96); animation: hero-in 0.9s ease 0.15s forwards; }
-  .hero__text { opacity: 0; transform: translateY(16px); animation: hero-in 0.9s ease forwards; }
-  @keyframes hero-in { to { opacity: 1; transform: translateY(0) scale(1); } }
-  .hero__badge {
-    display: inline-block;
-    background: var(--color-accent);
-    color: var(--color-maroon);
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 6px 14px;
-    border-radius: 999px;
-    margin-bottom: 16px;
-  }
-
-  /* Divider */
-  .divider--wave {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    display: block;
-  }
-
-  /* About */
-  .about__inner { display: grid; grid-template-columns: 1fr; gap: 32px; }
-  @media (min-width: 860px) {
-    .about__inner { grid-template-columns: 0.85fr 1.15fr; align-items: center; }
-  }
-  .about__art { justify-self: center; }
-
-  /* Process */
-  .process { background: var(--color-bg-soft); }
-  .process__steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-    position: relative;
-  }
-  .process__step {
-    background: var(--color-card);
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow-soft);
-    text-align: center;
-  }
-  .process__step-number {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800;
-    margin: 0 auto 12px;
-  }
-
-  /* Products */
-  .products__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-  }
-  .product-card {
-    background: var(--color-card);
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow-soft);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .product-card:hover {
-    transform: translateY(-6px) rotate(-0.5deg);
-    box-shadow: 0 16px 32px rgba(107,30,35,0.18);
-  }
-  .product-card__icon { width: 56px; height: 56px; margin-bottom: 8px; }
-  .product-card__name { font-size: 1.15rem; margin-bottom: 2px; }
-  .product-card__use { font-size: 0.9rem; margin-bottom: 4px; }
-  .product-card__spec { font-size: 0.85rem; color: var(--color-primary-dark); font-weight: 600; margin-bottom: 12px; }
-  .product-card__link {
-    margin-top: auto;
-    text-decoration: none;
-    font-weight: 700;
-    color: var(--color-primary);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .product-card__link:hover { color: var(--color-maroon); }
-  .products__note { font-size: 0.85rem; margin-top: 24px; }
-
-  /* Why us */
-  .why-us__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
-  }
-  .why-us__tile {
-    padding: 20px;
-    border-left: 4px solid var(--color-accent);
-    background: var(--color-card);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    box-shadow: var(--shadow-soft);
-  }
-  .why-us__tile:nth-child(2n) { border-left-color: var(--color-primary); margin-top: 24px; }
-  @media (max-width: 720px) { .why-us__tile:nth-child(2n) { margin-top: 0; } }
-
-  /* Contact */
-  .contact { background: var(--color-maroon); color: #fff; }
-  .contact h2, .contact .section__eyebrow { color: #fff; }
-  .contact p { color: rgba(255,255,255,0.85); }
-  .contact__card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin-top: 32px;
-    display: grid;
-    gap: 16px;
-  }
-  .contact__row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-weight: 600; }
-  .contact__row span:first-child { color: rgba(255,255,255,0.65); font-weight: 500; }
-
-  /* Footer */
-  .site-footer {
-    background: #2C1410;
-    color: rgba(255,255,255,0.75);
-    padding: 32px 0;
-    font-size: 0.9rem;
-  }
-  .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-
-  @media (max-width: 860px) {
-    .hero__inner { grid-template-columns: 1fr; }
-    .hero__art { order: -1; max-width: 240px; margin: 0 auto; }
-  }
+  @media (min-width: 720px) { .header-cta { display: inline-flex; } }
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--ink); cursor: pointer; }
   @media (max-width: 720px) {
     .nav-links {
       display: none;
@@ -291,16 +129,139 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--color-bg);
+      background: var(--paper);
       flex-direction: column;
       align-items: flex-start;
       padding: 16px 24px 24px;
-      border-bottom: 1px solid rgba(107,30,35,0.08);
+      border-bottom: 1px solid var(--stone);
       gap: 14px;
     }
     .nav-links.is-open { display: flex; }
     .nav-toggle { display: inline-flex; }
   }
+
+  /* Hero */
+  .hero { padding-top: 48px; }
+  .hero__content {
+    background: rgba(244, 239, 230, 0.92);
+    padding: clamp(24px, 4vw, 48px);
+    z-index: 2;
+    margin-right: -60px;
+  }
+  @media (max-width: 860px) {
+    .hero__content { margin-right: 0; padding: 24px; }
+  }
+  .hero__headline { display: flex; flex-direction: column; gap: 0.1em; }
+  .hero__line { display: block; overflow: hidden; }
+  .hero__line .char { display: inline-block; transform: translateY(100%); }
+  .hero__sub { font-size: 1.1rem; max-width: 46ch; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .hero__photo-wrap { position: relative; z-index: 1; }
+  .hero__meta {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    color: var(--brass);
+    font-weight: 600;
+    font-family: var(--font-body);
+  }
+  html[lang="hi"] .hero__meta { font-family: var(--font-body-hi); font-size: 0.65rem; }
+  .hero__photo {
+    width: 100%;
+    height: clamp(320px, 40vw, 520px);
+    object-fit: cover;
+    border: 1px solid var(--stone);
+    display: block;
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Product range */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  @media (max-width: 640px) {
+    .product-grid {
+      grid-auto-flow: column;
+      grid-auto-columns: 85%;
+      grid-template-columns: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 16px;
+      gap: 16px;
+      margin-top: 32px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .product-card {
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: 280px;
+    }
+    .product-card__number { display: none; }
+  }
+  .product-grid::-webkit-scrollbar { height: 6px; }
+  .product-grid::-webkit-scrollbar-track { background: transparent; }
+  .product-grid::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 3px; }
+  .product-card { border: 1px solid var(--stone); display: flex; flex-direction: column; background: var(--card); position: relative; overflow: hidden; }
+  .product-card__number {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    opacity: 0.15;
+    line-height: 1;
+    z-index: 1;
+    pointer-events: none;
+  }
+  html[lang="hi"] .product-card__number { font-family: var(--font-body-hi); }
+  .product-card__photo {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease-out;
+  }
+  .product-card:hover .product-card__photo { transform: scale(1.06); }
+  .product-card__body { padding: 20px; display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 2; }
+  .product-card__name { font-size: 1.15rem; margin: 0; }
+  .product-card__use { font-size: 0.9rem; margin: 0; }
+  .product-card__spec { font-size: 0.85rem; color: var(--brick); font-weight: 600; margin: 0 0 8px; }
+  .product-card__link {
+    margin-top: auto;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-top: 1px solid var(--stone);
+    padding-top: 10px;
+  }
+  .product-card__link:hover { color: var(--brick); }
+
+  /* Who we supply / mirzapur (placeholder shells this phase) */
+  .who-we-supply, .mirzapur { background: rgba(168,124,63,0.08); }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+  @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card, .contact-form-placeholder { border: 1px solid var(--stone); padding: 28px; background: var(--card); }
+  .contact-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-weight: 600; margin-bottom: 14px; }
+  .contact-row span:first-child { color: var(--ink-soft); font-weight: 500; }
+  .contact-card .btn { margin-right: 10px; margin-bottom: 10px; }
+
+  /* Footer */
+  .site-footer { background: var(--oxblood); color: rgba(244,239,230,0.8); padding: 40px 0; font-size: 0.9rem; }
+  .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 </style>
 </head>
 <body>
@@ -309,14 +270,15 @@
   <div class="site-header__inner">
     <p class="brand-name">Sahlok <span>Eco</span> Products</p>
     <nav class="nav-links">
-      <a href="#about" data-en="About" data-hi="हमारे बारे में">About</a>
-      <a href="#products" data-en="Products" data-hi="उत्पाद">Products</a>
-      <a href="#process" data-en="Process" data-hi="प्रक्रिया">Process</a>
-      <a href="#why-us" data-en="Why Us" data-hi="हमें क्यों चुनें">Why Us</a>
+      <a href="#product-range" data-en="Products" data-hi="उत्पाद">Products</a>
+      <a href="#who-we-supply" data-en="Who We Supply" data-hi="हम किसे आपूर्ति करते हैं">Who We Supply</a>
+      <a href="#making-story" data-en="Making Story" data-hi="निर्माण कहानी">Making Story</a>
+      <a href="#mirzapur" data-en="Mirzapur" data-hi="मिर्ज़ापुर">Mirzapur</a>
+      <a href="#wholesale" data-en="Wholesale" data-hi="थोक">Wholesale</a>
       <a href="#contact" data-en="Contact" data-hi="संपर्क करें">Contact</a>
       <button class="lang-toggle" id="lang-toggle" type="button">हिंदी</button>
     </nav>
-    <a href="#contact" class="btn btn--primary header-cta" data-en="Get Bulk Pricing" data-hi="थोक मूल्य जानें"></a>
+    <a href="#wholesale" class="btn btn--primary header-cta" data-en="Get Bulk Pricing" data-hi="थोक मूल्य जानें"></a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
   </div>
 </header>
@@ -324,79 +286,101 @@
 <main>
 
   <section class="section hero" id="hero">
-    <div class="container hero__inner">
-      <div class="hero__text">
-        <span class="hero__badge" data-en="Launching Soon in Mirzapur" data-hi="जल्द ही मिर्ज़ापुर में लॉन्च हो रहा है"></span>
-        <h1 data-en="Launching Mirzapur's Newest Eco-Friendly Dona &amp; Pattal Unit" data-hi="मिर्ज़ापुर की नई इको-फ्रेंडली दोना और पत्तल यूनिट लॉन्च हो रही है"></h1>
-        <p class="hero__sub" data-en="Bulk-ready paper donas and plates for hotels, restaurants, sweet shops, caterers and banquet halls. Book your introductory wholesale rate before we go live." data-hi="होटल, रेस्टोरेंट, मिठाई की दुकानों, कैटरर्स और बैंक्वेट हॉल के लिए थोक में तैयार पेपर दोना और पत्तल। लॉन्च से पहले अपनी परिचयात्मक थोक दर बुक करें।"></p>
+    <div class="container grid-12">
+      <div class="span-8 hero__content reveal">
+        <p class="section__eyebrow" data-en="Mirzapur, Uttar Pradesh — Pre-Launch" data-hi="मिर्ज़ापुर, उत्तर प्रदेश — लॉन्च-पूर्व"></p>
+        <h1 class="display hero__headline">
+          <span class="hero__line" data-en="Paper Foodware," data-hi="पेपर फूडवेयर,"></span>
+          <span class="hero__line" data-en="Made For" data-hi="बना रोज़मर्रा के"></span>
+          <span class="hero__line" data-en="Everyday India" data-hi="भारत के लिए"></span>
+        </h1>
+        <p class="hero__sub" data-en="Bulk-ready paper donas and plates for hotels, restaurants, sweet shops, caterers and banquet halls in Mirzapur." data-hi="मिर्ज़ापुर में होटल, रेस्टोरेंट, मिठाई की दुकानों, कैटरर्स और बैंक्वेट हॉल के लिए थोक में तैयार पेपर दोना और पत्तल।"></p>
         <div class="hero__actions">
           <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
              data-en="Get Bulk Pricing on WhatsApp" data-hi="व्हाट्सएप पर थोक मूल्य जानें"
              data-msg-en="Hi, I'm interested in bulk wholesale pricing for paper dona/pattal. Could you share details?"
              data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
-          <a class="btn btn--ghost" href="#products" data-en="See Our Products" data-hi="हमारे उत्पाद देखें"></a>
         </div>
       </div>
-      <div class="hero__art" id="hero-art"></div>
-    </div>
-  </section>
-
-  <section class="section about" id="about">
-    <div class="container about__inner">
-      <div class="about__art reveal" id="about-art"></div>
-      <div class="reveal">
-        <p class="section__eyebrow" data-en="About Us" data-hi="हमारे बारे में"></p>
-        <h2 data-en="Made From Paper, Made For Mirzapur" data-hi="कागज़ से बना, मिर्ज़ापुर के लिए बना"></h2>
-        <p data-en="Sahlok Eco Products LLP is setting up a new paper dona and pattal manufacturing unit in Mirzapur, built to serve the city's daily demand from weddings, bhandaras, sweet shops and restaurants with a reliable, eco-friendly alternative to plastic." data-hi="साहलोक इको प्रोडक्ट्स एलएलपी मिर्ज़ापुर में एक नई पेपर दोना और पत्तल निर्माण इकाई स्थापित कर रही है — जो शादियों, भंडारों, मिठाई की दुकानों और रेस्टोरेंट की रोज़ की ज़रूरत के लिए प्लास्टिक का एक भरोसेमंद, इको-फ्रेंडली विकल्प देने के लिए बनाई गई है।"></p>
-        <p data-en="We're currently pre-launch and taking early wholesale inquiries. As an introductory offer, our first buyers get a limited-time discounted rate on their first orders — a great time to lock in a reliable local supplier before we scale up." data-hi="हम फ़िलहाल लॉन्च-पूर्व चरण में हैं और शुरुआती थोक पूछताछ ले रहे हैं। परिचयात्मक ऑफ़र के तहत, हमारे पहले खरीदारों को उनके पहले ऑर्डर पर सीमित समय के लिए विशेष दर मिलेगी।"></p>
+      <div class="span-6 hero__photo-wrap reveal">
+        <span class="hero__meta" data-en="MIRZAPUR / U.P." data-hi="मिर्ज़ापुर / उ.प्र."></span>
+        <img class="hero__photo" src="../v2/assets/images/hero-food.jpg" alt="Chef preparing Indian street food chaat with fresh toppings and spices" loading="lazy">
       </div>
     </div>
   </section>
 
-  <section class="section process" id="process">
+  <section class="section product-range" id="product-range">
     <div class="container">
-      <p class="section__eyebrow reveal" data-en="Our Process" data-hi="हमारी प्रक्रिया"></p>
-      <h2 class="reveal" data-en="How It's Made" data-hi="यह कैसे बनता है"></h2>
-      <div class="process__steps" id="process-steps"></div>
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="Product Range" data-hi="उत्पाद श्रृंखला"></p>
+        <h2 class="heading" data-en="Six Sizes, One Reliable Supply" data-hi="छह आकार, एक भरोसेमंद आपूर्ति"></h2>
+      </div>
+      <div class="product-grid" id="products-grid"></div>
     </div>
   </section>
 
-  <section class="section products" id="products">
+  <section class="section who-we-supply" id="who-we-supply">
     <div class="container">
-      <p class="section__eyebrow reveal" data-en="Our Range" data-hi="हमारी श्रृंखला"></p>
-      <h2 class="reveal" data-en="Core Product Sizes" data-hi="मुख्य उत्पाद आकार"></h2>
-      <p class="reveal" data-en="From small donas to full banquet-size plates — pick a size and ask us for your custom bulk quote." data-hi="छोटे दोने से लेकर बड़े बैंक्वेट आकार की प्लेट तक — एक साइज़ चुनें और अपने थोक कोटेशन के लिए हमसे पूछें।"></p>
-      <div class="products__grid" id="products-grid"></div>
-      <p class="products__note reveal" data-en="GSM ranges shown are indicative and confirmed at order time based on your exact requirement." data-hi="दिखाए गए GSM रेंज संकेतात्मक हैं और ऑर्डर के समय आपकी सटीक आवश्यकता के अनुसार तय किए जाते हैं।"></p>
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="Who We Supply" data-hi="हम किसे आपूर्ति करते हैं"></p>
+        <h2 class="heading" data-en="Built For Businesses That Serve Food Every Day" data-hi="रोज़ भोजन परोसने वाले व्यवसायों के लिए बनाया गया"></h2>
+        <p data-en="Caterers, restaurants, sweet shops, street-food businesses, hotels, banquet halls, event and bhandara organizers, wholesale distributors and local retailers." data-hi="कैटरर्स, रेस्टोरेंट, मिठाई की दुकानें, स्ट्रीट-फूड व्यवसाय, होटल, बैंक्वेट हॉल, इवेंट और भंडारा आयोजक, थोक वितरक और स्थानीय खुदरा विक्रेता।"></p>
+      </div>
     </div>
   </section>
 
-  <section class="section why-us" id="why-us">
+  <section class="section making-story" id="making-story">
     <div class="container">
-      <p class="section__eyebrow reveal" data-en="Why Choose Us" data-hi="हमें क्यों चुनें"></p>
-      <h2 class="reveal" data-en="Built For Reliable Bulk Supply" data-hi="भरोसेमंद थोक आपूर्ति के लिए बनाया गया"></h2>
-      <div class="why-us__grid" id="why-us-grid"></div>
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="Material &amp; Making" data-hi="सामग्री और निर्माण"></p>
+        <h2 class="heading" data-en="From Paper To Plate" data-hi="कागज़ से थाली तक"></h2>
+        <p data-en="Paper is sourced, pressed into shape under heat and precision dies, checked for strength, and packed for dispatch — the full story of how each piece is made is coming soon." data-hi="कागज़ की खरीद होती है, गर्मी और सटीक डाई से आकार में दबाया जाता है, मजबूती की जांच होती है, और डिस्पैच के लिए पैक किया जाता है — हर टुकड़े के बनने की पूरी कहानी जल्द आ रही है।"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mirzapur" id="mirzapur">
+    <div class="container">
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="Mirzapur Connection" data-hi="मिर्ज़ापुर से जुड़ाव"></p>
+        <h2 class="heading" data-en="Built Here. Supplying The Businesses Around Us." data-hi="यहीं बना। हमारे आसपास के व्यवसायों को आपूर्ति।"></h2>
+        <p data-en="Sahlok is setting up in Mirzapur, Uttar Pradesh — a region with its own strong material and craft traditions. Our full story here is coming soon." data-hi="साहलोक मिर्ज़ापुर, उत्तर प्रदेश में स्थापित हो रहा है — एक ऐसा क्षेत्र जिसकी अपनी मज़बूत सामग्री और शिल्प परंपराएं हैं। यहां हमारी पूरी कहानी जल्द आ रही है।"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wholesale" id="wholesale">
+    <div class="container">
+      <div class="reveal">
+        <p class="section__eyebrow" data-en="Wholesale" data-hi="थोक"></p>
+        <h2 class="heading" data-en="An Introductory Rate For Your First Order" data-hi="आपके पहले ऑर्डर पर एक परिचयात्मक दर"></h2>
+        <p data-en="We're pre-launch and taking early wholesale enquiries. First buyers get a limited-time discounted rate — a good time to lock in a reliable local supplier before we scale up." data-hi="हम लॉन्च-पूर्व चरण में हैं और शुरुआती थोक पूछताछ ले रहे हैं। पहले खरीदारों को सीमित समय के लिए विशेष दर मिलेगी।"></p>
+        <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+           data-en="Get Wholesale Price" data-hi="थोक मूल्य जानें"
+           data-msg-en="Hi, I'd like to enquire about wholesale pricing for paper dona/pattal."
+           data-msg-hi="नमस्ते, मुझे थोक में पेपर दोना/पत्तल की कीमत के बारे में पूछताछ करनी है।"></a>
+      </div>
     </div>
   </section>
 
   <section class="section contact" id="contact">
-    <svg class="divider--wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,80 C240,10 480,0 720,32 C960,64 1200,72 1440,16 L1440,80 L0,80 Z" fill="#6B1E23"></path>
-    </svg>
     <div class="container">
-      <p class="section__eyebrow reveal" data-en="Get In Touch" data-hi="संपर्क करें"></p>
-      <h2 class="reveal" data-en="Let's Talk Bulk Pricing" data-hi="थोक मूल्य पर बात करें"></h2>
-      <p class="reveal" data-en="Have a size in mind, or want to request samples? Message us directly — we reply fast." data-hi="कोई खास साइज़ चाहिए या सैंपल मंगवाना है? सीधे मैसेज करें — हम जल्दी जवाब देते हैं।"></p>
-      <div class="contact__card reveal">
-        <div class="contact__row"><span data-en="Owner" data-hi="स्वामी"></span><span>Alok Dwivedi</span></div>
-        <div class="contact__row"><span data-en="Call / WhatsApp" data-hi="कॉल / व्हाट्सएप"></span><span>+91 87872 01971</span></div>
-        <div class="contact__row"><span data-en="Address" data-hi="पता"></span><span>Civil Line Road, Saripur Jalalpur, Mirzapur – 231001</span></div>
-        <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
-           data-en="Chat on WhatsApp" data-hi="व्हाट्सएप पर चैट करें"
-           data-msg-en="Hi, I'd like to enquire about ordering paper dona/pattal in bulk."
-           data-msg-hi="नमस्ते, मुझे थोक में पेपर दोना/पत्तल ऑर्डर करने के बारे में पूछताछ करनी है।"></a>
-        <a class="btn btn--ghost" id="tel-link" href="tel:+918787201971" data-en="Or Call Directly" data-hi="या सीधे कॉल करें"></a>
-        <p data-en="Ask about a free sample pack before placing your first bulk order." data-hi="अपना पहला थोक ऑर्डर देने से पहले मुफ़्त सैंपल पैक के बारे में पूछें।"></p>
+      <p class="section__eyebrow reveal" data-en="Contact" data-hi="संपर्क करें"></p>
+      <h2 class="heading reveal" data-en="Let's Talk Bulk Pricing" data-hi="थोक मूल्य पर बात करें"></h2>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <div class="contact-row"><span data-en="Owner" data-hi="स्वामी"></span><span>Alok Dwivedi</span></div>
+          <div class="contact-row"><span data-en="Call / WhatsApp" data-hi="कॉल / व्हाट्सएप"></span><span>+91 87872 01971</span></div>
+          <div class="contact-row"><span data-en="Address" data-hi="पता"></span><span>Civil Line Road, Saripur Jalalpur, Mirzapur – 231001</span></div>
+          <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+             data-en="Chat on WhatsApp" data-hi="व्हाट्सएप पर चैट करें"
+             data-msg-en="Hi, I'd like to enquire about ordering paper dona/pattal in bulk."
+             data-msg-hi="नमस्ते, मुझे थोक में पेपर दोना/पत्तल ऑर्डर करने के बारे में पूछताछ करनी है।"></a>
+          <a class="btn btn--ghost" id="tel-link" href="tel:+918787201971" data-en="Or Call Directly" data-hi="या सीधे कॉल करें"></a>
+        </div>
+        <div class="contact-form-placeholder reveal">
+          <p data-en="A contact form (name, email, message) is coming in the next phase." data-hi="अगले चरण में एक संपर्क फ़ॉर्म (नाम, ईमेल, संदेश) आ रहा है।"></p>
+        </div>
       </div>
     </div>
   </section>
@@ -406,7 +390,7 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div>
-      <p class="brand-name" style="color:#fff; font-size:1.1rem;">Sahlok Eco Products LLP</p>
+      <p class="brand-name" style="color:var(--paper); font-size:1.1rem;">Sahlok Eco Products LLP</p>
       <p data-en="Mirzapur, Uttar Pradesh · Eco-friendly paper packaging" data-hi="मिर्ज़ापुर, उत्तर प्रदेश · इको-फ्रेंडली पेपर पैकेजिंग"></p>
     </div>
     <div>
@@ -420,6 +404,70 @@
   var STORAGE_KEY = 'sahlok_lang';
   var WHATSAPP_NUMBER = '918787201971';
   window.currentLang = 'en';
+
+  var PRODUCTS = [
+    { id: 'dona-4', type: 'dona', nameEn: '4" Mini Paper Dona', nameHi: '4" मिनी पेपर दोना', useEn: 'Sweets & dry snacks', useHi: 'मिठाई और सूखे नाश्ते', gsm: '80–100 GSM', pack: '100 pcs/pack' },
+    { id: 'dona-6', type: 'dona', nameEn: '6" Paper Dona', nameHi: '6" पेपर दोना', useEn: 'Chaat & curry bowls', useHi: 'चाट और करी बाउल', gsm: '80–110 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-7', type: 'plate', nameEn: '7" Paper Plate', nameHi: '7" पेपर प्लेट', useEn: 'Snacks & light meals', useHi: 'नाश्ता और हल्का भोजन', gsm: '100–130 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-8', type: 'plate', nameEn: '8" Paper Plate', nameHi: '8" पेपर प्लेट', useEn: 'Full meals', useHi: 'पूरा भोजन', gsm: '120–150 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-10', type: 'plate', nameEn: '10" Paper Plate', nameHi: '10" पेपर प्लेट', useEn: 'Buffets & parties', useHi: 'बुफे और पार्टियां', gsm: '150–180 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-12', type: 'plate', nameEn: '12" Paper Plate', nameHi: '12" पेपर प्लेट', useEn: 'Banquets & bulk catering', useHi: 'बैंक्वेट और थोक कैटरिंग', gsm: '180–220 GSM', pack: '50 pcs/pack' }
+  ];
+
+  // Elements are built with DOM APIs (not innerHTML string concatenation)
+  // because product names contain literal double-quote characters (e.g. 4").
+  function renderProducts() {
+    var grid = document.getElementById('products-grid');
+    PRODUCTS.forEach(function (p, idx) {
+      var card = document.createElement('article');
+      card.className = 'product-card reveal';
+
+      var number = document.createElement('span');
+      number.className = 'product-card__number';
+      number.textContent = String(idx + 1).padStart(2, '0');
+
+      var photo = document.createElement('img');
+      photo.className = 'product-card__photo';
+      photo.loading = 'lazy';
+      photo.src = p.type === 'plate' ? '../v2/assets/images/product-plate.jpg' : '../v2/assets/images/product-dona.jpg';
+      photo.alt = p.type === 'plate' ? 'Stack of red and white disposable paper plates' : 'Stack of plain kraft paper cups';
+
+      var body = document.createElement('div');
+      body.className = 'product-card__body';
+
+      var name = document.createElement('h3');
+      name.className = 'product-card__name';
+      name.setAttribute('data-en', p.nameEn);
+      name.setAttribute('data-hi', p.nameHi);
+
+      var use = document.createElement('p');
+      use.className = 'product-card__use';
+      use.setAttribute('data-en', p.useEn);
+      use.setAttribute('data-hi', p.useHi);
+
+      var spec = document.createElement('p');
+      spec.className = 'product-card__spec';
+      spec.textContent = p.gsm + ' · ' + p.pack;
+
+      var link = document.createElement('a');
+      link.className = 'product-card__link whatsapp-link';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.setAttribute('data-en', 'Ask for this size →');
+      link.setAttribute('data-hi', 'इस साइज़ के लिए पूछें →');
+      link.setAttribute('data-msg-en', 'Hi, I am interested in bulk pricing for the ' + p.nameEn + '. Could you share details?');
+      link.setAttribute('data-msg-hi', 'नमस्ते, मुझे ' + p.nameHi + ' के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।');
+
+      body.appendChild(name);
+      body.appendChild(use);
+      body.appendChild(spec);
+      body.appendChild(link);
+      card.appendChild(number);
+      card.appendChild(photo);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+  }
 
   function getStoredLang() {
     try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch (e) { return 'en'; }
@@ -454,173 +502,63 @@
   }
 
   function initScrollReveal() {
-    var items = document.querySelectorAll('.reveal:not(.is-visible)');
-    if (!('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('is-visible'); });
+    var items = document.querySelectorAll('.reveal');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      items.forEach(function (el) { el.style.opacity = 1; });
       return;
     }
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+    gsap.registerPlugin(ScrollTrigger);
+    items.forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: reduceMotion ? 0 : 24 });
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.7,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
       });
-    }, { threshold: 0.15 });
-    items.forEach(function (el) { observer.observe(el); });
-  }
-
-  var PROCESS_ICON_SVG = [
-    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="10" width="36" height="44" rx="4" stroke="#C1502E" stroke-width="3"/><path d="M20 20h24M20 30h24M20 40h16" stroke="#F4A63A" stroke-width="3" stroke-linecap="round"/></svg>',
-    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="20" stroke="#C1502E" stroke-width="3"/><path d="M32 16v16l12 8" stroke="#F4A63A" stroke-width="3" stroke-linecap="round"/></svg>',
-    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 32l12 12 24-24" stroke="#C1502E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-    '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="22" width="44" height="30" rx="3" stroke="#C1502E" stroke-width="3"/><path d="M10 30h44" stroke="#C1502E" stroke-width="3"/><path d="M32 22v-8m-8 8l8-8 8 8" stroke="#F4A63A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-  ];
-
-  var PROCESS_STEPS = [
-    { nameEn: 'Paper Sourced', nameHi: 'कागज़ की खरीद', descEn: 'Quality paper rolls sourced and checked for GSM and strength.', descHi: 'गुणवत्तापूर्ण पेपर रोल की खरीद, GSM और मजबूती की जांच के साथ।' },
-    { nameEn: 'Pressed & Moulded', nameHi: 'प्रेस और मोल्ड', descEn: 'Machine-pressed into shape using heat and precision dies.', descHi: 'गर्मी और सटीक डाई का उपयोग करके मशीन से आकार में ढाला जाता है।' },
-    { nameEn: 'Quality Checked', nameHi: 'गुणवत्ता जांच', descEn: 'Each batch checked for rigidity, finish and leak-resistance.', descHi: 'हर बैच की मजबूती, फिनिश और रिसाव-रोधी क्षमता की जांच की जाती है।' },
-    { nameEn: 'Packed for Delivery', nameHi: 'डिलीवरी के लिए पैकिंग', descEn: 'Counted, bundled and packed ready for bulk dispatch.', descHi: 'गिनती, बंडलिंग और थोक डिस्पैच के लिए पैकिंग।' }
-  ];
-
-  function renderProcessSteps() {
-    var wrap = document.getElementById('process-steps');
-    PROCESS_STEPS.forEach(function (step, index) {
-      var el = document.createElement('div');
-      el.className = 'process__step reveal';
-      var num = document.createElement('div');
-      num.className = 'process__step-number';
-      num.textContent = String(index + 1);
-      var icon = document.createElement('div');
-      icon.className = 'product-card__icon';
-      icon.style.margin = '0 auto 12px';
-      icon.innerHTML = PROCESS_ICON_SVG[index];
-      var name = document.createElement('h3');
-      name.style.fontSize = '1.05rem';
-      name.setAttribute('data-en', step.nameEn);
-      name.setAttribute('data-hi', step.nameHi);
-      var desc = document.createElement('p');
-      desc.style.fontSize = '0.9rem';
-      desc.setAttribute('data-en', step.descEn);
-      desc.setAttribute('data-hi', step.descHi);
-      el.appendChild(num);
-      el.appendChild(icon);
-      el.appendChild(name);
-      el.appendChild(desc);
-      wrap.appendChild(el);
     });
   }
 
-  var DONA_ICON_SVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-    '<path d="M8 28c0 14 10.7 24 24 24s24-10 24-24" stroke="#C1502E" stroke-width="4" stroke-linecap="round"/>' +
-    '<ellipse cx="32" cy="28" rx="26" ry="7" fill="#F4A63A" stroke="#8C3A20" stroke-width="2"/>' +
-    '</svg>';
+  function initHeroAnimations() {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof gsap === 'undefined') { return; }
 
-  var PLATE_ICON_SVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-    '<ellipse cx="32" cy="34" rx="27" ry="11" fill="#FDECD8" stroke="#8C3A20" stroke-width="2"/>' +
-    '<ellipse cx="32" cy="30" rx="27" ry="11" fill="#F4A63A" stroke="#C1502E" stroke-width="3"/>' +
-    '<ellipse cx="32" cy="30" rx="13" ry="5" fill="#FFF8F0" stroke="#C1502E" stroke-width="1.5"/>' +
-    '</svg>';
+    var lines = document.querySelectorAll('.hero__line');
+    var photo = document.querySelector('.hero__photo');
 
-  var PRODUCTS = [
-    { id: 'dona-4', type: 'dona', nameEn: '4" Mini Paper Dona', nameHi: '4" मिनी पेपर दोना', useEn: 'Sweets & dry snacks', useHi: 'मिठाई और सूखे नाश्ते', gsm: '80–100 GSM', pack: '100 pcs/pack' },
-    { id: 'dona-6', type: 'dona', nameEn: '6" Paper Dona', nameHi: '6" पेपर दोना', useEn: 'Chaat & curry bowls', useHi: 'चाट और करी बाउल', gsm: '80–110 GSM', pack: '100 pcs/pack' },
-    { id: 'plate-7', type: 'plate', nameEn: '7" Paper Plate', nameHi: '7" पेपर प्लेट', useEn: 'Snacks & light meals', useHi: 'नाश्ता और हल्का भोजन', gsm: '100–130 GSM', pack: '100 pcs/pack' },
-    { id: 'plate-8', type: 'plate', nameEn: '8" Paper Plate', nameHi: '8" पेपर प्लेट', useEn: 'Full meals', useHi: 'पूरा भोजन', gsm: '120–150 GSM', pack: '100 pcs/pack' },
-    { id: 'plate-10', type: 'plate', nameEn: '10" Paper Plate', nameHi: '10" पेपर प्लेट', useEn: 'Buffets & parties', useHi: 'बुफे और पार्टियां', gsm: '150–180 GSM', pack: '100 pcs/pack' },
-    { id: 'plate-12', type: 'plate', nameEn: '12" Paper Plate', nameHi: '12" पेपर प्लेट', useEn: 'Banquets & bulk catering', useHi: 'बैंक्वेट और थोक कैटरिंग', gsm: '180–220 GSM', pack: '50 pcs/pack' }
-  ];
-
-  // Elements are built with DOM APIs (not innerHTML string concatenation)
-  // because product names contain literal double-quote characters (e.g. 4").
-  function renderProducts() {
-    var grid = document.getElementById('products-grid');
-    PRODUCTS.forEach(function (p) {
-      var card = document.createElement('article');
-      card.className = 'product-card reveal';
-
-      var icon = document.createElement('div');
-      icon.className = 'product-card__icon';
-      icon.innerHTML = p.type === 'plate' ? PLATE_ICON_SVG : DONA_ICON_SVG;
-
-      var name = document.createElement('h3');
-      name.className = 'product-card__name';
-      name.setAttribute('data-en', p.nameEn);
-      name.setAttribute('data-hi', p.nameHi);
-
-      var use = document.createElement('p');
-      use.className = 'product-card__use';
-      use.setAttribute('data-en', p.useEn);
-      use.setAttribute('data-hi', p.useHi);
-
-      var spec = document.createElement('p');
-      spec.className = 'product-card__spec';
-      spec.textContent = p.gsm + ' · ' + p.pack;
-
-      var link = document.createElement('a');
-      link.className = 'product-card__link whatsapp-link';
-      link.target = '_blank';
-      link.rel = 'noopener';
-      link.setAttribute('data-en', 'Ask for this size →');
-      link.setAttribute('data-hi', 'इस साइज़ के लिए पूछें →');
-      link.setAttribute('data-msg-en', 'Hi, I am interested in bulk pricing for the ' + p.nameEn + '. Could you share details?');
-      link.setAttribute('data-msg-hi', 'नमस्ते, मुझे ' + p.nameHi + ' के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।');
-
-      card.appendChild(icon);
-      card.appendChild(name);
-      card.appendChild(use);
-      card.appendChild(spec);
-      card.appendChild(link);
-      grid.appendChild(card);
+    // Staggered line-by-line reveal using clip-path
+    lines.forEach(function (line) {
+      gsap.set(line, { clipPath: 'inset(0 100% 0 0)' });
     });
+
+    var tl = gsap.timeline({ delay: 0.2 });
+    tl.to(lines, {
+      clipPath: 'inset(0 0% 0 0)',
+      duration: reduceMotion ? 0.01 : 0.8,
+      ease: 'power3.out',
+      stagger: 0.12
+    });
+
+    // Clip-path photo reveal (unveils top to bottom)
+    if (photo) {
+      gsap.set(photo, { clipPath: 'inset(100% 0 0 0)' });
+      tl.to(photo, {
+        clipPath: 'inset(0% 0 0 0)',
+        duration: reduceMotion ? 0.01 : 1.2,
+        ease: 'power3.out'
+      }, '-=0.4'); // Start 0.4s before line animation ends
+    }
   }
 
-  var WHY_US = [
-    { nameEn: 'Eco-Friendly & Biodegradable', nameHi: 'इको-फ्रेंडली और बायोडिग्रेडेबल', descEn: '100% paper, no plastic — a safer choice for food and the environment.', descHi: '100% कागज़, कोई प्लास्टिक नहीं — भोजन और पर्यावरण के लिए एक सुरक्षित विकल्प।' },
-    { nameEn: 'Food-Safe & Hygienic', nameHi: 'खाद्य-सुरक्षित और स्वच्छ', descEn: 'Made and packed with hygiene in mind, safe for direct food contact.', descHi: 'स्वच्छता को ध्यान में रखते हुए बनाया और पैक किया गया।' },
-    { nameEn: 'Wholesale Bulk Pricing', nameHi: 'थोक मूल्य पर आपूर्ति', descEn: 'Straightforward per-100-piece pricing built for hotels, caterers & shops.', descHi: 'होटल, कैटरर्स और दुकानों के लिए सीधी प्रति-100-पीस मूल्य निर्धारण।' },
-    { nameEn: 'Local, Reachable, Reliable', nameHi: 'स्थानीय, सुलभ, भरोसेमंद', descEn: 'Based in Mirzapur — easy to call, visit, and build a long-term supply relationship with.', descHi: 'मिर्ज़ापुर में स्थित — कॉल करना, मिलना और लंबे समय तक आपूर्ति संबंध बनाना आसान।' }
-  ];
-
-  function renderWhyUs() {
-    var wrap = document.getElementById('why-us-grid');
-    WHY_US.forEach(function (item) {
-      var tile = document.createElement('div');
-      tile.className = 'why-us__tile reveal';
-      var name = document.createElement('h3');
-      name.style.fontSize = '1.05rem';
-      name.setAttribute('data-en', item.nameEn);
-      name.setAttribute('data-hi', item.nameHi);
-      var desc = document.createElement('p');
-      desc.setAttribute('data-en', item.descEn);
-      desc.setAttribute('data-hi', item.descHi);
-      tile.appendChild(name);
-      tile.appendChild(desc);
-      wrap.appendChild(tile);
-    });
-  }
-
-  function renderHeroArt(targetId, size) {
-    var el = document.getElementById(targetId);
-    if (!el) { return; }
-    el.innerHTML = '<svg viewBox="0 0 220 220" width="' + size + '" height="' + size + '" xmlns="http://www.w3.org/2000/svg">' +
-      '<ellipse cx="110" cy="190" rx="90" ry="14" fill="#F4A63A" opacity="0.35"/>' +
-      '<ellipse cx="110" cy="150" rx="80" ry="16" fill="#FDECD8" stroke="#8C3A20" stroke-width="3"/>' +
-      '<ellipse cx="110" cy="120" rx="70" ry="15" fill="#FFF8F0" stroke="#C1502E" stroke-width="3"/>' +
-      '<ellipse cx="110" cy="92" rx="60" ry="14" fill="#FDECD8" stroke="#8C3A20" stroke-width="3"/>' +
-      '<g transform="translate(140,40)">' +
-      '<circle cx="0" cy="0" r="10" fill="#F4A63A"/><circle cx="16" cy="6" r="10" fill="#F4A63A"/>' +
-      '<circle cx="-16" cy="6" r="10" fill="#F4A63A"/><circle cx="0" cy="16" r="10" fill="#C1502E"/>' +
-      '</g></svg>';
+  function splitHeroLines() {
+    // Split each .hero__line text into character spans for potential char-level animation
+    // Currently using line-level clip-path, so this is a no-op but kept for future enhancement
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    renderHeroArt('hero-art', 220);
-    renderHeroArt('about-art', 160);
-    renderProcessSteps();
     renderProducts();
-    renderWhyUs();
 
     var toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
@@ -637,6 +575,7 @@
     }
 
     applyLanguage(getStoredLang());
+    initHeroAnimations();
     initScrollReveal();
   });
 })();
