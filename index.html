@@ -62,9 +62,11 @@
   .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
   .span-7 { grid-column: span 7; }
   .span-5 { grid-column: span 5; }
+  .span-8 { grid-column: span 8; }
+  .span-6 { grid-column: span 6; }
   @media (max-width: 860px) {
     .grid-12 { grid-template-columns: 1fr; }
-    .span-7, .span-5 { grid-column: 1; }
+    .span-7, .span-5, .span-8, .span-6 { grid-column: 1; }
   }
 
   .btn {
@@ -150,13 +152,14 @@
   }
   @media (max-width: 860px) {
     .hero__content { margin-right: 0; padding: 24px; }
+    .hero__photo-wrap { margin-top: 24px; border: 1px solid var(--stone); }
   }
   .hero__headline { display: flex; flex-direction: column; gap: 0.1em; }
   .hero__line { display: block; overflow: hidden; }
   .hero__line .char { display: inline-block; transform: translateY(100%); }
   .hero__sub { font-size: 1.1rem; max-width: 46ch; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .hero__photo-wrap { position: relative; z-index: 1; }
+  .hero__photo-wrap { position: relative; z-index: 1; border: 1px solid var(--stone); }
   .hero__meta {
     position: absolute;
     top: 16px;
@@ -173,9 +176,7 @@
     width: 100%;
     height: clamp(320px, 40vw, 520px);
     object-fit: cover;
-    border: 1px solid var(--stone);
     display: block;
-    clip-path: inset(0 0 0 0);
   }
 
   /* Product range */
@@ -527,6 +528,7 @@
 
     var lines = document.querySelectorAll('.hero__line');
     var photo = document.querySelector('.hero__photo');
+    var photoWrap = document.querySelector('.hero__photo-wrap');
 
     // Staggered line-by-line reveal using clip-path
     lines.forEach(function (line) {
@@ -541,14 +543,15 @@
       stagger: 0.12
     });
 
-    // Clip-path photo reveal (unveils top to bottom)
-    if (photo) {
-      gsap.set(photo, { clipPath: 'inset(100% 0 0 0)' });
-      tl.to(photo, {
-        clipPath: 'inset(0% 0 0 0)',
-        duration: reduceMotion ? 0.01 : 1.2,
+    // Photo fade + slide up (replaces clip-path unveil for reliability)
+    if (photoWrap) {
+      gsap.set(photoWrap, { opacity: 0, y: reduceMotion ? 0 : 30 });
+      tl.to(photoWrap, {
+        opacity: 1,
+        y: 0,
+        duration: reduceMotion ? 0.01 : 0.9,
         ease: 'power3.out'
-      }, '-=0.4'); // Start 0.4s before line animation ends
+      }, '-=0.3');
     }
   }
 
