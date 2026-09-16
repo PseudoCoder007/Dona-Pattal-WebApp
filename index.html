@@ -62,11 +62,9 @@
   .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
   .span-7 { grid-column: span 7; }
   .span-5 { grid-column: span 5; }
-  .span-8 { grid-column: span 8; }
-  .span-6 { grid-column: span 6; }
   @media (max-width: 860px) {
     .grid-12 { grid-template-columns: 1fr; }
-    .span-7, .span-5, .span-8, .span-6 { grid-column: 1; }
+    .span-7, .span-5 { grid-column: 1; }
   }
 
   .btn {
@@ -261,7 +259,7 @@
   .contact-card .btn { margin-right: 10px; margin-bottom: 10px; }
 
   /* Footer */
-  .site-footer { background: var(--oxblood); color: rgba(244,239,230,0.8); padding: 40px 0; font-size: 0.9rem; }
+  .site-footer { background: var(--oxblood); color: rgba(244,239,230,0.8); padding: 40px 0; font-size: 0.9rem; border-top: 1px solid var(--stone); }
   .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 </style>
 </head>
@@ -288,7 +286,7 @@
 
   <section class="section hero" id="hero">
     <div class="container grid-12">
-      <div class="span-8 hero__content reveal">
+      <div class="span-7 hero__content reveal">
         <p class="section__eyebrow" data-en="Mirzapur, Uttar Pradesh — Pre-Launch" data-hi="मिर्ज़ापुर, उत्तर प्रदेश — लॉन्च-पूर्व"></p>
         <h1 class="display hero__headline">
           <span class="hero__line" data-en="Paper Foodware," data-hi="पेपर फूडवेयर,"></span>
@@ -303,7 +301,7 @@
              data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
         </div>
       </div>
-      <div class="span-6 hero__photo-wrap reveal">
+      <div class="span-5 hero__photo-wrap reveal">
         <span class="hero__meta" data-en="MIRZAPUR / U.P." data-hi="मिर्ज़ापुर / उ.प्र."></span>
         <img class="hero__photo" src="v2/assets/images/hero-food.jpg" alt="Chef preparing Indian street food chaat with fresh toppings and spices" loading="lazy">
       </div>
@@ -524,18 +522,29 @@
 
   function initHeroAnimations() {
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (typeof gsap === 'undefined') { return; }
-
     var lines = document.querySelectorAll('.hero__line');
-    var photo = document.querySelector('.hero__photo');
     var photoWrap = document.querySelector('.hero__photo-wrap');
+
+    // Safety net: force the hero visible after a delay no matter what, so a
+    // stalled or failed animation (slow device, backgrounded tab, a GSAP CDN
+    // hiccup) can never leave the headline/photo permanently invisible.
+    var revealed = false;
+    function forceReveal() {
+      if (revealed) { return; }
+      revealed = true;
+      lines.forEach(function (line) { line.style.clipPath = 'inset(0 0% 0 0)'; });
+      if (photoWrap) { photoWrap.style.opacity = '1'; photoWrap.style.transform = 'none'; }
+    }
+    setTimeout(forceReveal, 2000);
+
+    if (typeof gsap === 'undefined') { forceReveal(); return; }
 
     // Staggered line-by-line reveal using clip-path
     lines.forEach(function (line) {
       gsap.set(line, { clipPath: 'inset(0 100% 0 0)' });
     });
 
-    var tl = gsap.timeline({ delay: 0.2 });
+    var tl = gsap.timeline({ delay: 0.2, onComplete: function () { revealed = true; } });
     tl.to(lines, {
       clipPath: 'inset(0 0% 0 0)',
       duration: reduceMotion ? 0.01 : 0.8,
