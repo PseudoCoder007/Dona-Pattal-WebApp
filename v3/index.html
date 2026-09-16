@@ -170,6 +170,14 @@
   /* Who we supply / mirzapur (placeholder shells this phase) */
   .who-we-supply, .mirzapur { background: rgba(168,124,63,0.08); }
 
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+  @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card, .contact-form-placeholder { border: 1px solid var(--stone); padding: 28px; background: var(--card); }
+  .contact-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-weight: 600; margin-bottom: 14px; }
+  .contact-row span:first-child { color: var(--ink-soft); font-weight: 500; }
+  .contact-card .btn { margin-right: 10px; margin-bottom: 10px; }
+
   /* Footer */
   .site-footer { background: var(--oxblood); color: rgba(244,239,230,0.8); padding: 40px 0; font-size: 0.9rem; }
   .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
@@ -265,6 +273,28 @@
            data-en="Get Wholesale Price" data-hi="थोक मूल्य जानें"
            data-msg-en="Hi, I'd like to enquire about wholesale pricing for paper dona/pattal."
            data-msg-hi="नमस्ते, मुझे थोक में पेपर दोना/पत्तल की कीमत के बारे में पूछताछ करनी है।"></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="container">
+      <p class="section__eyebrow reveal" data-en="Contact" data-hi="संपर्क करें"></p>
+      <h2 class="heading reveal" data-en="Let's Talk Bulk Pricing" data-hi="थोक मूल्य पर बात करें"></h2>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <div class="contact-row"><span data-en="Owner" data-hi="स्वामी"></span><span>Alok Dwivedi</span></div>
+          <div class="contact-row"><span data-en="Call / WhatsApp" data-hi="कॉल / व्हाट्सएप"></span><span>+91 87872 01971</span></div>
+          <div class="contact-row"><span data-en="Address" data-hi="पता"></span><span>Civil Line Road, Saripur Jalapur, Mirzapur – 231001</span></div>
+          <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
+             data-en="Chat on WhatsApp" data-hi="व्हाट्सएप पर चैट करें"
+             data-msg-en="Hi, I'd like to enquire about ordering paper dona/pattal in bulk."
+             data-msg-hi="नमस्ते, मुझे थोक में पेपर दोना/पत्तल ऑर्डर करने के बारे में पूछताछ करनी है।"></a>
+          <a class="btn btn--ghost" id="tel-link" href="tel:+918787201971" data-en="Or Call Directly" data-hi="या सीधे कॉल करें"></a>
+        </div>
+        <div class="contact-form-placeholder reveal">
+          <p data-en="A contact form (name, email, message) is coming in the next phase." data-hi="अगले चरण में एक संपर्क फ़ॉर्म (नाम, ईमेल, संदेश) आ रहा है।"></p>
+        </div>
       </div>
     </div>
   </section>
