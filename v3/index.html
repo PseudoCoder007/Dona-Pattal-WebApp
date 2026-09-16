@@ -146,6 +146,27 @@
   .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
   .hero__photo { width: 100%; height: clamp(320px, 40vw, 520px); object-fit: cover; border: 1px solid var(--stone); display: block; }
 
+  /* Product range */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; }
+  .product-card { border: 1px solid var(--stone); display: flex; flex-direction: column; background: var(--card); }
+  .product-card__photo { width: 100%; height: 170px; object-fit: cover; display: block; }
+  .product-card__body { padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .product-card__name { font-size: 1.15rem; margin: 0; }
+  .product-card__use { font-size: 0.9rem; margin: 0; }
+  .product-card__spec { font-size: 0.85rem; color: var(--brick); font-weight: 600; margin: 0 0 8px; }
+  .product-card__link {
+    margin-top: auto;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-top: 1px solid var(--stone);
+    padding-top: 10px;
+  }
+  .product-card__link:hover { color: var(--brick); }
+
   /* Footer */
   .site-footer { background: var(--oxblood); color: rgba(244,239,230,0.8); padding: 40px 0; font-size: 0.9rem; }
   .site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
@@ -221,6 +242,65 @@
   var WHATSAPP_NUMBER = '918787201971';
   window.currentLang = 'en';
 
+  var PRODUCTS = [
+    { id: 'dona-4', type: 'dona', nameEn: '4" Mini Paper Dona', nameHi: '4" मिनी पेपर दोना', useEn: 'Sweets & dry snacks', useHi: 'मिठाई और सूखे नाश्ते', gsm: '80–100 GSM', pack: '100 pcs/pack' },
+    { id: 'dona-6', type: 'dona', nameEn: '6" Paper Dona', nameHi: '6" पेपर दोना', useEn: 'Chaat & curry bowls', useHi: 'चाट और करी बाउल', gsm: '80–110 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-7', type: 'plate', nameEn: '7" Paper Plate', nameHi: '7" पेपर प्लेट', useEn: 'Snacks & light meals', useHi: 'नाश्ता और हल्का भोजन', gsm: '100–130 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-8', type: 'plate', nameEn: '8" Paper Plate', nameHi: '8" पेपर प्लेट', useEn: 'Full meals', useHi: 'पूरा भोजन', gsm: '120–150 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-10', type: 'plate', nameEn: '10" Paper Plate', nameHi: '10" पेपर प्लेट', useEn: 'Buffets & parties', useHi: 'बुफे और पार्टियां', gsm: '150–180 GSM', pack: '100 pcs/pack' },
+    { id: 'plate-12', type: 'plate', nameEn: '12" Paper Plate', nameHi: '12" पेपर प्लेट', useEn: 'Banquets & bulk catering', useHi: 'बैंक्वेट और थोक कैटरिंग', gsm: '180–220 GSM', pack: '50 pcs/pack' }
+  ];
+
+  // Elements are built with DOM APIs (not innerHTML string concatenation)
+  // because product names contain literal double-quote characters (e.g. 4").
+  function renderProducts() {
+    var grid = document.getElementById('products-grid');
+    PRODUCTS.forEach(function (p) {
+      var card = document.createElement('article');
+      card.className = 'product-card reveal';
+
+      var photo = document.createElement('img');
+      photo.className = 'product-card__photo';
+      photo.loading = 'lazy';
+      photo.src = p.type === 'plate' ? '../v2/assets/images/product-plate.jpg' : '../v2/assets/images/product-dona.jpg';
+      photo.alt = p.type === 'plate' ? 'Stack of red and white disposable paper plates' : 'Stack of plain kraft paper cups';
+
+      var body = document.createElement('div');
+      body.className = 'product-card__body';
+
+      var name = document.createElement('h3');
+      name.className = 'product-card__name';
+      name.setAttribute('data-en', p.nameEn);
+      name.setAttribute('data-hi', p.nameHi);
+
+      var use = document.createElement('p');
+      use.className = 'product-card__use';
+      use.setAttribute('data-en', p.useEn);
+      use.setAttribute('data-hi', p.useHi);
+
+      var spec = document.createElement('p');
+      spec.className = 'product-card__spec';
+      spec.textContent = p.gsm + ' · ' + p.pack;
+
+      var link = document.createElement('a');
+      link.className = 'product-card__link whatsapp-link';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.setAttribute('data-en', 'Ask for this size →');
+      link.setAttribute('data-hi', 'इस साइज़ के लिए पूछें →');
+      link.setAttribute('data-msg-en', 'Hi, I am interested in bulk pricing for the ' + p.nameEn + '. Could you share details?');
+      link.setAttribute('data-msg-hi', 'नमस्ते, मुझे ' + p.nameHi + ' के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।');
+
+      body.appendChild(name);
+      body.appendChild(use);
+      body.appendChild(spec);
+      body.appendChild(link);
+      card.appendChild(photo);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+  }
+
   function getStoredLang() {
     try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch (e) { return 'en'; }
   }
@@ -274,6 +354,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    renderProducts();
+
     var toggleBtn = document.getElementById('lang-toggle');
     if (toggleBtn) { toggleBtn.addEventListener('click', toggleLanguage); }
 
