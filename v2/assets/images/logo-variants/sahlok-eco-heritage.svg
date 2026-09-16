@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 128" role="img" aria-labelledby="title">
+  <title id="title">Sahlok Eco Products heritage logo</title>
+  <g transform="translate(7 11)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 67c8 15 24 25 46 25s38-10 46-25" stroke="#8C3A20" stroke-width="5"/>
+    <path d="M17 57c0 15 16 24 39 24s39-9 39-24" fill="#FDECD8" stroke="#6B1E23" stroke-width="4"/>
+    <ellipse cx="56" cy="57" rx="39" ry="12" fill="#FFF8F0" stroke="#C1502E" stroke-width="4"/>
+    <path d="M31 49c3-23 17-36 41-40 0 25-15 40-41 40Z" fill="#93A85B" stroke="#56743C" stroke-width="4"/>
+    <path d="M37 43l27-27M47 33l-2-12M56 24l11 3" stroke="#FFF8F0" stroke-width="3"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <text x="123" y="55" fill="#6B1E23" font-size="42" font-weight="700">Sahlok Eco</text>
+    <text x="125" y="85" fill="#C1502E" font-size="25" font-weight="700" letter-spacing="5">PRODUCTS</text>
+    <text x="126" y="109" fill="#7A5C4A" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.4">PAPER DONA • PATTAL • PLATES</text>
+  </g>
+</svg>

@@ -30,3 +30,7 @@ The active Version 2 landing page is [v2/index.html](v2/index.html). Its local a
 ## Image credits
 
 The About section uses `v2/assets/images/about-paper-pattal.png`, a paper-plate product image by Alanthebox, released under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Paper_plates_-_isolated.png).
+
+## Brand logo
+
+The website logo is `v2/assets/images/sahlok-eco-logo.svg`. It is an original vector mark created for Sahlok Eco Products: the leaf represents the eco-friendly promise and the layered bowl/plate shape represents paper dona and pattal. It is used in the Version 2 header and can be reused for business cards, packaging, social media, and signage without losing quality.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 128" role="img" aria-labelledby="title">
+  <title id="title">Sahlok Eco Products monogram logo</title>
+  <g transform="translate(8 8)">
+    <rect width="106" height="106" rx="25" fill="#6B1E23"/>
+    <path d="M28 73c10 10 38 10 50 0" fill="none" stroke="#F4A63A" stroke-width="5" stroke-linecap="round"/>
+    <path d="M28 61c0 14 12 22 25 22s25-8 25-22" fill="#F4A63A" stroke="#FFF8F0" stroke-width="3"/>
+    <ellipse cx="53" cy="61" rx="25" ry="9" fill="#FFF8F0" stroke="#F4A63A" stroke-width="3"/>
+    <path d="M51 55c-3-19 7-31 25-35 2 20-9 33-25 35Z" fill="#93A85B" stroke="#FFF8F0" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M55 49l14-20" stroke="#FFF8F0" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="20" y="38" fill="#FFF8F0" font-family="Georgia, serif" font-size="25" font-weight="700">SE</text>
+  </g>
+  <g font-family="Arial Rounded MT Bold, Arial, sans-serif">
+    <text x="132" y="55" fill="#6B1E23" font-size="38" font-weight="800" letter-spacing="-1">Sahlok Eco</text>
+    <text x="133" y="84" fill="#C1502E" font-size="23" font-weight="800" letter-spacing="4">PRODUCTS</text>
+    <text x="134" y="109" fill="#7A5C4A" font-size="12" font-weight="700" letter-spacing="1.5">ECO-FRIENDLY PAPER PACKAGING</text>
+  </g>
+</svg>
