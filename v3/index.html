@@ -142,15 +142,96 @@
 
   /* Hero */
   .hero { padding-top: 48px; }
+  .hero__content {
+    background: rgba(244, 239, 230, 0.92);
+    padding: clamp(24px, 4vw, 48px);
+    z-index: 2;
+    margin-right: -60px;
+  }
+  @media (max-width: 860px) {
+    .hero__content { margin-right: 0; padding: 24px; }
+  }
+  .hero__headline { display: flex; flex-direction: column; gap: 0.1em; }
+  .hero__line { display: block; overflow: hidden; }
+  .hero__line .char { display: inline-block; transform: translateY(100%); }
   .hero__sub { font-size: 1.1rem; max-width: 46ch; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-  .hero__photo { width: 100%; height: clamp(320px, 40vw, 520px); object-fit: cover; border: 1px solid var(--stone); display: block; }
+  .hero__photo-wrap { position: relative; z-index: 1; }
+  .hero__meta {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    color: var(--brass);
+    font-weight: 600;
+    font-family: var(--font-body);
+  }
+  html[lang="hi"] .hero__meta { font-family: var(--font-body-hi); font-size: 0.65rem; }
+  .hero__photo {
+    width: 100%;
+    height: clamp(320px, 40vw, 520px);
+    object-fit: cover;
+    border: 1px solid var(--stone);
+    display: block;
+    clip-path: inset(0 0 0 0);
+  }
 
   /* Product range */
-  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; }
-  .product-card { border: 1px solid var(--stone); display: flex; flex-direction: column; background: var(--card); }
-  .product-card__photo { width: 100%; height: 170px; object-fit: cover; display: block; }
-  .product-card__body { padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  @media (max-width: 640px) {
+    .product-grid {
+      grid-auto-flow: column;
+      grid-auto-columns: 85%;
+      grid-template-columns: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 16px;
+      gap: 16px;
+      margin-top: 32px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .product-card {
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: 280px;
+    }
+    .product-card__number { display: none; }
+  }
+  .product-grid::-webkit-scrollbar { height: 6px; }
+  .product-grid::-webkit-scrollbar-track { background: transparent; }
+  .product-grid::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 3px; }
+  .product-card { border: 1px solid var(--stone); display: flex; flex-direction: column; background: var(--card); position: relative; overflow: hidden; }
+  .product-card__number {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    opacity: 0.15;
+    line-height: 1;
+    z-index: 1;
+    pointer-events: none;
+  }
+  html[lang="hi"] .product-card__number { font-family: var(--font-body-hi); }
+  .product-card__photo {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease-out;
+  }
+  .product-card:hover .product-card__photo { transform: scale(1.06); }
+  .product-card__body { padding: 20px; display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 2; }
   .product-card__name { font-size: 1.15rem; margin: 0; }
   .product-card__use { font-size: 0.9rem; margin: 0; }
   .product-card__spec { font-size: 0.85rem; color: var(--brick); font-weight: 600; margin: 0 0 8px; }
@@ -206,9 +287,13 @@
 
   <section class="section hero" id="hero">
     <div class="container grid-12">
-      <div class="span-7 reveal">
+      <div class="span-8 hero__content reveal">
         <p class="section__eyebrow" data-en="Mirzapur, Uttar Pradesh — Pre-Launch" data-hi="मिर्ज़ापुर, उत्तर प्रदेश — लॉन्च-पूर्व"></p>
-        <h1 class="display" data-en="Paper Foodware, Made For Everyday India" data-hi="रोज़मर्रा के भारत के लिए बना पेपर फूडवेयर"></h1>
+        <h1 class="display hero__headline">
+          <span class="hero__line" data-en="Paper Foodware," data-hi="पेपर फूडवेयर,"></span>
+          <span class="hero__line" data-en="Made For" data-hi="बना रोज़मर्रा के"></span>
+          <span class="hero__line" data-en="Everyday India" data-hi="भारत के लिए"></span>
+        </h1>
         <p class="hero__sub" data-en="Bulk-ready paper donas and plates for hotels, restaurants, sweet shops, caterers and banquet halls in Mirzapur." data-hi="मिर्ज़ापुर में होटल, रेस्टोरेंट, मिठाई की दुकानों, कैटरर्स और बैंक्वेट हॉल के लिए थोक में तैयार पेपर दोना और पत्तल।"></p>
         <div class="hero__actions">
           <a class="btn btn--primary whatsapp-link" target="_blank" rel="noopener"
@@ -217,7 +302,8 @@
              data-msg-hi="नमस्ते, मुझे पेपर दोना/पत्तल के थोक मूल्य में रुचि है। कृपया जानकारी साझा करें।"></a>
         </div>
       </div>
-      <div class="span-5 reveal">
+      <div class="span-6 hero__photo-wrap reveal">
+        <span class="hero__meta" data-en="MIRZAPUR / U.P." data-hi="मिर्ज़ापुर / उ.प्र."></span>
         <img class="hero__photo" src="../v2/assets/images/hero-food.jpg" alt="Chef preparing Indian street food chaat with fresh toppings and spices" loading="lazy">
       </div>
     </div>
@@ -332,9 +418,13 @@
   // because product names contain literal double-quote characters (e.g. 4").
   function renderProducts() {
     var grid = document.getElementById('products-grid');
-    PRODUCTS.forEach(function (p) {
+    PRODUCTS.forEach(function (p, idx) {
       var card = document.createElement('article');
       card.className = 'product-card reveal';
+
+      var number = document.createElement('span');
+      number.className = 'product-card__number';
+      number.textContent = String(idx + 1).padStart(2, '0');
 
       var photo = document.createElement('img');
       photo.className = 'product-card__photo';
@@ -372,6 +462,7 @@
       body.appendChild(use);
       body.appendChild(spec);
       body.appendChild(link);
+      card.appendChild(number);
       card.appendChild(photo);
       card.appendChild(body);
       grid.appendChild(card);
@@ -430,6 +521,42 @@
     });
   }
 
+  function initHeroAnimations() {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof gsap === 'undefined') { return; }
+
+    var lines = document.querySelectorAll('.hero__line');
+    var photo = document.querySelector('.hero__photo');
+
+    // Staggered line-by-line reveal using clip-path
+    lines.forEach(function (line) {
+      gsap.set(line, { clipPath: 'inset(0 100% 0 0)' });
+    });
+
+    var tl = gsap.timeline({ delay: 0.2 });
+    tl.to(lines, {
+      clipPath: 'inset(0 0% 0 0)',
+      duration: reduceMotion ? 0.01 : 0.8,
+      ease: 'power3.out',
+      stagger: 0.12
+    });
+
+    // Clip-path photo reveal (unveils top to bottom)
+    if (photo) {
+      gsap.set(photo, { clipPath: 'inset(100% 0 0 0)' });
+      tl.to(photo, {
+        clipPath: 'inset(0% 0 0 0)',
+        duration: reduceMotion ? 0.01 : 1.2,
+        ease: 'power3.out'
+      }, '-=0.4'); // Start 0.4s before line animation ends
+    }
+  }
+
+  function splitHeroLines() {
+    // Split each .hero__line text into character spans for potential char-level animation
+    // Currently using line-level clip-path, so this is a no-op but kept for future enhancement
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     renderProducts();
 
@@ -448,6 +575,7 @@
     }
 
     applyLanguage(getStoredLang());
+    initHeroAnimations();
     initScrollReveal();
   });
 })();
