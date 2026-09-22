@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wholesale Supply &amp; Bulk Enquiry — Sahlok Eco Products LLP</title>
+<!-- Google Fonts: Literata (Serif) and IBM Plex Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            surface: "#F4EFE6",
+            "on-surface": "#2B2521",
+            "on-surface-variant": "#6B5D52",
+            primary: "#B24A2E",
+            "on-primary": "#FFFFFF",
+            accent: "#A87C3F",
+            "surface-container": "#EAE3D5",
+            "surface-container-high": "#DFD7C8",
+            "surface-card": "#FFFFFF",
+            "outline-variant": "#C9C0B4",
+            oxblood: "#4A1F1C",
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          fontFamily: {
+            headline: ["Literata", "serif"],
+            display: ["Literata", "serif"],
+            body: ["IBM Plex Sans", "sans-serif"],
+            label: ["IBM Plex Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .eyebrow-label {
+      font-family: 'IBM Plex Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #A87C3F;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    /* Natural stone subtle border */
+    .border-stone {
+      border-color: #C9C0B4;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-accent selection:text-white">
+<!-- TOP NOTIFICATION TICKER -->
+<aside class="bg-oxblood text-[#FAF6F0] text-xs py-2 px-4 border-b border-stone/30 font-label tracking-wide">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-center md:text-left">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+<span>Mirzapur B2B Supply Line: Direct dispatch across Uttar Pradesh &amp; North India</span>
+</div>
+<div class="flex items-center gap-4 text-[#E6DDD0]">
+<span>Direct Wholesale Desk: <strong class="text-white font-medium">+91 87872 01971</strong></span>
+<span class="hidden sm:inline text-stone/60">|</span>
+<span class="hidden sm:inline">Owner: Alok Dwivedi</span>
+</div>
+</div>
+</aside>
+<!-- STICKY TOP APP BAR (Shared Component Execution) -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 w-full bg-surface border-b border-outline-variant">
+<div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button aria-label="Open Drawer Navigation" class="md:hidden p-1 text-on-surface hover:text-primary transition-colors duration-150" id="drawerToggleBtn">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<a class="font-headline text-lg md:text-xl font-bold tracking-wide uppercase text-on-surface" href="#">
+          Sahlok Eco Products
+        </a>
+</div>
+<!-- Desktop Nav Cluster -->
+<nav class="hidden md:flex items-center gap-7 text-xs uppercase tracking-widest font-label">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150" href="#products">Products</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150" href="#who-we-work-with">Who We Supply</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150" href="#quantity-guide">Manufacturing &amp; Specs</a>
+<!-- ACTIVE STATE LOCK: Wholesale & Export highlighted based on /wholesale intent -->
+<a class="text-primary font-semibold border-b-2 border-primary pb-0.5" href="#wholesale-enquiry">Wholesale &amp; Export</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150" href="#direct-factory">Contact</a>
+</nav>
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-label uppercase tracking-wider text-on-surface border border-outline-variant hover:border-accent transition-colors duration-150" href="https://wa.me/918787201971?text=Hello%20Sahlok%20Eco%20Products%2C%20I%20need%20a%20wholesale%20quote." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm text-[#25D366]" data-icon="chat">chat</span>
+<span>+91 87872 01971</span>
+</a>
+<a class="bg-primary text-on-primary px-4 py-2 text-xs font-label uppercase tracking-widest font-medium hover:opacity-90 active:opacity-80 transition-opacity duration-150" href="#wholesale-form">
+          Get Quote
+        </a>
+</div>
+</div>
+</header>
+<!-- MOBILE NAVIGATION DRAWER (Shared Component Execution) -->
+<div class="fixed inset-0 bg-black/40 z-50 hidden transition-opacity" id="drawerOverlay"></div>
+<aside class="fixed inset-y-0 left-0 z-50 flex flex-col p-6 w-80 bg-surface shadow-xl -translate-x-full transition-transform duration-200 ease-in-out border-r border-outline-variant" id="navDrawer">
+<div class="flex items-center justify-between pb-4 mb-4 border-b border-outline-variant">
+<span class="font-headline text-xl font-bold text-on-surface">Sahlok Eco Products</span>
+<button aria-label="Close navigation" class="text-on-surface-variant hover:text-primary" id="drawerCloseBtn">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-2 font-label text-sm uppercase tracking-wider">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#products">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#who-we-work-with">
+<span class="material-symbols-outlined" data-icon="factory">factory</span>
+<span>Heritage &amp; Facility</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#quantity-guide">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span>Manufacturing Process</span>
+</a>
+<!-- Active item locked to wholesale destination -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-surface-container rounded-DEFAULT font-medium hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#wholesale-form">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Wholesale &amp; Export</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#direct-factory">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span>Contact</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant text-xs text-on-surface-variant">
+<p class="font-medium text-on-surface">Factory Desk</p>
+<p>Saripur Jalalpur, Mirzapur, UP</p>
+<p class="mt-1">+91 87872 01971</p>
+</div>
+</aside>
+<main>
+<!-- HERO SECTION (Asymmetric Editorial 7/5 Grid) -->
+<section class="py-12 md:py-20 px-4 md:px-8 max-w-7xl mx-auto border-b border-outline-variant">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+<!-- 7 Cols: Editorial Narrative -->
+<div class="lg:col-span-7 flex flex-col items-start">
+<div class="eyebrow-label mb-3">WHOLESALE SUPPLY</div>
+<h1 class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-on-surface font-normal leading-[1.15] mb-6">
+            Tell Us What You Need. <br class="hidden sm:inline"/><span class="italic font-normal">We’ll Help You Plan the Order.</span>
+</h1>
+<p class="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-2xl mb-8">
+            Looking for paper dona or paper plates in bulk? Share your product requirement, approximate quantity and delivery location. Sahlok Eco Products can then respond with current wholesale pricing and availability.
+          </p>
+<!-- Trust Badges Bar -->
+<div class="w-full bg-surface-card border border-outline-variant p-4 mb-8">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-label uppercase tracking-wider text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-base" data-icon="straighten">straighten</span>
+<span class="text-on-surface font-medium">6 Standard Sizes</span>
+</div>
+<div class="hidden sm:block text-outline-variant">•</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-base" data-icon="layers">layers</span>
+<span class="text-on-surface font-medium">Custom GSM on Request</span>
+</div>
+<div class="hidden sm:block text-outline-variant">•</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-base" data-icon="local_shipping">local_shipping</span>
+<span class="text-on-surface font-medium">Full &amp; Partial Dispatch</span>
+</div>
+</div>
+</div>
+<!-- Hero Action Cues -->
+<div class="flex flex-wrap items-center gap-4">
+<a class="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3.5 text-xs font-label uppercase tracking-widest font-semibold hover:opacity-95 transition-opacity" href="#wholesale-form">
+<span>Start an Enquiry</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_downward">arrow_downward</span>
+</a>
+<a class="inline-flex items-center gap-2 bg-surface-card border border-outline-variant text-on-surface px-6 py-3.5 text-xs font-label uppercase tracking-widest font-semibold hover:border-accent transition-colors" href="https://wa.me/918787201971?text=Hi%20Alok%20ji%2C%20inquiring%20about%20bulk%20paper%20dona%20supply%20from%20Mirzapur." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-base text-[#25D366]" data-icon="chat">chat</span>
+<span>Chat on WhatsApp</span>
+</a>
+</div>
+</div>
+<!-- 5 Cols: Material Imagery / Hero Composition -->
+<div class="lg:col-span-5">
+<div class="relative bg-surface-container p-3 border border-outline-variant">
+<img class="w-full h-[380px] sm:h-[450px] object-cover border border-outline-variant/60" data-alt="Warm studio editorial photograph of stacked natural Kraft paper dona bowls and pressed paper thali plates arranged carefully under warm sunlight casting soft directional shadows on a textured sandstone surface. The image emphasizes organic paper fibers, ribbed pleated contours, and an earthy neutral aesthetic with terracotta and stone tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdKbXGxep12laB722HRIv9R8H0TujrQlXq-c-CqkyAAbImZdrosQOTpv2BAq22HtsKhoL938Yy48RFpcwCAk7UglM_0PgM-zK_rC2_fAgtbgxsReysIKjQf6MVPwnTtjIQbgpzf9IuFMAnlHzn3GzyoMpgb4cqkqMPxBXlhgw4gvRphoQ2vO_KeWLA0oOwOAXP7-44EU9eePv4yCha-JvEVg-rJ8tz1QnLRsQxADo9fPSXnWH0ZwuKIQ"/>
+<div class="absolute bottom-6 left-6 right-6 bg-surface/95 backdrop-blur-sm p-4 border border-outline-variant">
+<div class="text-[0.72rem] font-label uppercase tracking-widest text-accent font-semibold mb-1">Direct Mirzapur Production</div>
+<p class="font-headline text-sm italic text-on-surface">Uncoated natural Kraft pulp &amp; certified food-safe lining pressed under calibrated thermal dies.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 1: WHO WE WORK WITH (Built Around Bulk Buyers) -->
+<section class="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto border-b border-outline-variant" id="who-we-work-with">
+<div class="max-w-3xl mb-12">
+<div class="eyebrow-label mb-2">WHO WE WORK WITH</div>
+<h2 class="font-headline text-3xl sm:text-4xl text-on-surface font-normal leading-tight mb-3">
+          Built Around Bulk Buyers
+        </h2>
+<p class="text-on-surface-variant text-base">
+          Structured supply for businesses handling food service, catering, and regional trade.
+        </p>
+</div>
+<!-- 6 Editorial Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-card border border-outline-variant p-6 hover:border-accent transition-colors flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-accent text-2xl" data-icon="warehouse">warehouse</span>
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-mono">01</span>
+</div>
+<h3 class="font-headline text-xl text-on-surface font-semibold mb-2">Wholesalers</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+              For regional distributors and commodity traders purchasing full cartons in consistent monthly volumes with scheduled transit.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/40 text-xs font-label uppercase tracking-wider text-accent font-medium">
+            Full Carton Dispatches
+          </div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-card border border-outline-variant p-6 hover:border-accent transition-colors flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-accent text-2xl" data-icon="hub">hub</span>
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-mono">02</span>
+</div>
+<h3 class="font-headline text-xl text-on-surface font-semibold mb-2">Distributors</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+              For regional stockists supplying multiple retail or food-service vendors across urban and peri-urban hubs.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/40 text-xs font-label uppercase tracking-wider text-accent font-medium">
+            Multi-Tier Logistics
+          </div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-card border border-outline-variant p-6 hover:border-accent transition-colors flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-accent text-2xl" data-icon="soup_kitchen">soup_kitchen</span>
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-mono">03</span>
+</div>
+<h3 class="font-headline text-xl text-on-surface font-semibold mb-2">Caterers</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+              For catering businesses managing regular banquets, weddings, and recurring corporate or seasonal dining events.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/40 text-xs font-label uppercase tracking-wider text-accent font-medium">
+            High GSM &amp; Rigidity
+          </div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-card border border-outline-variant p-6 hover:border-accent transition-colors flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-accent text-2xl" data-icon="restaurant">restaurant</span>
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-mono">04</span>
+</div>
+<h3 class="font-headline text-xl text-on-surface font-semibold mb-2">Restaurants</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+              For quick-service outlets, canteens, and dhabas requiring uniform, hygienic disposable tableware with zero smell.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/40 text-xs font-label uppercase tracking-wider text-accent font-medium">
+            Food-Safe Odorless
+          </div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-card border border-outline-variant p-6 hover:border-accent transition-colors flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-accent text-2xl" data-icon="bakery_dining">bakery_dining</span>
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-mono">05</span>
+</div>
+<h3 class="font-headline text-xl text-on-surface font-semibold mb-2">Sweet &amp; Chaat Shops</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+              High-volume daily serving specialists requiring leak-resistant 4-inch and 6-inch deep paper dona.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/40 text-xs font-label uppercase tracking-wider text-accent font-medium">
+            4" &amp; 6" Dona Specialists
+          </div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-card border border-outline-variant p-6 hover:border-accent transition-colors flex flex-col justify-between group">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-accent text-2xl" data-icon="groups">groups</span>
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-mono">06</span>
+</div>
+<h3 class="font-headline text-xl text-on-surface font-semibold mb-2">Event &amp; Community Catering</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+              For festivals, community bhandaras, temple trusts, and mass congregation feeding initiatives across North India.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/40 text-xs font-label uppercase tracking-wider text-accent font-medium">
+            Bulk Batch Direct Loading
+          </div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: THE WHOLESALE ENQUIRY FORM (Conversion Core) -->
+<section class="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto border-b border-outline-variant" id="wholesale-enquiry">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- LEFT SIDE: Editorial Context & Direct Factory Desk (5 Cols) -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<div class="eyebrow-label mb-2">BULK REQUIREMENT</div>
+<h2 class="font-headline text-3xl sm:text-4xl text-on-surface font-normal leading-tight mb-4">
+              Let’s Discuss Your Requirement
+            </h2>
+<p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
+              The more detail you provide, the easier it is for us to understand your requirement and respond appropriately with live stock status, indicative dispatch timelines, and bulk trade rates.
+            </p>
+</div>
+<!-- Direct Factory Contact Box -->
+<div class="bg-surface-card border border-outline-variant p-6 space-y-4" id="direct-factory">
+<div class="flex items-center justify-between border-b border-outline-variant pb-3">
+<div class="font-headline text-lg font-semibold text-on-surface">Factory Direct Desk</div>
+<span class="text-xs font-label uppercase tracking-wider text-accent">Mirzapur Unit</span>
+</div>
+<div class="space-y-3 text-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent text-lg mt-0.5" data-icon="person">person</span>
+<div>
+<span class="text-xs font-label uppercase text-on-surface-variant block">Desk Incharge</span>
+<span class="text-on-surface font-medium">Alok Dwivedi (Owner)</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent text-lg mt-0.5" data-icon="call">call</span>
+<div>
+<span class="text-xs font-label uppercase text-on-surface-variant block">Call &amp; WhatsApp Direct</span>
+<a class="text-on-surface font-semibold hover:text-primary transition-colors" href="tel:+918787201971">+91 87872 01971</a>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent text-lg mt-0.5" data-icon="pin_drop">pin_drop</span>
+<div>
+<span class="text-xs font-label uppercase text-on-surface-variant block">Manufacturing Unit</span>
+<p class="text-on-surface">Civil Line Road, Saripur Jalalpur, Mirzapur - 231001, Uttar Pradesh, India</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent text-lg mt-0.5" data-icon="schedule">schedule</span>
+<div>
+<span class="text-xs font-label uppercase text-on-surface-variant block">Operating Hours</span>
+<p class="text-on-surface">Monday – Saturday: 08:30 AM – 07:30 PM IST</p>
+</div>
+</div>
+</div>
+</div>
+<!-- WhatsApp Direct Trigger Card -->
+<div class="bg-surface-container border border-outline-variant p-6">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-[#25D366] text-2xl" data-icon="chat">chat</span>
+<h3 class="font-headline text-lg font-semibold text-on-surface">Need Immediate Quotation?</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">
+              Skip typing lengthy forms. Send your specifications, carton counts or sample pictures directly to our wholesale WhatsApp number.
+            </p>
+<a class="inline-flex items-center gap-2 text-xs font-label uppercase tracking-widest font-semibold text-primary hover:text-on-surface transition-colors" href="https://wa.me/918787201971?text=Hello%20Alok%20ji%2C%20I%20need%20a%20bulk%20quote%20for%20paper%20dona%2Fplates." rel="noopener noreferrer" target="_blank">
+<span>Open WhatsApp Chat (+91 87872 01971)</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Product Texture Close-up -->
+<div class="border border-outline-variant bg-surface-card p-3">
+<img class="w-full h-48 object-cover border border-outline-variant/60" data-alt="Close up architectural detail of stacks of Kraft paper dona and shallow bowls highlighting the tactile pleated rim texture, warm cardboard grain, and precise uniform thermal-die press finish in warm ambient lighting with earthen shadow gradients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkC82zRd44OOm2HKU5eywRPucyKMb9g63lqdtfD5N0sfhlUTs_Dkbk4ORi92ENVgCNIgASFbNAJmsTvi0IcUcO66lkTXe4zqziJrGDYM0RTZF9mVsZLwx26efalnyA8m4BrHS4k_LQiP_1rRFN9iITuNEdkl1SIpZ2-s55Ew3ygb4bYzH9U-ILcFNgz-Zvfokbo-Y0XJcggVozuavyLmWB7U28Wez-naSA3Yf4NHmGjxAA1QbtJg_QeA"/>
+<div class="text-[0.72rem] font-label uppercase tracking-wider text-on-surface-variant pt-2 flex justify-between">
+<span>Quality Grade: 100-180 GSM Kraft</span>
+<span>Mirzapur Dispatched</span>
+</div>
+</div>
+</div>
+<!-- RIGHT SIDE: Wholesale Form Card (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-card border border-outline-variant p-6 sm:p-10 shadow-sm relative" id="wholesale-form">
+<div class="border-b border-outline-variant pb-4 mb-6">
+<span class="eyebrow-label">B2B INQUIRY SPECIFICATION</span>
+<h3 class="font-headline text-2xl text-on-surface font-semibold mt-1">Wholesale Supply Request</h3>
+<p class="text-xs text-on-surface-variant mt-1">Required fields marked with (*). Trade quotes are shared via WhatsApp or phone call.</p>
+</div>
+<form class="space-y-6" id="enquiryForm" onsubmit="event.preventDefault(); showSuccessState();">
+<!-- Row 1: Name & Business -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="fullName">
+                  Full Name <span class="text-primary">*</span>
+</label>
+<input class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="fullName" placeholder="Your name or representative" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="companyName">
+                  Business / Company Name <span class="text-primary">*</span>
+</label>
+<input class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="companyName" placeholder="e.g. Purvanchal Caterers / Maa Sharda Traders" required="" type="text"/>
+</div>
+</div>
+<!-- Row 2: Phone & Email -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="phoneNumber">
+                  Phone / WhatsApp Number <span class="text-primary">*</span>
+</label>
+<input class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="phoneNumber" placeholder="+91 XXXXX XXXXX" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="emailAddr">
+                  Email
+                </label>
+<input class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="emailAddr" placeholder="Optional (e.g. purchase@company.com)" type="email"/>
+</div>
+</div>
+<!-- Row 3: Buyer Type Dropdown -->
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="buyerType">
+                Buyer Type <span class="text-primary">*</span>
+</label>
+<select class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface" id="buyerType" required="">
+<option disabled="" selected="" value="">Select your trade category</option>
+<option value="Wholesaler">Wholesaler</option>
+<option value="Distributor">Distributor</option>
+<option value="Caterer">Caterer</option>
+<option value="Restaurant">Restaurant</option>
+<option value="Sweet Shop">Sweet Shop</option>
+<option value="Chaat / Food Vendor">Chaat / Food Vendor</option>
+<option value="Event / Catering">Event / Catering</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<!-- Row 4: Product Interested In (Interactive Multi-Select Chips) -->
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2">
+                Product Interested In <span class="text-primary">*</span>
+</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="4 Inch Mini Dona"/>
+<span>4" Mini Dona</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input checked="" class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="6 Inch Paper Dona"/>
+<span>6" Paper Dona</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="7 Inch Plate"/>
+<span>7" Paper Plate</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="8 Inch Plate"/>
+<span>8" Paper Plate</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="10 Inch Plate"/>
+<span>10" Paper Plate</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="12 Inch Plate"/>
+<span>12" Paper Plate</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="Multiple Products"/>
+<span>Multiple Products</span>
+</label>
+<label class="flex items-center gap-2 p-2 border border-outline-variant bg-[#FAF8F5] text-xs cursor-pointer hover:border-accent select-none">
+<input class="text-primary focus:ring-0 rounded-none" name="product" type="checkbox" value="Not Sure Yet"/>
+<span>Not Sure Yet</span>
+</label>
+</div>
+</div>
+<!-- Row 5: Quantity & Delivery City -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="estQuantity">
+                  Estimated Quantity <span class="text-primary">*</span>
+</label>
+<input class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="estQuantity" placeholder="e.g. 50 cartons / 10,000 pieces / monthly ongoing" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="deliveryCity">
+                  Delivery City <span class="text-primary">*</span>
+</label>
+<input class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="deliveryCity" placeholder="e.g. Varanasi / Prayagraj / Patna / Lucknow" required="" type="text"/>
+</div>
+</div>
+<!-- Row 6: State Dropdown -->
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="destinationState">
+                State <span class="text-primary">*</span>
+</label>
+<select class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface" id="destinationState" required="">
+<option selected="" value="Uttar Pradesh">Uttar Pradesh</option>
+<option value="Bihar">Bihar</option>
+<option value="Delhi NCR">Delhi NCR</option>
+<option value="Madhya Pradesh">Madhya Pradesh</option>
+<option value="West Bengal">West Bengal</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<!-- Row 7: Message -->
+<div>
+<label class="block text-xs font-label uppercase tracking-wider font-semibold text-on-surface mb-2" for="reqMessage">
+                Message / Requirements
+              </label>
+<textarea class="w-full bg-[#FAF8F5] border border-outline-variant focus:border-accent focus:ring-0 rounded-DEFAULT text-sm py-2.5 px-3 text-on-surface placeholder:text-stone/60" id="reqMessage" placeholder="Tell us about your requirement, preferred pack size, recurring schedule or anything else we should know." rows="3"></textarea>
+</div>
+<!-- Submit Buttons -->
+<div class="pt-2 space-y-3">
+<button class="w-full bg-primary text-on-primary py-3.5 px-6 font-label uppercase tracking-widest text-xs font-bold hover:opacity-95 active:opacity-85 transition-opacity duration-150 flex items-center justify-center gap-2" type="submit">
+<span>SEND WHOLESALE ENQUIRY</span>
+<span class="material-symbols-outlined text-base" data-icon="send">send</span>
+</button>
+<div class="text-center">
+<a class="inline-flex items-center gap-1.5 text-xs font-label uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="https://wa.me/918787201971?text=Hi%2C%20submitting%20direct%20bulk%20enquiry%20for%20paper%20plates%20and%20dona." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm text-[#25D366]" data-icon="chat">chat</span>
+<span>Or chat directly on WhatsApp (+91 87872 01971)</span>
+</a>
+</div>
+</div>
+</form>
+<!-- SUCCESS STATE MODAL / OVERLAY (Initially Hidden) -->
+<div class="absolute inset-0 bg-surface-card p-8 flex flex-col justify-center items-center text-center hidden z-20 border border-outline-variant" id="formSuccessModal">
+<div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-4 text-primary border border-outline-variant">
+<span class="material-symbols-outlined text-3xl" data-icon="check_circle">check_circle</span>
+</div>
+<span class="eyebrow-label mb-1">INQUIRY LOGGED</span>
+<h4 class="font-headline text-2xl font-bold text-on-surface mb-3">Enquiry Received</h4>
+<p class="text-on-surface-variant text-sm max-w-md leading-relaxed mb-6">
+              Thank you for sharing your requirement. We’ll review the details and get back to you regarding current product availability and wholesale pricing.
+            </p>
+<div class="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
+<a class="flex-1 bg-surface-container border border-outline-variant text-on-surface px-4 py-2.5 text-xs font-label uppercase tracking-wider font-semibold hover:border-accent text-center" href="https://wa.me/918787201971?text=Hello%20Sahlok%2C%20I%20just%20submitted%20a%20wholesale%20enquiry%20form." rel="noopener noreferrer" target="_blank">
+                Chat on WhatsApp
+              </a>
+<button class="flex-1 bg-primary text-on-primary px-4 py-2.5 text-xs font-label uppercase tracking-wider font-semibold hover:opacity-90" onclick="resetEnquiryForm()">
+                Back to Products
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: QUANTITY GUIDE -->
+<section class="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto border-b border-outline-variant" id="quantity-guide">
+<div class="max-w-3xl mb-12">
+<div class="eyebrow-label mb-2">NOT SURE HOW MUCH YOU NEED?</div>
+<h2 class="font-headline text-3xl sm:text-4xl text-on-surface font-normal leading-tight mb-3">
+          Start With an Approximate Quantity
+        </h2>
+<p class="text-on-surface-variant text-base">
+          You don’t need to know the exact final quantity before contacting Sahlok. We work with buyers at various stages of order planning.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Tier 1 -->
+<div class="bg-surface-card border border-outline-variant p-8 flex flex-col justify-between">
+<div>
+<div class="text-xs font-label uppercase tracking-widest text-accent font-semibold mb-2">TIER 1</div>
+<h3 class="font-headline text-2xl text-on-surface font-medium mb-3">Small Bulk</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+              For local sweet shops, chaat stalls, and smaller recurring weekly requirements. Great for testing size-fit and paper rigidity.
+            </p>
+<ul class="text-xs space-y-2 text-on-surface-variant border-t border-outline-variant/40 pt-4">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Minimum carton quantities</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Standard local transporter options</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Standard GSM ready stock</span>
+</li>
+</ul>
+</div>
+<div class="mt-8">
+<a class="text-xs font-label uppercase tracking-wider text-primary font-semibold hover:underline flex items-center gap-1" href="#wholesale-form">
+<span>Talk to us about your requirement</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Tier 2 -->
+<div class="bg-surface-card border-2 border-accent/70 p-8 flex flex-col justify-between relative shadow-sm">
+<div class="absolute -top-3 right-4 bg-accent text-white px-2.5 py-0.5 text-[0.65rem] font-label uppercase tracking-widest font-semibold">
+            Most Common
+          </div>
+<div>
+<div class="text-xs font-label uppercase tracking-widest text-accent font-semibold mb-2">TIER 2</div>
+<h3 class="font-headline text-2xl text-on-surface font-medium mb-3">Regular Bulk</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+              For caterers, restaurants, banquet halls, and regional distributors needing continuous batch supplies and predictable delivery.
+            </p>
+<ul class="text-xs space-y-2 text-on-surface-variant border-t border-outline-variant/40 pt-4">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Scheduled bi-weekly / monthly dispatches</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Tiered pricing concessions</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Custom pack size / sleeve counting</span>
+</li>
+</ul>
+</div>
+<div class="mt-8">
+<a class="text-xs font-label uppercase tracking-wider text-primary font-semibold hover:underline flex items-center gap-1" href="#wholesale-form">
+<span>Talk to us about your requirement</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Tier 3 -->
+<div class="bg-surface-card border border-outline-variant p-8 flex flex-col justify-between">
+<div>
+<div class="text-xs font-label uppercase tracking-widest text-accent font-semibold mb-2">TIER 3</div>
+<h3 class="font-headline text-2xl text-on-surface font-medium mb-3">Large Bulk</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+              For large-scale events, religious bhandaras, state distribution hubs, and full truckload shipments across UP, Bihar &amp; MP.
+            </p>
+<ul class="text-xs space-y-2 text-on-surface-variant border-t border-outline-variant/40 pt-4">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Full truckload (FTL) direct factory loading</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Custom GSM raw material sourcing</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-accent" data-icon="check">check</span>
+<span>Dedicated production queue</span>
+</li>
+</ul>
+</div>
+<div class="mt-8">
+<a class="text-xs font-label uppercase tracking-wider text-primary font-semibold hover:underline flex items-center gap-1" href="#wholesale-form">
+<span>Talk to us about your requirement</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: WHAT HAPPENS NEXT (4-Step Sequential Process) -->
+<section class="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto border-b border-outline-variant">
+<div class="max-w-3xl mb-12">
+<div class="eyebrow-label mb-2">THE PROCESS</div>
+<h2 class="font-headline text-3xl sm:text-4xl text-on-surface font-normal leading-tight mb-3">
+          From Enquiry to Dispatch
+        </h2>
+<p class="text-on-surface-variant text-base">
+          A transparent, direct factory workflow designed without ecommerce friction or intermediaries.
+        </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Step 1 -->
+<div class="bg-surface-card border border-outline-variant p-6 relative">
+<div class="font-headline text-3xl font-light text-accent/60 mb-4">01</div>
+<h3 class="font-headline text-lg font-semibold text-on-surface mb-2">Share Your Requirement</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed">
+            Tell us what product sizes and approximate volume you need, either through our web form or direct WhatsApp message.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-card border border-outline-variant p-6 relative">
+<div class="font-headline text-3xl font-light text-accent/60 mb-4">02</div>
+<h3 class="font-headline text-lg font-semibold text-on-surface mb-2">We Review</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed">
+            We evaluate live stock, production schedules, and calculate freight logistics from our Mirzapur manufacturing unit.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-card border border-outline-variant p-6 relative">
+<div class="font-headline text-3xl font-light text-accent/60 mb-4">03</div>
+<h3 class="font-headline text-lg font-semibold text-on-surface mb-2">Discuss Pricing</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed">
+            We respond directly with trade rate sheets, indicative GSM options, transit durations, and physical sample availability.
+          </p>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-card border border-outline-variant p-6 relative">
+<div class="font-headline text-3xl font-light text-accent/60 mb-4">04</div>
+<h3 class="font-headline text-lg font-semibold text-on-surface mb-2">Plan the Supply</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed">
+            Finalize carton packaging specs, confirm the dispatch schedule, and track road transport until final delivery at your hub.
+          </p>
+</div>
+</div>
+</section>
+<!-- SECTION 5: DEDICATED WHATSAPP BANNER -->
+<section class="py-16 md:py-20 px-4 md:px-8 bg-oxblood text-[#FAF6F0] border-b border-stone/30">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-2xl text-center md:text-left">
+<div class="text-accent text-xs font-label uppercase tracking-widest font-semibold mb-2">Direct Phone &amp; Chat Desk</div>
+<h2 class="font-headline text-2xl sm:text-3xl md:text-4xl text-white font-normal mb-3">
+            Prefer WhatsApp for Quick Orders?
+          </h2>
+<p class="text-[#D8CEBF] text-sm md:text-base leading-relaxed">
+            Send your product requirement directly to our wholesale desk for immediate response. We share stock availability, photo verification, and freight estimates in real-time.
+          </p>
+</div>
+<div class="flex-shrink-0">
+<a class="inline-flex items-center gap-3 bg-[#25D366] text-white px-7 py-4 text-xs font-label uppercase tracking-widest font-bold hover:brightness-105 active:scale-95 transition-all shadow-md" href="https://wa.me/918787201971?text=Hi%20Alok%20ji%2C%20I%20need%20quick%20bulk%20wholesale%20rates%20for%20paper%20dona%20and%20plates." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+<span>CHAT ON WHATSAPP (+91 87872 01971)</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER (Shared Component Exact Replication) -->
+<footer class="w-full px-6 py-12 flex flex-col gap-8 bg-surface-container-high border-t border-outline-variant">
+<div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Col 1: Identity & Facility -->
+<div class="md:col-span-5 space-y-3">
+<span class="font-headline text-lg font-bold text-on-surface">Sahlok Eco Products</span>
+<p class="text-on-surface-variant text-sm max-w-sm leading-relaxed">
+          Manufacturer of high-rigidity biodegradable paper dona, pattal, and laminated thali products. Direct factory dispatch from Mirzapur, Uttar Pradesh.
+        </p>
+<p class="text-xs text-on-surface-variant font-label">
+          Proprietor: <span class="text-on-surface font-medium">Alok Dwivedi</span> · Desk: <span class="text-on-surface font-medium">+91 87872 01971</span>
+</p>
+</div>
+<!-- Col 2: Navigation Links from Shared Components -->
+<div class="md:col-span-7 flex flex-wrap gap-x-8 gap-y-3 items-center justify-start md:justify-end text-xs font-label uppercase tracking-widest">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#who-we-work-with">Manufacturing Unit</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#quantity-guide">Product Specifications</a>
+<a class="text-primary underline hover:text-on-surface transition-colors duration-150" href="#wholesale-form">B2B Bulk Enquiries</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#">Compliance &amp; Certifications</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#">Privacy Policy</a>
+</div>
+</div>
+<div class="max-w-7xl mx-auto w-full pt-6 border-t border-outline-variant/60 flex flex-col sm:flex-row justify-between items-center text-xs text-on-surface-variant font-body gap-2">
+<p>© 2025 Sahlok Eco Products Pvt. Ltd. Mirzapur, Uttar Pradesh. All rights reserved.</p>
+<p class="text-stone/80 text-[0.7rem] font-mono">Mirzapur - 231001, UP</p>
+</div>
+</footer>
+<!-- MOBILE BOTTOM NAV BAR (Shared Component Exact Replication: Docked full-width bottom-0, hidden on md+) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-outline-variant bg-surface shadow-md">
+<!-- Catalog (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors duration-150 active:scale-95" href="#products">
+<span class="material-symbols-outlined text-xl" data-icon="menu_book">menu_book</span>
+<span class="font-label text-xs uppercase tracking-wider mt-0.5">Catalog</span>
+</a>
+<!-- WhatsApp (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors duration-150 active:scale-95" href="https://wa.me/918787201971?text=Hello%20Sahlok%20Mirzapur%2C%20wholesale%20enquiry." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-xl text-[#25D366]" data-icon="chat">chat</span>
+<span class="font-label text-xs uppercase tracking-wider mt-0.5">WhatsApp</span>
+</a>
+<!-- Bulk Quote (Active on /wholesale page) -->
+<a class="flex flex-col items-center justify-center text-primary font-semibold py-1 active:scale-95" href="#wholesale-form">
+<span class="material-symbols-outlined text-xl" data-icon="request_quote">request_quote</span>
+<span class="font-label text-xs uppercase tracking-wider mt-0.5">Bulk Quote</span>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+    // Navigation Drawer Logic
+    const drawerToggleBtn = document.getElementById('drawerToggleBtn');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const navDrawer = document.getElementById('navDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    function openDrawer() {
+      navDrawer.classList.remove('-translate-x-full');
+      drawerOverlay.classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+      navDrawer.classList.add('-translate-x-full');
+      drawerOverlay.classList.add('hidden');
+    }
+
+    if (drawerToggleBtn) drawerToggleBtn.addEventListener('click', openDrawer);
+    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+    // Form Submission & Success State Toggle
+    function showSuccessState() {
+      const modal = document.getElementById('formSuccessModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function resetEnquiryForm() {
+      const modal = document.getElementById('formSuccessModal');
+      const form = document.getElementById('enquiryForm');
+      if (modal) modal.classList.add('hidden');
+      if (form) form.reset();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body></html>

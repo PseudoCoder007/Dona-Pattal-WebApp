@@ -1,0 +1,420 @@
+# Sahlok Next.js Frontend Rebuild Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Rebuild the Sahlok Eco Products website as a Next.js (App Router, TypeScript, Tailwind) frontend, translating the approved Stitch designs into real, data-driven React components — UI only, no backend.
+
+**Architecture:** A data/content layer (`src/content/*.ts`) drives presentational components (`src/components/**`), assembled into 10 routes under `src/app/**`. A single `lib/whatsapp.ts` helper is the only place that builds `wa.me` URLs. No component imports Supabase or any backend concept.
+
+**Tech Stack:** Next.js (latest stable, App Router, `src/` dir), TypeScript, Tailwind CSS (PostCSS, not Play CDN), `next/font/google` (Fraunces, Playfair Display, IBM Plex Sans), Vitest + React Testing Library for tests, npm.
+
+**Spec:** `docs/superpowers/specs/2026-09-22-nextjs-frontend-rebuild-design.md`
+
+## Global Constraints
+
+- English only this phase — no Hindi/i18n code.
+- No Supabase, no API routes, no auth, no admin, no real form submission — forms use React state only with a success UI.
+- No shopping cart, checkout, payment, fake pricing/stock/reviews/certifications beyond what's flagged in `claimsToVerify`.
+- Design tokens are fixed: colors `paper #F4EFE6`, `ink #2B2521`, `muted #6B5D52`, `brick #B24A2E`, `brass #A87C3F`, `oxblood #4A1F1C`, `stone #C9C0B4`, `card #FFFFFF`; fonts `font-serif` = Fraunces → Playfair Display → Georgia, `font-sans` = IBM Plex Sans; radius 4px default. Defined once in `tailwind.config.ts`, never as arbitrary hex literals in components.
+- WhatsApp number is `+91 87872 01971` / digits `918787201971`, defined once in `src/content/site.ts`, consumed via `src/lib/whatsapp.ts` — never hand-built inline.
+- Business identity for all copy: **Sahlok Eco Products LLP** (not "Pvt. Ltd." — some Stitch footers used that inconsistently; this rebuild standardizes on LLP per confirmed fact), Owner Alok Dwivedi, Civil Line Road, Saripur Jalalpur, Mirzapur – 231001, Uttar Pradesh.
+- The 6 products and their slugs are fixed: `4-inch-dona`, `6-inch-dona`, `7-inch-plate`, `8-inch-plate`, `10-inch-plate`, `12-inch-plate`.
+- Every task that adds a component ends with a passing test run (`npm test -- run`) and, where the task adds a route, a successful `npm run build`.
+- Existing `html-design/` and `v2/` folders are reference-only — read from `v2/assets/images/` to copy source images, never edit those folders.
+
+## File Structure
+
+```
+tailwind.config.ts
+postcss.config.mjs
+vitest.config.ts
+src/
+  test/setup.ts
+  app/
+    layout.tsx
+    globals.css
+    page.tsx
+    products/page.tsx
+    products/[slug]/page.tsx
+    wholesale/page.tsx
+    about/page.tsx
+    contact/page.tsx
+  components/
+    layout/Header.tsx
+    layout/MobileNav.tsx
+    layout/Footer.tsx
+    ui/Button.tsx
+    ui/WhatsAppButton.tsx
+    ui/SectionHeading.tsx
+    ui/EditorialImage.tsx
+    product/ProductCard.tsx
+    product/ProductGrid.tsx
+    product/ProductSpecTable.tsx
+    forms/FormField.tsx
+    forms/EnquiryForm.tsx
+    sections/HeroSection.tsx
+    sections/ProductRangeSection.tsx
+    sections/WhoWeSupplySection.tsx
+    sections/MaterialMakingSection.tsx
+    sections/MirzapurSection.tsx
+    sections/WholesaleCtaSection.tsx
+    sections/ContactSection.tsx
+    sections/products/CatalogueHero.tsx
+    sections/products/FactoryDirectBanner.tsx
+    sections/products/SectorsGrid.tsx
+    sections/wholesale/BuyerTypeGrid.tsx
+    sections/wholesale/QuantityTierGrid.tsx
+    sections/wholesale/EnquiryProcessSteps.tsx
+    sections/about/AboutHero.tsx
+    sections/about/ProductFocusSection.tsx
+    sections/about/MaterialSection.tsx
+    sections/about/ApproachSection.tsx
+    sections/about/BuyerSegmentsSection.tsx
+    sections/about/MirzapurTransitSection.tsx
+    sections/about/ProductJourneySection.tsx
+    sections/contact/ContactHero.tsx
+    sections/contact/ContactInfoGrid.tsx
+    sections/contact/LocationSection.tsx
+    sections/contact/ProductsShortcut.tsx
+  content/site.ts
+  content/products.ts
+  lib/whatsapp.ts
+public/images/brand/
+public/images/products/
+public/images/about/
+public/images/backgrounds/
+docs/PRD.md
+docs/ARCHITECTURE.md
+docs/ROUTES.md
+docs/UI-SYSTEM.md
+docs/COMPONENTS.md
+```
+
+Every source `.tsx`/`.ts` file listed above (except pure route files, which get an integration test in the same task that wires them) has a co-located `*.test.tsx`/`*.test.ts`.
+
+---
+
+### Task 1: Scaffold the Next.js app at the project root
+
+**Files:**
+- Create: `package.json`, `tsconfig.json`, `next.config.ts`, `next-env.d.ts`, `.eslintrc.json` (or `eslint.config.mjs`), `postcss.config.mjs`, `src/app/layout.tsx`, `src/app/page.tsx`, `src/app/globals.css`, `public/` (all generated by `create-next-app`)
+- Modify: none (existing `docs/`, `html-design/`, `v2/`, `stitch design/`, `.claude/`, `.git/`, `.opencode/`, `.superpowers/`, `README.md`, `CODE_PROMPT.md` must survive untouched)
+
+**Interfaces:**
+- Produces: a working `npm run dev` / `npm run build` Next.js project at the repo root, App Router, `src/` directory, TypeScript, Tailwind CSS, ESLint, import alias `@/*` → `src/*`.
+
+`create-next-app` refuses to scaffold into a non-empty directory, and this repo root already has `docs/`, `html-design/`, `v2/`, `stitch design/`, etc. Scaffold into a throwaway subfolder, then move the generated files up.
+
+- [ ] **Step 1: Scaffold into a temporary folder**
+
+Run:
+```bash
+npx create-next-app@latest .tmp-nextjs-scaffold \
+  --typescript --tailwind --eslint --app --src-dir \
+  --import-alias "@/*" --use-npm --no-turbopack
+```
+When prompted (if not fully suppressed by flags), accept defaults.
+
+- [ ] **Step 2: Move the generated project up to the repo root**
+
+Run:
+```bash
+cd .tmp-nextjs-scaffold
+shopt -s dotglob
+mv * ../
+cd ..
+rmdir .tmp-nextjs-scaffold
+```
+(`dotglob` ensures dotfiles like `.gitignore` and `.eslintrc.json` move too. If `.gitignore` already exists at root from a previous step, merge instead of overwriting — check with `git status` first.)
+
+- [ ] **Step 3: Confirm nothing pre-existing was clobbered**
+
+Run: `git status`
+Expected: `docs/`, `html-design/`, `v2/`, `stitch design/`, `README.md`, `CODE_PROMPT.md`, `.claude/`, `.opencode/`, `.superpowers/` still present and untouched; new untracked Next.js files (`package.json`, `src/`, `public/`, `next.config.ts`, etc.) appear.
+
+- [ ] **Step 4: Verify the dev server runs**
+
+Run: `npm run dev` (start it, confirm it boots on port 3000 with no errors, then stop it — e.g. run with a short timeout or in the background and curl `http://localhost:3000`)
+Expected: HTTP 200 from `http://localhost:3000`, default Next.js starter page.
+
+- [ ] **Step 5: Remove the default starter content we don't want**
+
+Delete `src/app/page.tsx`'s default boilerplate content (keep the file — Task 18 replaces it) and delete `src/app/favicon.ico`/default SVGs under `public/` that come from the starter template if present (`next.svg`, `vercel.svg`) since they don't belong to this brand.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add -A
+git commit -m "Scaffold Next.js app (App Router, TS, Tailwind) at project root"
+```
+
+---
+
+### Task 2: Add Vitest + React Testing Library
+
+**Files:**
+- Create: `vitest.config.ts`, `src/test/setup.ts`, `src/lib/sanity.test.ts`
+- Modify: `package.json` (add `test` script and devDependencies)
+
+**Interfaces:**
+- Produces: `npm test` runs Vitest once (`vitest run`); every later task's `*.test.tsx`/`*.test.ts` files rely on this config, the `jsdom` environment, and `@testing-library/jest-dom` matchers being globally available.
+
+- [ ] **Step 1: Install test dependencies**
+
+Run:
+```bash
+npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event
+```
+
+- [ ] **Step 2: Write `vitest.config.ts`**
+
+```ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    globals: true,
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+});
+```
+
+- [ ] **Step 3: Write the setup file**
+
+```ts
+// src/test/setup.ts
+import '@testing-library/jest-dom/vitest';
+```
+
+- [ ] **Step 4: Add the `test` script to `package.json`**
+
+In the `"scripts"` block, add:
+```json
+"test": "vitest run"
+```
+
+- [ ] **Step 5: Write a sanity test to prove the pipeline works**
+
+```ts
+// src/lib/sanity.test.ts
+import { describe, it, expect } from 'vitest';
+
+describe('test pipeline sanity check', () => {
+  it('runs and can assert', () => {
+    expect(1 + 1).toBe(2);
+  });
+});
+```
+
+- [ ] **Step 6: Run it**
+
+Run: `npm test`
+Expected: 1 passed test file, 1 passed test.
+
+- [ ] **Step 7: Delete the sanity file (it did its job) and commit**
+
+```bash
+rm src/lib/sanity.test.ts
+git add -A
+git commit -m "Add Vitest + React Testing Library test infrastructure"
+```
+
+---
+
+### Task 3: Design tokens — Tailwind theme + fonts + global CSS
+
+**Files:**
+- Modify: `tailwind.config.ts`, `src/app/globals.css`
+- Create: `src/app/layout.tsx` (font setup only in this task; Header/Footer wired in Task 11)
+
+**Interfaces:**
+- Produces: Tailwind utility classes `bg-paper`, `text-ink`, `text-muted`, `bg-brick`/`text-brick`, `text-brass`, `bg-oxblood`, `border-stone`, `bg-card`, `font-serif`, `font-sans`, `tracking-eyebrow`, default 4px `rounded`. Every later task's className strings assume these exist.
+
+- [ ] **Step 1: Replace `tailwind.config.ts` theme**
+
+```ts
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: ['./src/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        paper: '#F4EFE6',
+        ink: '#2B2521',
+        muted: '#6B5D52',
+        brick: '#B24A2E',
+        brass: '#A87C3F',
+        oxblood: '#4A1F1C',
+        stone: '#C9C0B4',
+        card: '#FFFFFF',
+      },
+      fontFamily: {
+        serif: ['var(--font-fraunces)', 'var(--font-playfair)', 'Georgia', 'serif'],
+        sans: ['var(--font-plex-sans)', 'system-ui', 'sans-serif'],
+      },
+      borderRadius: {
+        DEFAULT: '4px',
+      },
+      letterSpacing: {
+        eyebrow: '0.14em',
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
+```
+
+- [ ] **Step 2: Set up `next/font/google` in `src/app/layout.tsx`**
+
+```tsx
+import type { Metadata } from 'next';
+import { Fraunces, Playfair_Display, IBM_Plex_Sans } from 'next/font/google';
+import './globals.css';
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  weight: ['400', '600', '700'],
+});
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  weight: ['600', '700'],
+});
+const plexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-plex-sans',
+  weight: ['400', '500', '600', '700'],
+});
+
+export const metadata: Metadata = {
+  title: 'Sahlok Eco Products LLP | Paper Dona & Paper Tableware Wholesale',
+  description:
+    'Factory-direct paper dona, paper plates and food-service tableware for bulk B2B buyers, dispatched from Mirzapur, Uttar Pradesh.',
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${fraunces.variable} ${playfair.variable} ${plexSans.variable}`}>
+      <body className="bg-paper text-ink font-sans antialiased">{children}</body>
+    </html>
+  );
+}
+```
+
+- [ ] **Step 3: Simplify `src/app/globals.css`**
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-plex-sans), system-ui, sans-serif;
+}
+```
+
+- [ ] **Step 4: Verify the dev server still boots and tokens resolve**
+
+Run: `npm run dev` briefly, confirm no Tailwind/config errors in the terminal output, stop it.
+Expected: no errors; `bg-paper text-ink font-sans` classes present in the rendered `<body>` tag when checked via `curl -s http://localhost:3000 | grep -o 'class="[^"]*"' | head -3` while the server is up.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add tailwind.config.ts src/app/globals.css src/app/layout.tsx
+git commit -m "Set up design tokens: colors, fonts, radius"
+```
+
+---
+
+### Task 4: `lib/whatsapp.ts` — the single WhatsApp URL builder
+
+**Files:**
+- Create: `src/lib/whatsapp.ts`, `src/lib/whatsapp.test.ts`
+
+**Interfaces:**
+- Produces: `buildWhatsAppUrl(message: string, phoneDigits?: string): string` and `productEnquiryMessage(productName: string): string`, both exported from `@/lib/whatsapp`. Every task from here on that renders a WhatsApp CTA imports `buildWhatsAppUrl` (directly or via `WhatsAppButton`, Task 8) — never constructs a `wa.me` URL by hand.
+
+- [ ] **Step 1: Write the failing tests**
+
+```ts
+// src/lib/whatsapp.test.ts
+import { describe, it, expect } from 'vitest';
+import { buildWhatsAppUrl, productEnquiryMessage } from './whatsapp';
+
+describe('buildWhatsAppUrl', () => {
+  it('builds a wa.me URL with the default Sahlok number', () => {
+    const url = buildWhatsAppUrl('Hello there');
+    expect(url).toBe('https://wa.me/918787201971?text=Hello%20there');
+  });
+
+  it('URL-encodes special characters in the message', () => {
+    const url = buildWhatsAppUrl('6" Paper Dona & plates?');
+    expect(url).toContain('text=6%22%20Paper%20Dona%20%26%20plates%3F');
+  });
+
+  it('accepts a custom phone number', () => {
+    const url = buildWhatsAppUrl('hi', '911234567890');
+    expect(url.startsWith('https://wa.me/911234567890?text=')).toBe(true);
+  });
+});
+
+describe('productEnquiryMessage', () => {
+  it('includes the product name in a wholesale enquiry message', () => {
+    const message = productEnquiryMessage('6" Paper Dona');
+    expect(message).toContain('6" Paper Dona');
+    expect(message.toLowerCase()).toContain('wholesale pricing');
+  });
+});
+```
+
+- [ ] **Step 2: Run the tests to confirm they fail**
+
+Run: `npm test`
+Expected: FAIL — `Cannot find module './whatsapp'`.
+
+- [ ] **Step 3: Implement**
+
+```ts
+// src/lib/whatsapp.ts
+const DEFAULT_PHONE_DIGITS = '918787201971';
+
+export function buildWhatsAppUrl(message: string, phoneDigits: string = DEFAULT_PHONE_DIGITS): string {
+  return `https://wa.me/${phoneDigits}?text=${encodeURIComponent(message)}`;
+}
+
+export function productEnquiryMessage(productName: string): string {
+  return `Hello Sahlok Eco Products, I'm interested in the ${productName}. Please share wholesale pricing, availability and bulk supply details.`;
+}
+```
+
+- [ ] **Step 4: Run the tests to confirm they pass**
+
+Run: `npm test`
+Expected: 4 passed.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add src/lib/whatsapp.ts src/lib/whatsapp.test.ts
+git commit -m "Add buildWhatsAppUrl helper as single source of WhatsApp links"
+```
+
+---
