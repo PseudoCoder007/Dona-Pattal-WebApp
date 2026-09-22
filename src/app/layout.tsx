@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Fraunces, Playfair_Display, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -27,7 +29,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${playfair.variable} ${plexSans.variable}`}>
-      <body className="bg-paper text-ink font-sans antialiased min-h-screen flex flex-col">{children}</body>
+      <body className="bg-paper text-ink font-sans antialiased min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
