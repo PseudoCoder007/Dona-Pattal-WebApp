@@ -1,1 +1,1 @@
-@AGENTS.md
+@dona-pattal-webApp/AGENTS.md
