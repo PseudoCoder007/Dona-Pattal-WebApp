@@ -1,8 +1,6 @@
 import { products } from '@/content/products';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { Button } from '@/components/ui/Button';
-import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export function ProductRangeSection() {
   return (

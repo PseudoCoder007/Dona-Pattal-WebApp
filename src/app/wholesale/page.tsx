@@ -3,7 +3,6 @@ import { BuyerTypeGrid } from '@/components/sections/wholesale/BuyerTypeGrid';
 import { QuantityTierGrid } from '@/components/sections/wholesale/QuantityTierGrid';
 import { EnquiryProcessSteps } from '@/components/sections/wholesale/EnquiryProcessSteps';
 import { EnquiryForm } from '@/components/forms/EnquiryForm';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { EditorialImage } from '@/components/ui/EditorialImage';

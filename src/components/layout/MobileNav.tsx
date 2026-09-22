@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { siteConfig } from '@/content/site';
-import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 interface MobileNavProps {
   isOpen: boolean;

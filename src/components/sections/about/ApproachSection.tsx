@@ -1,5 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-
 export function ApproachSection() {
   return (
     <section className="py-20 lg:py-28 border-b border-stone/50">

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface EditorialImageProps {
   src: string;
   alt: string;
@@ -28,11 +30,12 @@ export function EditorialImage({
   return (
     <div className={`relative rounded-lg overflow-hidden bg-paper border border-stone ${className}`}>
       <div className={`relative aspect-[${aspectRatio}] overflow-hidden ${hoverZoom ? 'group' : ''}`}>
-        <img
+        <Image
           alt={alt}
-          className={`w-full h-full object-cover ${hoverZoom ? 'group-hover:scale-105 transition-transform duration-300' : ''}`}
+          className={`object-cover ${hoverZoom ? 'group-hover:scale-105 transition-transform duration-300' : ''}`}
           src={src}
-          loading="lazy"
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
         {badge && (
           <span className={`${badgePositions[badgePosition]} bg-white/90 text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded-sm text-ink border border-stone/30`}>

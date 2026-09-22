@@ -1,6 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { EditorialImage } from '@/components/ui/EditorialImage';
-
 export function MaterialSection() {
   return (
     <section className="py-20 lg:py-28 border-b border-stone/50 bg-stone/15">

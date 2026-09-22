@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/content/site';
-import { buildWhatsAppUrl } from '@/lib/whatsapp';
 import { MobileNav } from './MobileNav';
 
 interface HeaderProps {

@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl, productEnquiryMessage } from '@/lib/whatsapp';
+import { productEnquiryMessage } from '@/lib/whatsapp';
 
 export type ProductCategory = 'dona' | 'plate';
 

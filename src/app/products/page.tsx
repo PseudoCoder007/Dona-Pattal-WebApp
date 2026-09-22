@@ -21,7 +21,7 @@ export default function ProductsPage() {
 
   return (
     <>
-      <CatalogueHero />
+      <CatalogueHero activeFilter={filter} onFilterChange={setFilter} />
       <FactoryDirectBanner />
       <section className="py-12 px-6 lg:px-8 max-w-7xl mx-auto">
         <ProductGrid products={filteredProducts} />

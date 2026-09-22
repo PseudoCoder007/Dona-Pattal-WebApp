@@ -1,7 +1,6 @@
 import { siteConfig } from '@/content/site';
 import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export function ContactSection() {
   return (

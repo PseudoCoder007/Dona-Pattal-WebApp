@@ -8,7 +8,10 @@ const testProduct = products[0]; // 4-inch-dona
 describe('ProductCard', () => {
   it('renders product image, name, use, and specs', () => {
     render(<ProductCard product={testProduct} />);
-    expect(screen.getByAltText(testProduct.name)).toHaveAttribute('src', testProduct.image);
+    expect(screen.getByAltText(testProduct.name)).toHaveAttribute(
+      'src',
+      expect.stringContaining(encodeURIComponent(testProduct.image))
+    );
     expect(screen.getByText(testProduct.name)).toBeInTheDocument();
     expect(screen.getByText(testProduct.use)).toBeInTheDocument();
     expect(screen.getByText((content) => content.includes('GSM'))).toBeInTheDocument();

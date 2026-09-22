@@ -1,9 +1,22 @@
-import { siteConfig } from '@/content/site';
+'use client';
+
 import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
-import { EditorialImage } from '@/components/ui/EditorialImage';
 
-export function CatalogueHero() {
+type ProductFilter = 'all' | 'dona' | 'plate';
+
+interface CatalogueHeroProps {
+  activeFilter: ProductFilter;
+  onFilterChange: (filter: ProductFilter) => void;
+}
+
+const filters: { label: string; value: ProductFilter }[] = [
+  { label: 'All Products (6)', value: 'all' },
+  { label: 'Paper Dona (2)', value: 'dona' },
+  { label: 'Paper Plates (4)', value: 'plate' },
+];
+
+export function CatalogueHero({ activeFilter, onFilterChange }: CatalogueHeroProps) {
   return (
     <section className="pt-8 sm:pt-14 pb-12 sm:pb-16 px-6 lg:px-8 border-b border-stone">
       <div className="max-w-7xl mx-auto">
@@ -52,9 +65,24 @@ export function CatalogueHero() {
         </div>
         <div className="mt-12 flex items-center justify-between flex-wrap gap-4 border-t border-stone/60 pt-6">
           <div className="flex items-center gap-2" id="filter-tabs">
-            <button className="filter-btn active-filter px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-lg bg-ink text-paper font-semibold">All Products (6)</button>
-            <button className="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-lg bg-paper text-muted hover:text-ink border border-stone font-medium">Paper Dona (2)</button>
-            <button className="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-lg bg-paper text-muted hover:text-ink border border-stone font-medium">Paper Plates (4)</button>
+            {filters.map((filter) => {
+              const isActive = activeFilter === filter.value;
+              return (
+                <button
+                  key={filter.value}
+                  type="button"
+                  className={`filter-btn px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-lg border transition-colors ${
+                    isActive
+                      ? 'active-filter bg-ink text-paper border-ink'
+                      : 'bg-paper text-muted hover:text-ink border-stone'
+                  }`}
+                  aria-pressed={isActive}
+                  onClick={() => onFilterChange(filter.value)}
+                >
+                  {filter.label}
+                </button>
+              );
+            })}
           </div>
           <div className="text-xs text-muted">Showing factory stock specifications</div>
         </div>

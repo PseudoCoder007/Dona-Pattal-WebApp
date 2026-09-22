@@ -1,5 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-
 const clientele = [
   { number: '01', category: 'CATERING', title: 'Caterers', desc: 'Wedding buffets, community banquets, feast service.' },
   { number: '02', category: 'DINING', title: 'Restaurants', desc: 'Takeaway, chaat counters, quick-service dining.' },

@@ -1,5 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-
 const steps = [
   { number: '01', title: 'Share Your Requirement', desc: 'Tell us what product sizes and approximate volume you need, either through our web form or direct WhatsApp message.' },
   { number: '02', title: 'We Review', desc: 'We evaluate live stock, production schedules, and calculate freight logistics from our Mirzapur manufacturing unit.' },

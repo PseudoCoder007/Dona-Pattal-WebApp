@@ -1,7 +1,5 @@
-import { siteConfig } from '@/content/site';
 import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export function WholesaleCtaSection() {
   return (
@@ -10,10 +8,10 @@ export function WholesaleCtaSection() {
         <div className="col-span-12 lg:col-span-5 space-y-6">
           <div className="space-y-2">
             <span className="text-xs tracking-[0.25em] font-bold text-brick uppercase">WHOLESALE</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-ink">Let's Talk Bulk Supply.</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-ink">Let&apos;s Talk Bulk Supply.</h2>
           </div>
           <p className="text-sm leading-relaxed text-ink/80">
-            Tell us the product, size and approximate quantity you need. We'll share current availability and wholesale pricing.
+            Tell us the product, size and approximate quantity you need. We&apos;ll share current availability and wholesale pricing.
           </p>
           <div className="space-y-3 pt-2">
             <div className="flex items-center gap-2.5 text-xs text-ink/90 font-medium">
@@ -76,12 +74,12 @@ export function WholesaleCtaSection() {
                 <div>
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-ink mb-1">Product Selection</label>
                   <select className="w-full bg-paper/60 border border-stone rounded text-xs py-2.5 px-3 text-ink focus:ring-1 focus:ring-brick focus:border-brick">
-                    <option>4" Mini Paper Dona</option>
-                    <option>6" Paper Dona</option>
-                    <option>7" Paper Plate</option>
-                    <option>8" Paper Plate</option>
-                    <option>10" Paper Plate</option>
-                    <option>12" Paper Plate</option>
+                    <option>4&quot; Mini Paper Dona</option>
+                    <option>6&quot; Paper Dona</option>
+                    <option>7&quot; Paper Plate</option>
+                    <option>8&quot; Paper Plate</option>
+                    <option>10&quot; Paper Plate</option>
+                    <option>12&quot; Paper Plate</option>
                     <option>Mixed Bulk Consignment</option>
                   </select>
                 </div>
@@ -105,3 +103,4 @@ export function WholesaleCtaSection() {
     </section>
   );
 }
+

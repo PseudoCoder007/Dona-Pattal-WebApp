@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { EnquiryForm } from './EnquiryForm';
-import { products } from '@/content/products';
 
 describe('EnquiryForm', () => {
   it('renders all required fields', () => {

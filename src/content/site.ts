@@ -1,4 +1,4 @@
-import { buildWhatsAppUrl, productEnquiryMessage } from '@/lib/whatsapp';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
 export const siteConfig = {
   business: {

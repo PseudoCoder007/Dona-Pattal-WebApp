@@ -1,4 +1,3 @@
-import { siteConfig } from '@/content/site';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { Button } from '@/components/ui/Button';
 import { EditorialImage } from '@/components/ui/EditorialImage';

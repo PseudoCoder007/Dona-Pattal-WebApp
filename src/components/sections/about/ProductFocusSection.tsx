@@ -1,4 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { EditorialImage } from '@/components/ui/EditorialImage';
 import { Button } from '@/components/ui/Button';
 
@@ -31,8 +30,8 @@ export function ProductFocusSection() {
                 For sweets, snacks, chaat and selected food-service applications. Designed with mechanical fluted ridges for structural rigidity with hot and liquid gravies.
               </p>
               <ul className="text-xs text-ink space-y-1.5 font-bold tracking-wide border-t border-stone/30 pt-3">
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />4" Mini Dona (Chaat, Prasad, Chutney)</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />6" Deep Dona (Curry, Gravy, Gulab Jamun)</li>
+                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />4&quot; Mini Dona (Chaat, Prasad, Chutney)</li>
+                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />6&quot; Deep Dona (Curry, Gravy, Gulab Jamun)</li>
               </ul>
             </div>
             <div className="mt-6 pt-4 border-t border-stone/30">
@@ -54,8 +53,8 @@ export function ProductFocusSection() {
                 A range of sizes for snacks, meals, catering and events. Heavy-gauge rim pressing holds wet items, preventing accidental buckling during self-serve dining.
               </p>
               <ul className="text-xs text-ink space-y-1.5 font-bold tracking-wide border-t border-stone/30 pt-3">
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />7" & 8" Tiffin Plates</li>
-                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />10" & 12" Meal & Banquet Pattal</li>
+                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />7&quot; &amp; 8&quot; Tiffin Plates</li>
+                <li className="flex items-center gap-2"><span className="w-1 h-1 bg-brick" />10&quot; &amp; 12&quot; Meal &amp; Banquet Pattal</li>
               </ul>
             </div>
             <div className="mt-6 pt-4 border-t border-stone/30">

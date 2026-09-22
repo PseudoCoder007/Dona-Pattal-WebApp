@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import { Product } from '@/content/products';
-import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 
 interface ProductCardProps {
@@ -14,11 +14,12 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
       className={`bg-white rounded border border-stone overflow-hidden hover:shadow-lg transition-all flex flex-col group ${className}`}
     >
       <div className="h-52 bg-paper overflow-hidden relative">
-        <img
+        <Image
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
           src={product.image}
-          loading="lazy"
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
         />
         <span className="absolute top-3 left-3 bg-white/90 text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded-sm text-ink border border-stone/30">
           {product.category === 'dona' ? 'Paper Dona' : 'Paper Plates'}

@@ -1,4 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 
 const tiers = [
@@ -16,7 +15,7 @@ export function QuantityTierGrid() {
         <p className="text-muted text-base">You don\u2019t need to know the exact final quantity before contacting Sahlok. We work with buyers at various stages of order planning.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {tiers.map((tier, index) => (
+        {tiers.map((tier) => (
           <div key={tier.level} className={`bg-white border border-stone p-8 flex flex-col justify-between relative ${tier.badge ? 'border-2 border-brick/70 shadow-sm' : ''}`}>
             {tier.badge && (
               <div className="absolute -top-3 right-4 bg-brick text-white px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest rounded">{tier.badge}</div>

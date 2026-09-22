@@ -1,4 +1,3 @@
-import { siteConfig } from '@/content/site';
 import { EditorialImage } from '@/components/ui/EditorialImage';
 
 export function FactoryDirectBanner() {

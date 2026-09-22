@@ -1,6 +1,4 @@
-import { siteConfig } from '@/content/site';
 import { Button } from '@/components/ui/Button';
-import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { EditorialImage } from '@/components/ui/EditorialImage';
 
 export function AboutHero() {

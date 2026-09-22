@@ -5,7 +5,10 @@ import { EditorialImage } from './EditorialImage';
 describe('EditorialImage', () => {
   it('renders image with alt text and caption', () => {
     render(<EditorialImage src="/test.jpg" alt="Test image" caption="Photo caption" />);
-    expect(screen.getByAltText('Test image')).toHaveAttribute('src', '/test.jpg');
+    expect(screen.getByAltText('Test image')).toHaveAttribute(
+      'src',
+      expect.stringContaining(encodeURIComponent('/test.jpg'))
+    );
     expect(screen.getByText('Photo caption')).toBeInTheDocument();
   });
 

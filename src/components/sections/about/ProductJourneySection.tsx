@@ -1,5 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-
 const journeySteps = [
   { number: '01', title: 'MATERIAL', desc: 'Raw food-grade kraft rolls enter the Mirzapur facility, inspected for surface purity and consistent moisture content.', footer: 'Inward Verification' },
   { number: '02', title: 'FORMING', desc: 'Paper is formed under heated precision dies into the designated dona or shallow plate format with clean, pressed crimps.', footer: 'Mechanical Pressing' },
@@ -18,7 +16,7 @@ export function ProductJourneySection() {
           <p className="text-muted text-sm font-light mt-2">Methodical handling at every phase to guarantee batch uniformity.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-          {journeySteps.map((step, index) => (
+          {journeySteps.map((step) => (
             <div key={step.number} className="p-5 bg-white border border-stone flex flex-col justify-between">
               <div>
                 <span className="font-serif text-2xl font-bold text-brick mb-2 block">{step.number}</span>

@@ -1,4 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { EditorialImage } from '@/components/ui/EditorialImage';
 
 const stages = [

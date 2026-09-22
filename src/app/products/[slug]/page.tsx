@@ -5,7 +5,6 @@ import { ProductSpecTable } from '@/components/product/ProductSpecTable';
 import { EditorialImage } from '@/components/ui/EditorialImage';
 import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export async function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));

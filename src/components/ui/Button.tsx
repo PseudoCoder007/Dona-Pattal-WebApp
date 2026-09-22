@@ -3,6 +3,8 @@ import Link from 'next/link';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'whatsapp' | 'ghost';
   href?: string;
+  target?: string;
+  rel?: string;
   children: React.ReactNode;
   className?: string;
 }
@@ -10,6 +12,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({
   variant = 'primary',
   href,
+  target,
+  rel,
   children,
   className = '',
   ...props
@@ -26,7 +30,7 @@ export function Button({
   const classNames = `${baseStyles} ${variants[variant]} ${className}`;
 
   if (href) {
-    return <Link className={classNames} href={href}>{children}</Link>;
+    return <Link className={classNames} href={href} target={target} rel={rel}>{children}</Link>;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

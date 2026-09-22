@@ -1,5 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Button } from '@/components/ui/Button';
 import React from 'react';
 
 const buyerTypes = [

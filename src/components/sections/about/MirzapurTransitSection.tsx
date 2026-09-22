@@ -1,7 +1,3 @@
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { EditorialImage } from '@/components/ui/EditorialImage';
-import { Button } from '@/components/ui/Button';
-
 export function MirzapurTransitSection() {
   return (
     <section className="py-20 lg:py-28 border-b border-stone/50" id="mirzapur">
@@ -11,7 +7,7 @@ export function MirzapurTransitSection() {
             <span className="font-bold uppercase tracking-[0.14em] text-brass text-xs font-semibold mb-3 block">MIRZAPUR, UTTAR PRADESH</span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-ink leading-tight mb-6">Starting Local. Thinking Beyond the Local Market.</h2>
             <p className="font-sans text-base text-muted leading-relaxed font-light mb-6">
-              Mirzapur is the starting point for Sahlok's business journey. The aim is to develop a practical B2B supply network from here and gradually serve buyers in markets across India.
+              Mirzapur is the starting point for Sahlok&apos;s business journey. The aim is to develop a practical B2B supply network from here and gradually serve buyers in markets across India.
             </p>
             <p className="font-sans text-sm text-muted leading-relaxed font-light mb-8">
               Strategically positioned on the National Highway 135 and connected straight into the Golden Quadrilateral corridor via Varanasi and Prayagraj, our dispatches reach key northern trading hubs within 24 to 48 hours.
