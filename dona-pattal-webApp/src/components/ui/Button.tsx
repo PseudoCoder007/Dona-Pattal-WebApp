@@ -23,7 +23,7 @@ export function Button({
   const variants = {
     primary: 'bg-brick hover:bg-brick/90 text-white',
     secondary: 'bg-white border border-stone hover:border-brick text-ink',
-    whatsapp: 'bg-oxblood hover:bg-ink text-paper',
+    whatsapp: 'bg-emerald-700 hover:bg-emerald-800 text-white',
     ghost: 'bg-transparent border border-ink text-ink hover:bg-ink hover:text-paper',
   };
 

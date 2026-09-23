@@ -41,7 +41,7 @@ export function Header({ className }: HeaderProps) {
           </Link>
 
           <a
-            className="inline-flex items-center gap-2 px-4 py-2 bg-oxblood hover:bg-ink text-paper text-xs font-bold tracking-widest uppercase rounded-sm shadow transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded-sm shadow transition-all"
             href={siteConfig.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"

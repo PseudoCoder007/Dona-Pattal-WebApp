@@ -53,7 +53,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <div>Alok Dwivedi · +91 87872 01971</div>
           <div>Civil Line Rd, Saripur Jalalpur, Mirzapur</div>
           <a
-            className="inline-flex items-center gap-2 px-3 py-2 bg-oxblood hover:bg-ink text-paper text-xs font-bold tracking-widest uppercase rounded transition-colors mt-2 self-start"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded transition-colors mt-2 self-start"
             href={siteConfig.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"

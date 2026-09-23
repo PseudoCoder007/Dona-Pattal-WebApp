@@ -13,15 +13,9 @@ describe('Button', () => {
     expect(screen.getByRole('button', { name: /click me/i })).toHaveClass('border-stone');
   });
 
-  it('renders WhatsApp variant with oxblood background', () => {
+  it('renders WhatsApp variant with emerald green background, matching the Stitch design', () => {
     render(<Button variant="whatsapp">Chat</Button>);
-    expect(screen.getByRole('button', { name: /chat/i })).toHaveClass('bg-oxblood');
-  });
-
-  it('does not render the WhatsApp variant with any emerald/green class', () => {
-    render(<Button variant="whatsapp">Chat</Button>);
-    const el = screen.getByRole('button', { name: /chat/i });
-    expect(el.className).not.toMatch(/emerald|green-/);
+    expect(screen.getByRole('button', { name: /chat/i })).toHaveClass('bg-emerald-700');
   });
 
   it('forwards href as anchor when provided', () => {
