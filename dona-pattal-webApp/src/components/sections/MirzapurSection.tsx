@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/Button';
 export function MirzapurSection() {
   return (
     <section className="py-20 lg:py-24 px-6 lg:px-8 border-b border-stone bg-paper/60" id="mirzapur">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-10 lg:gap-14 items-center">
-        <div className="col-span-12 lg:col-span-7 relative">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="lg:col-span-7 relative min-w-0">
           <div className="relative rounded-lg overflow-hidden border border-stone shadow-lg bg-white">
             <EditorialImage
               src="/images/editorial/leaf-dona-pattal.jpg"
@@ -23,7 +23,7 @@ export function MirzapurSection() {
             </div>
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6 min-w-0">
           <div className="space-y-2">
             <span className="text-xs tracking-[0.25em] font-bold text-brick uppercase">MIRZAPUR CONNECTION</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-ink">Starting from Mirzapur. Supplying Across India.</h2>

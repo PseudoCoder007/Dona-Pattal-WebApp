@@ -4,8 +4,8 @@ import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 export function WholesaleCtaSection() {
   return (
     <section className="py-20 lg:py-24 px-6 lg:px-8 border-b border-stone bg-paper/50" id="wholesale">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-10 lg:gap-14 items-start">
-        <div className="col-span-12 lg:col-span-5 space-y-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="lg:col-span-5 space-y-6 min-w-0">
           <div className="space-y-2">
             <span className="text-xs tracking-[0.25em] font-bold text-brick uppercase">WHOLESALE</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-ink">Let&apos;s Talk Bulk Supply.</h2>
@@ -43,7 +43,7 @@ export function WholesaleCtaSection() {
             />
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-7">
+        <div className="lg:col-span-7 min-w-0">
           <div className="bg-white p-7 sm:p-9 rounded border border-stone shadow-md space-y-5">
             <div className="pb-3 border-b border-stone">
               <h3 className="text-sm font-bold uppercase tracking-wider text-ink">Request Wholesale Quotation</h3>

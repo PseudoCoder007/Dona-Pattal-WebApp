@@ -34,7 +34,7 @@ export function Header({ className }: HeaderProps) {
 
         <div className="flex items-center gap-3">
           <Link
-            className="inline-flex items-center justify-center px-5 py-2.5 rounded-sm bg-brick hover:bg-brick/90 text-white text-xs font-bold tracking-widest uppercase transition-all shadow-sm hover:shadow hidden sm:inline-flex"
+            className="items-center justify-center px-5 py-2.5 rounded-sm bg-brick hover:bg-brick/90 text-white text-xs font-bold tracking-widest uppercase transition-all shadow-sm hover:shadow hidden sm:inline-flex"
             href="/wholesale"
           >
             Get Bulk Pricing

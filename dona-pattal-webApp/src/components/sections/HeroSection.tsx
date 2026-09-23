@@ -6,15 +6,15 @@ export function HeroSection() {
   return (
     <section className="relative pt-10 pb-16 lg:py-20 px-6 lg:px-8 border-b border-stone overflow-hidden" id="home">
       <div className="absolute -top-32 right-0 w-2/3 h-96 bg-gradient-to-b from-paper/70 to-transparent pointer-events-none -z-10" />
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div className="col-span-12 lg:col-span-5 space-y-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="lg:col-span-5 space-y-6 min-w-0">
           <div className="space-y-2.5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs tracking-[0.2em] text-brick font-extrabold uppercase">SAHLOK ECO PRODUCTS LLP</span>
               <span className="text-stone">·</span>
               <span className="text-xs tracking-[0.16em] text-muted uppercase font-semibold">PAPER DONA & TABLEWARE</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-paper text-ink/90 border border-stone/50 rounded-full text-[11px] font-bold tracking-wider uppercase">
+            <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1 bg-paper text-ink/90 border border-stone/50 rounded-full text-[11px] font-bold tracking-wider uppercase max-w-full">
               <span className="w-1.5 h-1.5 rounded-full bg-brick" />
               NATURAL TABLEWARE · BULK B2B SUPPLY · MIRZAPUR, UP
             </div>
@@ -42,7 +42,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-7 relative">
+        <div className="lg:col-span-7 relative min-w-0">
           <EditorialImage
             src="/images/hero/paper-plate-stack.png"
             alt="Sahlok authentic Indian disposable paper dona and tableware stacked with ribbed fluted edges"

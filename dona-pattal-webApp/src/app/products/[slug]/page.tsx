@@ -33,8 +33,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
   return (
     <>
       <section className="relative pt-10 pb-16 lg:py-20 px-6 lg:px-8 border-b border-stone overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="col-span-12 lg:col-span-7">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-7 min-w-0">
             <EditorialImage
               src={product.image}
               alt={product.name}
@@ -43,7 +43,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               aspectRatio="4/3"
             />
           </div>
-          <div className="col-span-12 lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 min-w-0">
             <div className="space-y-2.5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs tracking-[0.2em] text-brick font-extrabold uppercase">SAHLOK ECO PRODUCTS LLP</span>

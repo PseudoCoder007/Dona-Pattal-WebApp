@@ -63,7 +63,6 @@ export default function WholesalePage() {
       </section>
 
       <BuyerTypeGrid />
-      <QuantityTierGrid />
 
       <section className="py-16 md:py-24 px-6 lg:px-8 max-w-7xl mx-auto border-b border-stone" id="wholesale-form">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -130,7 +129,7 @@ export default function WholesalePage() {
               />
             </div>
           </div>
-          <div className="lg:col-span-7 bg-white border border-stone p-6 sm:p-10 shadow-sm relative" id="wholesale-form">
+          <div className="lg:col-span-7 bg-white border border-stone p-6 sm:p-10 shadow-sm relative">
             <div className="border-b border-stone pb-4 mb-6">
               <div className="text-xs tracking-[0.25em] font-bold text-brick uppercase mb-2">B2B INQUIRY SPECIFICATION</div>
               <h3 className="font-serif text-2xl text-ink font-semibold mt-1">Wholesale Supply Request</h3>
@@ -141,6 +140,7 @@ export default function WholesalePage() {
         </div>
       </section>
 
+      <QuantityTierGrid />
       <EnquiryProcessSteps />
 
       <section className="py-16 md:py-20 px-6 lg:px-8 bg-ink text-paper border-y border-stone">
