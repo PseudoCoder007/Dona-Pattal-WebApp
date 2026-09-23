@@ -39,7 +39,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               src={product.image}
               alt={product.name}
               badge={product.category === 'dona' ? 'Paper Dona' : 'Paper Plates'}
-              caption={`${product.name} \u00b7 ${product.use}`}
+              caption={`${product.name} · ${product.use}`}
               aspectRatio="4/3"
             />
           </div>
@@ -47,7 +47,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className="space-y-2.5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs tracking-[0.2em] text-brick font-extrabold uppercase">SAHLOK ECO PRODUCTS LLP</span>
-                <span className="text-stone">\u00b7</span>
+                <span className="text-stone">·</span>
                 <span className="text-xs tracking-[0.16em] text-muted uppercase font-semibold">{product.category === 'dona' ? 'PAPER DONA' : 'PAPER PLATES'}</span>
               </div>
             </div>

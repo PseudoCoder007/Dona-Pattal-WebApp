@@ -30,12 +30,12 @@ export function ProductCard({ product, className = '' }: ProductCardProps) {
           <span className="text-[11px] font-semibold text-brass uppercase tracking-wider">{product.use}</span>
           <h3 className="text-lg font-bold text-ink mt-0.5">{product.name}</h3>
           <div className="mt-2.5 p-2 bg-paper/60 rounded text-xs text-muted border border-stone/60">
-            <span className="font-medium text-ink">Indicative Spec:</span> {product.gsm} \u00b7 Pack: {product.packSize}
+            <span className="font-medium text-ink">Indicative Spec:</span> {product.gsm} · Pack: {product.packSize}
           </div>
         </div>
         <div className="pt-3 border-t border-stone flex items-center justify-between">
           <span className="text-[11px] text-muted font-medium">Bulk Supply Available</span>
-          <WhatsAppButton message={product.whatsappMessage} label="Ask for this size \u2192" />
+          <WhatsAppButton message={product.whatsappMessage} label="Ask for this size →" />
         </div>
       </div>
     </article>

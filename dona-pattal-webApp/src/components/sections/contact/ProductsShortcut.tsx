@@ -15,7 +15,7 @@ export function ProductsShortcut() {
             <p className="text-sm sm:text-base text-muted mt-2 max-w-xl">Browse the available paper dona and paper plate sizes before sending your requirement to ensure the right GSM, diameter, and carton packing for your vendors.</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="secondary" href="/products" className="text-xs">VIEW PRODUCTS \u2192</Button>
+            <Button variant="secondary" href="/products" className="text-xs">VIEW PRODUCTS →</Button>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -40,7 +40,7 @@ export function ProductsShortcut() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Button variant="secondary" href="/wholesale">WHOLESALE ENQUIRY \u2192</Button>
+          <Button variant="secondary" href="/wholesale">WHOLESALE ENQUIRY →</Button>
         </div>
       </div>
     </section>

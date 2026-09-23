@@ -56,10 +56,10 @@ export function CatalogueHero({ activeFilter, onFilterChange }: CatalogueHeroPro
             <div className="text-xs tracking-[0.25em] font-bold text-brick uppercase mb-2">FACTORY DIRECT SUPPLY</div>
             <h3 className="font-serif text-lg font-semibold text-ink mb-3">Guaranteed B2B Consistency</h3>
             <ul className="text-xs text-muted space-y-2.5 leading-relaxed">
-              <li className="flex items-start gap-2"><span className="text-brass">\u2713</span><span>Food-grade unbleached & virgin-finish kraft materials</span></li>
-              <li className="flex items-start gap-2"><span className="text-brass">\u2713</span><span>Standardized rim fluting for high mechanical rigidity</span></li>
-              <li className="flex items-start gap-2"><span className="text-brass">\u2713</span><span>Nested packaging in heavy moisture-safe corrugation</span></li>
-              <li className="flex items-start gap-2"><span className="text-brass">\u2713</span><span>Direct truckload & partial load dispatch across UP / Bihar / Delhi NCR</span></li>
+              <li className="flex items-start gap-2"><span className="text-brass">✓</span><span>Food-grade unbleached & virgin-finish kraft materials</span></li>
+              <li className="flex items-start gap-2"><span className="text-brass">✓</span><span>Standardized rim fluting for high mechanical rigidity</span></li>
+              <li className="flex items-start gap-2"><span className="text-brass">✓</span><span>Nested packaging in heavy moisture-safe corrugation</span></li>
+              <li className="flex items-start gap-2"><span className="text-brass">✓</span><span>Direct truckload & partial load dispatch across UP / Bihar / Delhi NCR</span></li>
             </ul>
           </div>
         </div>

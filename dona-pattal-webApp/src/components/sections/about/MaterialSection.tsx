@@ -9,22 +9,22 @@ export function MaterialSection() {
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
           <div className="border border-stone bg-white p-5">
-            <span className="text-2xl mb-2" aria-hidden="true">\uD83C\uDF74</span>
+            <span className="text-2xl mb-2" aria-hidden="true">🍴</span>
             <h4 className="font-serif text-base font-semibold text-ink mb-1">Serving & Dining</h4>
             <p className="text-xs text-muted font-light leading-relaxed">Built with thermal resistance suited for freshly fried snacks, steaming dal, and hot puri-sabzi.</p>
           </div>
           <div className="border border-stone bg-white p-5">
-            <span className="text-2xl mb-2" aria-hidden="true">\uD83D\uDCCF</span>
+            <span className="text-2xl mb-2" aria-hidden="true">📏</span>
             <h4 className="font-serif text-base font-semibold text-ink mb-1">Rigid Fluting</h4>
             <p className="text-xs text-muted font-light leading-relaxed">Crimped concentric perimeter rings ensure structural integrity even when held with one hand in crowds.</p>
           </div>
           <div className="border border-stone bg-white p-5">
-            <span className="text-2xl mb-2" aria-hidden="true">\uD83D\uDCE6</span>
+            <span className="text-2xl mb-2" aria-hidden="true">📦</span>
             <h4 className="font-serif text-base font-semibold text-ink mb-1">Compact Nesting</h4>
             <p className="text-xs text-muted font-light leading-relaxed">High nesting density saves valuable storage space for roadside carts, caterers, and distribution sheds.</p>
           </div>
           <div className="border border-stone bg-white p-5">
-            <span className="text-2xl mb-2" aria-hidden="true">\u267B\uFE0F</span>
+            <span className="text-2xl mb-2" aria-hidden="true">♻️</span>
             <h4 className="font-serif text-base font-semibold text-ink mb-1">Clean Disposal</h4>
             <p className="text-xs text-muted font-light leading-relaxed">100% repulpable kraft and unbleached paper fibers decompose naturally without persistent plastic residue.</p>
           </div>

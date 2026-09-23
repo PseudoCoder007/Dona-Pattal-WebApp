@@ -15,7 +15,7 @@ export function ProductRangeSection() {
             </p>
           </div>
           <Button variant="secondary" href="/wholesale" className="whitespace-nowrap">
-            Request Bulk Pricing Details \u2192
+            Request Bulk Pricing Details →
           </Button>
         </div>
         <ProductGrid products={products} />

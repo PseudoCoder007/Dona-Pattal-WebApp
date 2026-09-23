@@ -30,7 +30,7 @@ export function ContactSection() {
                 </div>
                 <div className="flex items-start gap-2.5 text-ink/80">
                   <span className="font-bold text-ink min-w-[90px]">Address:</span>
-                  <span>Civil Line Road, Saripur Jalalpur, Mirzapur \u2013 231001, Uttar Pradesh</span>
+                  <span>Civil Line Road, Saripur Jalalpur, Mirzapur – 231001, Uttar Pradesh</span>
                 </div>
               </div>
             </div>

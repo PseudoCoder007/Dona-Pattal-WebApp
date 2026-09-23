@@ -11,24 +11,24 @@ export function LocationSection() {
             <p className="text-sm sm:text-base text-muted mt-3 leading-relaxed">Operating right at the strategic manufacturing spine of Eastern Uttar Pradesh. Sahlok utilizes direct road connectivity to feed daily consignments to Varanasi, Prayagraj, Bhadohi, Jaunpur, and the wider Purvanchal market.</p>
             <div className="mt-8 space-y-4">
               <div className="flex items-start gap-3">
-                <span className="text-brick text-xl" aria-hidden="true">\uD83D\uDCCD</span>
+                <span className="text-brick text-xl" aria-hidden="true">📍</span>
                 <div>
                   <h4 className="font-bold text-xs uppercase tracking-wider text-ink">Manufacturing Address</h4>
                   <p className="text-sm text-muted">Civil Line Road, Saripur Jalalpur, Mirzapur - 231001, Uttar Pradesh, India</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <span className="text-brass text-xl" aria-hidden="true">\uD83D\uDE9A</span>
+                <span className="text-brass text-xl" aria-hidden="true">🚚</span>
                 <div>
                   <h4 className="font-bold text-xs uppercase tracking-wider text-ink">Transit Corridor Connectivity</h4>
                   <p className="text-sm text-muted">Direct access to NH-135, Grand Trunk route links, and dedicated Purvanchal freight corridors for timely dispatch.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <span className="text-ink text-xl" aria-hidden="true">\u23F1\uFE0F</span>
+                <span className="text-ink text-xl" aria-hidden="true">⏱️</span>
                 <div>
                   <h4 className="font-bold text-xs uppercase tracking-wider text-ink">Dispatch Hours</h4>
-                  <p className="text-sm text-muted">Loading & Logistics Desk: 09:00 AM \u2013 07:00 PM (Mon\u2013Sat)</p>
+                  <p className="text-sm text-muted">Loading & Logistics Desk: 09:00 AM – 07:00 PM (Mon–Sat)</p>
                 </div>
               </div>
             </div>
@@ -52,12 +52,12 @@ export function LocationSection() {
                     <div className="p-3 bg-white/90 border border-stone rounded text-xs">
                       <span className="block text-[10px] text-brass font-bold uppercase tracking-wider">East Route</span>
                       <strong className="text-ink block">Varanasi</strong>
-                      <span className="text-[11px] text-muted">\u223c55 km \u00b7 Direct Express</span>
+                      <span className="text-[11px] text-muted">∼55 km · Direct Express</span>
                     </div>
                     <div className="p-3 bg-white/90 border border-stone rounded text-xs">
                       <span className="block text-[10px] text-brass font-bold uppercase tracking-wider">West Route</span>
                       <strong className="text-ink block">Prayagraj</strong>
-                      <span className="text-[11px] text-muted">\u223c85 km \u00b7 NH135 corridor</span>
+                      <span className="text-[11px] text-muted">∼85 km · NH135 corridor</span>
                     </div>
                     <div className="p-3 bg-white/90 border border-stone rounded text-xs">
                       <span className="block text-[10px] text-brass font-bold uppercase tracking-wider">North Route</span>
@@ -65,7 +65,7 @@ export function LocationSection() {
                       <span className="text-[11px] text-muted">Purvanchal Freight</span>
                     </div>
                   </div>
-                  <div className="mt-6 text-[11px] font-mono text-muted">Civil Line Road \u00b7 Saripur Jalalpur \u00b7 Mirzapur UP</div>
+                  <div className="mt-6 text-[11px] font-mono text-muted">Civil Line Road · Saripur Jalalpur · Mirzapur UP</div>
                 </div>
                 <div className="absolute bottom-3 right-3 text-[10px] font-mono text-brass tracking-widest uppercase">GEO: 25.1337 N / 82.5644 E</div>
               </div>

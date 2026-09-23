@@ -13,16 +13,16 @@ export function MirzapurTransitSection() {
               Strategically positioned on the National Highway 135 and connected straight into the Golden Quadrilateral corridor via Varanasi and Prayagraj, our dispatches reach key northern trading hubs within 24 to 48 hours.
             </p>
             <div className="p-4 bg-white border border-stone space-y-3">
-              <div className="text-xs uppercase tracking-wider font-semibold text-ink border-b border-stone/40 pb-2">Active Freight Routes \u00b7 Eastern UP Hub</div>
+              <div className="text-xs uppercase tracking-wider font-semibold text-ink border-b border-stone/40 pb-2">Active Freight Routes · Eastern UP Hub</div>
               <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
                 <span className="px-2.5 py-1 bg-paper border border-stone/60 text-ink">Mirzapur</span>
-                <span className="text-brass font-bold">\u2192</span>
+                <span className="text-brass font-bold">→</span>
                 <span className="px-2.5 py-1 bg-paper border border-stone/60 text-ink">Varanasi (55 km)</span>
-                <span className="text-brass font-bold">\u2192</span>
+                <span className="text-brass font-bold">→</span>
                 <span className="px-2.5 py-1 bg-paper border border-stone/60 text-ink">Prayagraj (85 km)</span>
-                <span className="text-brass font-bold">\u2192</span>
+                <span className="text-brass font-bold">→</span>
                 <span className="px-2.5 py-1 bg-paper border border-stone/60 text-ink">Patna</span>
-                <span className="text-brass font-bold">\u2192</span>
+                <span className="text-brass font-bold">→</span>
                 <span className="px-2.5 py-1 bg-paper border border-stone/60 text-ink">Lucknow</span>
               </div>
             </div>
