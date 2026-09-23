@@ -20,4 +20,13 @@ describe('HeroSection', () => {
     expect(screen.getByText('Mirzapur Facility')).toBeInTheDocument();
     expect(screen.getByText('Direct B2B Supply')).toBeInTheDocument();
   });
+
+  it('renders the new cover background photo', () => {
+    render(<HeroSection />);
+    const img = screen.getByAltText(/paper dona and pattal tableware/i);
+    expect(img).toHaveAttribute(
+      'src',
+      expect.stringContaining(encodeURIComponent('/images/hero/cover-background.png'))
+    );
+  });
 });

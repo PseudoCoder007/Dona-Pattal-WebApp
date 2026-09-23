@@ -1,13 +1,21 @@
+import Image from 'next/image';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { Button } from '@/components/ui/Button';
-import { EditorialImage } from '@/components/ui/EditorialImage';
 
 export function HeroSection() {
   return (
-    <section className="relative pt-10 pb-16 lg:py-20 px-6 lg:px-8 border-b border-stone overflow-hidden" id="home">
-      <div className="absolute -top-32 right-0 w-2/3 h-96 bg-gradient-to-b from-paper/70 to-transparent pointer-events-none -z-10" />
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div className="lg:col-span-5 space-y-6 min-w-0">
+    <section className="relative border-b border-stone overflow-hidden" id="home">
+      <Image
+        src="/images/hero/cover-background.png"
+        alt="Paper dona and pattal tableware stacked on a rustic wooden table with green leaves"
+        fill
+        priority
+        className="object-cover object-[75%_center] -z-20"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-paper via-paper/85 to-paper/20 md:to-transparent md:w-3/5 lg:w-1/2" />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 sm:py-20 lg:py-28 flex items-center min-h-[540px] lg:min-h-[600px]">
+        <div className="w-full max-w-xl space-y-6 bg-paper/70 sm:bg-transparent backdrop-blur-[2px] sm:backdrop-blur-none p-4 sm:p-0 rounded">
           <div className="space-y-2.5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs tracking-[0.2em] text-brick font-extrabold uppercase">SAHLOK ECO PRODUCTS LLP</span>
@@ -40,17 +48,6 @@ export function HeroSection() {
               <span className="px-2.5 py-1 bg-paper rounded border border-stone/50">100% Food-Grade Paper</span>
             </div>
           </div>
-        </div>
-
-        <div className="lg:col-span-7 relative min-w-0">
-          <EditorialImage
-            src="/images/hero/paper-plate-stack.png"
-            alt="Sahlok authentic Indian disposable paper dona and tableware stacked with ribbed fluted edges"
-            badge="Emerging B2B Unit · Mirzapur"
-            badgePosition="top-right"
-            caption="PAPER TABLEWARE · MIRZAPUR, UTTAR PRADESH"
-            aspectRatio="16/10"
-          />
         </div>
       </div>
     </section>
