@@ -6,7 +6,7 @@ Site was already fully migrated into `dona-pattal-webApp/` and audited (`docs/UI
 
 ## Phases
 
-- [ ] **Phase 1: Fix Images, Encoding & Brand Color; Align to Stitch Designs** - Replace broken image sources, fix the `\uXXXX` JSX-escape bug, correct off-brand CTA color, and close visual gaps against Stitch references on all 5 routes.
+- [x] **Phase 1: Fix Images, Encoding & Brand Color; Align to Stitch Designs** - Replace broken image sources, fix the `\uXXXX` JSX-escape bug, correct off-brand CTA color, and close visual gaps against Stitch references on all 5 routes.
 
 ## Phase Details
 
@@ -33,14 +33,14 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-04-PLAN.md — Sitewide regression gates, responsive audit of 6 routes at 375/768/1440, residual fixes, human visual sign-off (wave 2)
+- [x] 01-04-PLAN.md — Sitewide regression gates, responsive audit of 6 routes at 375/768/1440, residual fixes, human visual sign-off (wave 2)
 
 **Wave structure:**
 
 | Wave | Plans | Parallel-safe | Autonomous |
 |------|-------|---------------|------------|
-| 1 | 3/4 | In Progress|  |
-| 2 | 01-04 | n/a (single plan) | no (human-verify checkpoint) |
+| 1 | 3/4 | Complete |  |
+| 2 | 01-04 | n/a (single plan) | no (human-verify checkpoint) — approved |
 
 ## Progress
 
@@ -49,4 +49,4 @@ Phase 1 only (single phase, ad-hoc scope from UI-REVIEW.md — not a full milest
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fix Images, Encoding & Brand Color | 0/4 | Planned | - |
+| 1. Fix Images, Encoding & Brand Color | 4/4 | Complete | 2026-09-23 |

@@ -24,10 +24,10 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 ### Design Alignment
 
 - [x] **DESIGN-01**: `/` (homepage) matches `stitch-extracted/homepage` at desktop/tablet/mobile
-- [ ] **DESIGN-02**: `/products` and `/products/[slug]` match `stitch-extracted/products`
-- [ ] **DESIGN-03**: `/wholesale` matches `stitch-extracted/wholesale`
-- [ ] **DESIGN-04**: `/about` matches `stitch-extracted/about`
-- [ ] **DESIGN-05**: `/contact` matches `stitch-extracted/contact`
+- [x] **DESIGN-02**: `/products` and `/products/[slug]` match `stitch-extracted/products`
+- [x] **DESIGN-03**: `/wholesale` matches `stitch-extracted/wholesale`
+- [x] **DESIGN-04**: `/about` matches `stitch-extracted/about`
+- [x] **DESIGN-05**: `/contact` matches `stitch-extracted/contact`
 
 ## v2 Requirements (deferred — noted in UI-REVIEW.md, not blocking)
 
@@ -56,10 +56,10 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 | TXT-02 | Phase 1 | Complete |
 | COLOR-01 | Phase 1 | Complete |
 | DESIGN-01 | Phase 1 | Complete |
-| DESIGN-02 | Phase 1 | Pending |
-| DESIGN-03 | Phase 1 | Pending |
-| DESIGN-04 | Phase 1 | Pending |
-| DESIGN-05 | Phase 1 | Pending |
+| DESIGN-02 | Phase 1 | Complete |
+| DESIGN-03 | Phase 1 | Complete |
+| DESIGN-04 | Phase 1 | Complete |
+| DESIGN-05 | Phase 1 | Complete |
 
 **Coverage:**
 
@@ -69,4 +69,4 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 
 ---
 *Requirements defined: 2026-09-23*
-*Last updated: 2026-09-23 after initial definition from UI-REVIEW.md*
+*Last updated: 2026-09-23 after Phase 1 completion (all 10 v1 requirements satisfied and human-approved)*
