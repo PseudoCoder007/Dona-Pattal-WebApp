@@ -28,7 +28,7 @@ export const products: Product[] = [
     packSize: '100 pcs/pack',
     description:
       'Deep formed, leak-resistant heavy kraft paper dona for prasadam, dry snacks, and halwai distribution. Designed with mechanical fluted ridges for structural rigidity with hot and liquid gravies.',
-    image: '/images/products/product-dona.jpg',
+    image: '/images/products/4-inch-dona.png',
     whatsappMessage: productEnquiryMessage('4" Mini Paper Dona'),
   },
   {
@@ -42,7 +42,7 @@ export const products: Product[] = [
     packSize: '100 pcs/pack',
     description:
       'High-frequency catering standard for chaat, poha, sabzi, and religious feast arrangements. Rigid base structure with deep rim for liquid-heavy foods.',
-    image: '/images/products/product-dona.jpg',
+    image: '/images/products/6-inch-dona.png',
     whatsappMessage: productEnquiryMessage('6" Paper Dona'),
   },
   {
@@ -56,7 +56,7 @@ export const products: Product[] = [
     packSize: '100 pcs/pack',
     description:
       'Reinforced rim corrugation ensuring zero bend under oil or gravy load during community feasts. Food-grade barrier for safe serving.',
-    image: '/images/products/product-plate.jpg',
+    image: '/images/products/7-inch-plate.png',
     whatsappMessage: productEnquiryMessage('7" Paper Plate'),
   },
   {
@@ -70,7 +70,7 @@ export const products: Product[] = [
     packSize: '100 pcs/pack',
     description:
       'Heavy-duty meal plate with reinforced rim corrugation. Holds hot poori bhaji, thali sides, and complete meals without buckling.',
-    image: '/images/products/product-plate.jpg',
+    image: '/images/products/8-inch-plate.png',
     whatsappMessage: productEnquiryMessage('8" Paper Plate'),
   },
   {
@@ -84,7 +84,7 @@ export const products: Product[] = [
     packSize: '100 pcs/pack',
     description:
       'Buffet-format plate with raised containment wall. Ideal for wedding catering, corporate events, and party servings.',
-    image: '/images/products/product-plate.jpg',
+    image: '/images/products/10-inch-plate.png',
     whatsappMessage: productEnquiryMessage('10" Paper Plate'),
   },
   {
@@ -98,7 +98,7 @@ export const products: Product[] = [
     packSize: '50 pcs/pack',
     description:
       'Banquet & pattal style heavy-duty plate for traditional feasts, community meals, and large thali service. Maximum load integrity.',
-    image: '/images/products/product-plate.jpg',
+    image: '/images/products/12-inch-plate.png',
     whatsappMessage: productEnquiryMessage('12" Paper Plate'),
   },
 ];

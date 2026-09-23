@@ -22,6 +22,11 @@ describe('products', () => {
     });
   });
 
+  it('each product has a unique image (no shared placeholders)', () => {
+    const images = products.map((p) => p.image);
+    expect(new Set(images).size).toBe(products.length);
+  });
+
   it('slugs match the 6 approved routes', () => {
     const slugs = products.map((p) => p.slug).sort();
     expect(slugs).toEqual([
