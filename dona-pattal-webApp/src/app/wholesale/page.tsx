@@ -122,8 +122,8 @@ export default function WholesalePage() {
             </div>
             <div className="border border-stone bg-white p-3">
               <EditorialImage
-                src="/images/products/product-plate.jpg"
-                alt="Paper plates stacked for bulk dispatch"
+                src="/images/products/10-inch-plate.png"
+                alt="Stack of kraft paper plates ready for bulk dispatch, 100-180 GSM"
                 caption="Quality Grade: 100-180 GSM Kraft · Mirzapur Dispatched"
                 aspectRatio="16/9"
               />

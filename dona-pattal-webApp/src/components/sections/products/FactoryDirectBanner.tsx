@@ -21,8 +21,8 @@ export function FactoryDirectBanner() {
         </div>
         <div className="relative rounded-lg overflow-hidden border border-stone">
           <EditorialImage
-            src="/images/hero/paper-plate-stack.png"
-            alt="Tall stack of printed paper plates"
+            src="/images/products/12-inch-plate.png"
+            alt="Stack of kraft paper plates ready for dispatch from Mirzapur"
             caption="MIRZAPUR DISPATCH READY"
             aspectRatio="4/3"
           />

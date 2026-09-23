@@ -19,8 +19,8 @@ export function ProductFocusSection() {
             <div>
               <div className="aspect-square bg-paper overflow-hidden mb-6 border border-stone/30">
                 <EditorialImage
-                  src="/images/products/product-dona.jpg"
-                  alt="Stack of kraft paper dona cups on a white background"
+                  src="/images/products/6-inch-dona.png"
+                  alt="Stack of kraft paper dona bowls, natural brown color"
                   aspectRatio="1/1"
                 />
               </div>
@@ -42,8 +42,8 @@ export function ProductFocusSection() {
             <div>
               <div className="aspect-square bg-paper overflow-hidden mb-6 border border-stone/30">
                 <EditorialImage
-                  src="/images/products/product-plate.jpg"
-                  alt="Red and white disposable paper plates with napkins"
+                  src="/images/products/8-inch-plate.png"
+                  alt="Stack of kraft paper plates for meals and food service"
                   aspectRatio="1/1"
                 />
               </div>
@@ -65,8 +65,8 @@ export function ProductFocusSection() {
             <div>
               <div className="aspect-square bg-paper overflow-hidden mb-6 border border-stone/30">
                 <EditorialImage
-                  src="/images/hero/paper-plate-stack.png"
-                  alt="Tall stack of printed paper plates, ready for bulk dispatch"
+                  src="/images/products/10-inch-plate.png"
+                  alt="Large stack of kraft paper plates ready for bulk dispatch"
                   aspectRatio="1/1"
                 />
               </div>
