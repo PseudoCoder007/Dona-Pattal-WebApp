@@ -1,5 +1,5 @@
 import { products } from '@/content/products';
-import { ProductGrid } from '@/components/product/ProductGrid';
+import { ProductGrid } from '@/components/sections/product/ProductGrid';
 import { Button } from '@/components/ui/Button';
 
 export function ProductRangeSection() {

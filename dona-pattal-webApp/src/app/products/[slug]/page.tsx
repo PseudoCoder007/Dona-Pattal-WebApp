@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getProductBySlug, products } from '@/content/products';
-import { ProductSpecTable } from '@/components/product/ProductSpecTable';
+import { ProductSpecTable } from '@/components/sections/product/ProductSpecTable';
 import { EditorialImage } from '@/components/ui/EditorialImage';
 import { Button } from '@/components/ui/Button';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
