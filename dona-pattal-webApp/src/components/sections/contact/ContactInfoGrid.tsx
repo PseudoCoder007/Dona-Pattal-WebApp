@@ -109,7 +109,7 @@ export function ContactInfoGrid() {
                 </a>
                 <span className="text-stone" aria-hidden="true">|</span>
                 <a
-                  className="text-emerald-700 hover:underline"
+                  className="text-brick hover:underline"
                   href={card.secondaryHref}
                   target={card.secondaryHref.startsWith('http') ? '_blank' : undefined}
                   rel={card.secondaryHref.startsWith('http') ? 'noopener noreferrer' : undefined}

@@ -22,7 +22,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         <div className="flex items-center justify-between pb-5 mb-4 border-b border-stone">
           <div>
             <h2 className="font-serif text-xl font-bold text-ink">Sahlok Eco Products</h2>
-            <p className="text-xs text-muted mt-0.5">B2B Manufacturing \u00b7 Mirzapur</p>
+            <p className="text-xs text-muted mt-0.5">B2B Manufacturing · Mirzapur</p>
           </div>
           <button
             aria-label="Close Drawer"
@@ -50,10 +50,10 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
         <div className="pt-4 border-t border-stone text-xs text-muted flex flex-col gap-2">
           <div className="font-semibold text-ink">Factory Direct Sales</div>
-          <div>Alok Dwivedi \u00b7 +91 87872 01971</div>
+          <div>Alok Dwivedi · +91 87872 01971</div>
           <div>Civil Line Rd, Saripur Jalalpur, Mirzapur</div>
           <a
-            className="inline-flex items-center gap-2 px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded transition-colors mt-2 self-start"
+            className="inline-flex items-center gap-2 px-3 py-2 bg-oxblood hover:bg-ink text-paper text-xs font-bold tracking-widest uppercase rounded transition-colors mt-2 self-start"
             href={siteConfig.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"

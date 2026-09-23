@@ -55,7 +55,7 @@ export default function ProductsPage() {
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Button variant="primary" href="/wholesale" className="flex-1">Get Bulk Pricing</Button>
               <a
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded transition-colors flex-1 justify-center"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-oxblood hover:bg-ink text-paper text-xs font-bold tracking-widest uppercase rounded transition-colors flex-1 justify-center"
                 href={`https://wa.me/918787201971?text=${encodeURIComponent(products[selectedSpec].whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"

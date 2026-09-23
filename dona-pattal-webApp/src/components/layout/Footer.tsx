@@ -35,7 +35,7 @@ export function Footer() {
               <p><strong className="text-ink">Owner:</strong> {siteConfig.footer.contact.owner}</p>
               <p><strong className="text-ink">Address:</strong> {siteConfig.footer.contact.address}</p>
               <p><strong className="text-ink">Call:</strong> <a className="hover:text-brick transition-colors text-ink font-semibold" href={`tel:${siteConfig.contact.phoneDisplay.replace(/\s/g, '')}`}>{siteConfig.contact.phoneDisplay}</a></p>
-              <p><strong className="text-ink">WhatsApp:</strong> <a className="hover:text-emerald-700 transition-colors text-emerald-800 font-semibold" href={siteConfig.footer.contact.whatsapp} target="_blank" rel="noopener noreferrer">Chat with us ({siteConfig.contact.phoneDisplay})</a></p>
+              <p><strong className="text-ink">WhatsApp:</strong> <a className="hover:text-brick transition-colors text-oxblood font-semibold" href={siteConfig.footer.contact.whatsapp} target="_blank" rel="noopener noreferrer">Chat with us ({siteConfig.contact.phoneDisplay})</a></p>
             </div>
           </div>
         </div>

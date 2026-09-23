@@ -20,7 +20,7 @@ export function Header({ className }: HeaderProps) {
             <span className="font-serif font-bold text-xl tracking-tight text-ink group-hover:text-brick transition-colors">
               SAHLOK ECO PRODUCTS <span className="text-xs uppercase px-1.5 py-0.5 rounded bg-stone/30 text-ink/80 font-sans font-semibold tracking-wider ml-1">LLP</span>
             </span>
-            <span className="text-[10px] tracking-widest uppercase text-muted font-semibold">Mirzapur, Uttar Pradesh \u00b7 Bulk Tableware</span>
+            <span className="text-[10px] tracking-widest uppercase text-muted font-semibold">Mirzapur, Uttar Pradesh · Bulk Tableware</span>
           </div>
         </Link>
 
@@ -41,7 +41,7 @@ export function Header({ className }: HeaderProps) {
           </Link>
 
           <a
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded-sm shadow transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-oxblood hover:bg-ink text-paper text-xs font-bold tracking-widest uppercase rounded-sm shadow transition-all"
             href={siteConfig.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
