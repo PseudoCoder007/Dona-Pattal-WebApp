@@ -24,7 +24,7 @@ export const products: Product[] = [
     category: 'dona',
     size: '4 inch (approx 100mm)',
     use: 'Sweets & dry snacks',
-    gsm: '80\u2013100 GSM',
+    gsm: '80–100 GSM',
     packSize: '100 pcs/pack',
     description:
       'Deep formed, leak-resistant heavy kraft paper dona for prasadam, dry snacks, and halwai distribution. Designed with mechanical fluted ridges for structural rigidity with hot and liquid gravies.',
@@ -38,7 +38,7 @@ export const products: Product[] = [
     category: 'dona',
     size: '6 inch (approx 150mm)',
     use: 'Chaat & curry bowls',
-    gsm: '80\u2013110 GSM',
+    gsm: '80–110 GSM',
     packSize: '100 pcs/pack',
     description:
       'High-frequency catering standard for chaat, poha, sabzi, and religious feast arrangements. Rigid base structure with deep rim for liquid-heavy foods.',
@@ -52,7 +52,7 @@ export const products: Product[] = [
     category: 'plate',
     size: '7 inch (approx 175mm)',
     use: 'Snacks & light meals',
-    gsm: '100\u2013130 GSM',
+    gsm: '100–130 GSM',
     packSize: '100 pcs/pack',
     description:
       'Reinforced rim corrugation ensuring zero bend under oil or gravy load during community feasts. Food-grade barrier for safe serving.',
@@ -66,7 +66,7 @@ export const products: Product[] = [
     category: 'plate',
     size: '8 inch (approx 200mm)',
     use: 'Full meals',
-    gsm: '120\u2013150 GSM',
+    gsm: '120–150 GSM',
     packSize: '100 pcs/pack',
     description:
       'Heavy-duty meal plate with reinforced rim corrugation. Holds hot poori bhaji, thali sides, and complete meals without buckling.',
@@ -80,7 +80,7 @@ export const products: Product[] = [
     category: 'plate',
     size: '10 inch (approx 250mm)',
     use: 'Buffets & parties',
-    gsm: '150\u2013180 GSM',
+    gsm: '150–180 GSM',
     packSize: '100 pcs/pack',
     description:
       'Buffet-format plate with raised containment wall. Ideal for wedding catering, corporate events, and party servings.',
@@ -94,7 +94,7 @@ export const products: Product[] = [
     category: 'plate',
     size: '12 inch (approx 300mm)',
     use: 'Banquets & bulk catering',
-    gsm: '180\u2013220 GSM',
+    gsm: '180–220 GSM',
     packSize: '50 pcs/pack',
     description:
       'Banquet & pattal style heavy-duty plate for traditional feasts, community meals, and large thali service. Maximum load integrity.',
