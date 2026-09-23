@@ -9,8 +9,8 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 
 ### Images
 
-- [ ] **IMG-01**: Every hero, product card, and factory-process image on every route renders a real photo (no broken `lh3.googleusercontent.com/aida*` mock URLs, no empty boxes)
-- [ ] **IMG-02**: Next `<Image>` usages have correct `src`, `alt`, sizing/`fill`, and `object-fit`/`object-position` for their container
+- [x] **IMG-01**: Every hero, product card, and factory-process image on every route renders a real photo (no broken `lh3.googleusercontent.com/aida*` mock URLs, no empty boxes)
+- [x] **IMG-02**: Next `<Image>` usages have correct `src`, `alt`, sizing/`fill`, and `object-fit`/`object-position` for their container
 
 ### Copy / Encoding
 
@@ -23,7 +23,7 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 
 ### Design Alignment
 
-- [ ] **DESIGN-01**: `/` (homepage) matches `stitch-extracted/homepage` at desktop/tablet/mobile
+- [x] **DESIGN-01**: `/` (homepage) matches `stitch-extracted/homepage` at desktop/tablet/mobile
 - [ ] **DESIGN-02**: `/products` and `/products/[slug]` match `stitch-extracted/products`
 - [ ] **DESIGN-03**: `/wholesale` matches `stitch-extracted/wholesale`
 - [ ] **DESIGN-04**: `/about` matches `stitch-extracted/about`
@@ -50,12 +50,12 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| IMG-01 | Phase 1 | Pending |
-| IMG-02 | Phase 1 | Pending |
+| IMG-01 | Phase 1 | Complete |
+| IMG-02 | Phase 1 | Complete |
 | TXT-01 | Phase 1 | Complete |
 | TXT-02 | Phase 1 | Complete |
 | COLOR-01 | Phase 1 | Complete |
-| DESIGN-01 | Phase 1 | Pending |
+| DESIGN-01 | Phase 1 | Complete |
 | DESIGN-02 | Phase 1 | Pending |
 | DESIGN-03 | Phase 1 | Pending |
 | DESIGN-04 | Phase 1 | Pending |
