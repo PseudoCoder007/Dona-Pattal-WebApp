@@ -10,6 +10,7 @@ import { SectorsGrid } from '@/components/sections/products/SectorsGrid';
 import { EnquiryForm } from '@/components/forms/EnquiryForm';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 
 export default function ProductsPage() {
   const [filter, setFilter] = useState<'all' | 'dona' | 'plate'>('all');
@@ -54,14 +55,11 @@ export default function ProductsPage() {
             <ProductSpecTable product={products[selectedSpec]} />
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Button variant="primary" href="/wholesale" className="flex-1">Get Bulk Pricing</Button>
-              <a
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded transition-colors flex-1 justify-center"
-                href={`https://wa.me/918787201971?text=${encodeURIComponent(products[selectedSpec].whatsappMessage)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Chat On WhatsApp
-              </a>
+              <WhatsAppButton
+                message={products[selectedSpec].whatsappMessage}
+                label="Chat On WhatsApp"
+                className="flex-1 justify-center"
+              />
             </div>
           </div>
         </div>
