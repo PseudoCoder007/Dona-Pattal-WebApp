@@ -14,12 +14,12 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 
 ### Copy / Encoding
 
-- [ ] **TXT-01**: No literal `\uXXXX`-style escape sequences render as visible text anywhere in the UI (CTAs, bullet lists, quotes)
-- [ ] **TXT-02**: Any other mojibake/garbled-character artifacts found during the fix pass are corrected without touching intentional typography
+- [x] **TXT-01**: No literal `\uXXXX`-style escape sequences render as visible text anywhere in the UI (CTAs, bullet lists, quotes)
+- [x] **TXT-02**: Any other mojibake/garbled-character artifacts found during the fix pass are corrected without touching intentional typography
 
 ### Color / Brand
 
-- [ ] **COLOR-01**: WhatsApp CTAs and all other accent usage stay within the brick/brass 2-accent system defined in `stitch-extracted/*/DESIGN.md`; no generic Tailwind `emerald`/`green`
+- [x] **COLOR-01**: WhatsApp CTAs and all other accent usage stay within the brick/brass 2-accent system defined in `stitch-extracted/*/DESIGN.md`; no generic Tailwind `emerald`/`green`
 
 ### Design Alignment
 
@@ -52,9 +52,9 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 |-------------|-------|--------|
 | IMG-01 | Phase 1 | Pending |
 | IMG-02 | Phase 1 | Pending |
-| TXT-01 | Phase 1 | Pending |
-| TXT-02 | Phase 1 | Pending |
-| COLOR-01 | Phase 1 | Pending |
+| TXT-01 | Phase 1 | Complete |
+| TXT-02 | Phase 1 | Complete |
+| COLOR-01 | Phase 1 | Complete |
 | DESIGN-01 | Phase 1 | Pending |
 | DESIGN-02 | Phase 1 | Pending |
 | DESIGN-03 | Phase 1 | Pending |
@@ -62,6 +62,7 @@ Derived directly from `docs/UI-REVIEW.md` (whole-app retroactive audit, overall 
 | DESIGN-05 | Phase 1 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 10 total
 - Mapped to phases: 10
 - Unmapped: 0
