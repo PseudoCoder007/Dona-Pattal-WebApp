@@ -23,6 +23,13 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: /chat with us/i })).toHaveAttribute('href', expect.stringContaining('wa.me/918787201971'));
   });
 
+  it('renders the WhatsApp link in emerald green, not the old oxblood color', () => {
+    render(<Footer />);
+    const waLink = screen.getByRole('link', { name: /chat with us/i });
+    expect(waLink).toHaveClass('text-emerald-700');
+    expect(waLink.className).not.toMatch(/oxblood/);
+  });
+
   it('renders copyright', () => {
     render(<Footer />);
     expect(screen.getByText(/© 2026 Sahlok Eco Products LLP/)).toBeInTheDocument();
