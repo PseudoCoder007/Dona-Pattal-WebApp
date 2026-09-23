@@ -11,7 +11,7 @@ export function ProductFocusSection() {
             <h2 className="font-serif text-3xl sm:text-4xl font-normal text-ink tracking-tight">A Focused Range. Built Around Everyday Food Service.</h2>
           </div>
           <div className="mt-4 md:mt-0">
-            <Button variant="secondary" href="/contact" className="text-xs">Request Specs & GSM Sheets \u2192</Button>
+            <Button variant="secondary" href="/contact" className="text-xs">Request Specs & GSM Sheets →</Button>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -19,8 +19,8 @@ export function ProductFocusSection() {
             <div>
               <div className="aspect-square bg-paper overflow-hidden mb-6 border border-stone/30">
                 <EditorialImage
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlK0IytVLQtvS7dL4bCJ3O2uoqXNIUJKWQMcnDar2Z-NVPy1i_wY5jnr6UzYPvxKprwSLsMWGtQoN8eqJvNC2XMLdAJzQ9-XRvonRpVCRrVEKITrPruaHi_kxRnGPtJ09xgmhSmoZg2KZeYUt9DSIQqlm6Pw86NK2OHv8J6MdE0jFbmyibKphhk3huAxxTdNkM88vW5gkpDn24-tf36qZHGuEANHq24LRbkd_JUVZ7laNXXCWQcX3hog"
-                  alt="Stacks of paper dona bowls"
+                  src="/images/products/product-dona.jpg"
+                  alt="Stack of kraft paper dona cups on a white background"
                   aspectRatio="1/1"
                 />
               </div>
@@ -42,8 +42,8 @@ export function ProductFocusSection() {
             <div>
               <div className="aspect-square bg-paper overflow-hidden mb-6 border border-stone/30">
                 <EditorialImage
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2HqtLUVDGRcU_ZV1TvwIw1TzzJ92k2L-PHnaKR60oBeWd6JEFsLSST0MvmOq6XfjPUaRV58CSYArjs2XQPMmA_hz3MGQ88LSAnTXcerZnX8qQbvMN8iovRPQiACMVL1h1upLOqR5jNExIQuuRxCYUZgDUb2ufLWEHoCEd--2LYf5NQ1MSrYgMGPwVlS9w0enPT69Co5FzfZ9oguCUMOwf98v8PgScPkTEC-fyjVsu8aJWMybaeKhKnA"
-                  alt="Stacks of paper plates"
+                  src="/images/products/product-plate.jpg"
+                  alt="Red and white disposable paper plates with napkins"
                   aspectRatio="1/1"
                 />
               </div>
@@ -65,8 +65,8 @@ export function ProductFocusSection() {
             <div>
               <div className="aspect-square bg-paper overflow-hidden mb-6 border border-stone/30">
                 <EditorialImage
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnIbmVHMMUf5FnVwVBSgxlwf-pvooGvC0sr5Yftw0KrOxDb2qQ21xpRK8uNQQLI5tR0_-XMM8p4bt2pRdTTIMK08yclCqlEGFX_8ronulILDPVqLd-is2xIM-jcmj_Z9Po4SDMh65sJILUD23OTl9OsoGO__shJi13shaOdOsjKzAkzOBLTwAib0O0fnDL0eYXnpEDxI5pegIrDozRngjcoltdIl8DBMT5b2uhg5U8YMRYJt6-LghsaA"
-                  alt="Corrugated cartons stacked for shipping"
+                  src="/images/hero/paper-plate-stack.png"
+                  alt="Tall stack of printed paper plates, ready for bulk dispatch"
                   aspectRatio="1/1"
                 />
               </div>
@@ -81,7 +81,7 @@ export function ProductFocusSection() {
               </ul>
             </div>
             <div className="mt-6 pt-4 border-t border-stone/30">
-              <Button variant="secondary" href="/contact" className="text-xs block text-center">VIEW PRODUCT RANGE \u2192</Button>
+              <Button variant="secondary" href="/contact" className="text-xs block text-center">VIEW PRODUCT RANGE →</Button>
             </div>
           </div>
         </div>

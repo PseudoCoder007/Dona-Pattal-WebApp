@@ -37,8 +37,8 @@ export function AboutHero() {
             <div className="relative bg-white p-3 border border-stone shadow-sm">
               <div className="aspect-[4/5] overflow-hidden relative">
                 <EditorialImage
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw5UtKT188lQpJqO8Il9Tgss68LBynCC_9-bbtaB_IoJXb0vA59BESk3t62Xh9qcwPAMzq2YhlDlRjGRpHUB8g15nYuoTj2jX3J3_7v-cZAuRKDEj9iASE8xVZ_Ekr-UdpbtX0eNvCRElbTEAvHzEmy-TpJhkjRIEFzbuDuvd2d_q9I57XH6H5RgqffV-YMHrxhFD_TBuFpNvHhOCWv21OrnYH0eZobh-z3ufmTqIio2nM2PU0W9ZW9Q"
-                  alt="Stacked natural unbleached kraft paper dona bowls and plates"
+                  src="/images/editorial/leaf-dona-pattal.jpg"
+                  alt="Traditional sal-leaf dona and pattal stacks on a table"
                   aspectRatio="4/5"
                 />
                 <div className="absolute bottom-4 left-4 right-4">

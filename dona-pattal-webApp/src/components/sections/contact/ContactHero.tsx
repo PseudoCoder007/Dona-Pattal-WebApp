@@ -10,7 +10,7 @@ export function ContactHero() {
           <div className="lg:col-span-7 flex flex-col justify-center">
             <span className="font-bold uppercase tracking-[0.14em] text-brass text-xs font-semibold mb-3">CONTACT SAHLOK</span>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.1] mb-6">
-              Let\u2019s Talk About Your Requirement.
+              Let’s Talk About Your Requirement.
             </h1>
             <p className="text-base sm:text-lg text-muted max-w-2xl leading-relaxed mb-8">
               Looking for paper dona, paper plates or food-service tableware in bulk? Get in touch with Sahlok Eco Products to discuss products, quantities, pricing and supply requirements directly from our production unit in Mirzapur.
@@ -38,14 +38,14 @@ export function ContactHero() {
             <div className="relative bg-white p-3 border border-stone rounded-lg shadow-sm">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded bg-paper/60">
                 <EditorialImage
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTjBvIK4GkbNtiAqXpFsC-ZmuTS9MwDiYvaSCxeO_3AET7DH3rpQ-k7UVcXaBH-Hd_DQYwSJuMpGE5bBvVweOVNglT-spyzLtKjyJMMtRgOOcw-W66bsIb5Q8cwKFzRLPCAjewL7O0egPrU0iTv4MQTJ8-ir4MArYVKnnFcBZHZSBL4y7-6viJT9lAn1eB8DilCpK0HAafE03cOwGTKB1A4bE9_iwjWfXfkshZseIL3M5DCO_M3CNa0A"
-                  alt="Stacked natural kraft paper bowls, dona and plates on sandstone"
+                  src="/images/editorial/catering-service.jpg"
+                  alt="Caterer in gloves serving food from a buffet line"
                   aspectRatio="4/3"
                 />
               </div>
               <div className="pt-3 px-1 flex items-center justify-between border-t border-stone/40 mt-2">
-                <span className="font-bold uppercase tracking-[0.14em] text-brass text-[10px]">DIRECT DESK \u00b7 ALOK DWIVEDI \u00b7 MIRZAPUR</span>
-                <span className="text-[11px] text-muted font-mono">25.1337\u00b0 N, 82.5644\u00b0 E</span>
+                <span className="font-bold uppercase tracking-[0.14em] text-brass text-[10px]">DIRECT DESK · ALOK DWIVEDI · MIRZAPUR</span>
+                <span className="text-[11px] text-muted font-mono">25.1337° N, 82.5644° E</span>
               </div>
             </div>
           </div>
