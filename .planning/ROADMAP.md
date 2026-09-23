@@ -29,7 +29,7 @@ Plans:
 
 - [ ] 01-01-PLAN.md — Commit real photography into `public/images/`, repoint all 11 remote image sources, fix the `EditorialImage` aspect-ratio bug, empty `next.config.ts` remotePatterns (wave 1, has decision checkpoint)
 - [x] 01-02-PLAN.md — Replace every `emerald`/`green-*` class with oxblood/brick/brass in the CTA primitives, layout and contact grid (wave 1)
-- [ ] 01-03-PLAN.md — Replace literal `\uXXXX` escapes with real glyphs across 13 component files and normalize `src/content/*.ts` (wave 1)
+- [x] 01-03-PLAN.md — Replace literal `\uXXXX` escapes with real glyphs across 13 component files and normalize `src/content/*.ts` (wave 1)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -39,7 +39,7 @@ Plans:
 
 | Wave | Plans | Parallel-safe | Autonomous |
 |------|-------|---------------|------------|
-| 1 | 1/4 | In Progress|  |
+| 1 | 2/4 | In Progress|  |
 | 2 | 01-04 | n/a (single plan) | no (human-verify checkpoint) |
 
 ## Progress
