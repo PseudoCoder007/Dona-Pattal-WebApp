@@ -1,5 +1,8 @@
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
 
+const WHOLESALE_ENQUIRY_MESSAGE =
+  'Hello Sahlok Eco Products, I would like to discuss a wholesale requirement for paper dona / paper plates. Please share product options, pricing and availability.';
+
 export const siteConfig = {
   business: {
     name: 'Sahlok Eco Products LLP',
@@ -13,9 +16,8 @@ export const siteConfig = {
   contact: {
     phoneDisplay: '+91 87872 01971',
     whatsappDigits: '918787201971',
-    whatsappUrl: buildWhatsAppUrl(
-      'Hello Sahlok Eco Products, I would like to discuss a wholesale requirement for paper dona / paper plates. Please share product options, pricing and availability.'
-    ),
+    wholesaleEnquiryMessage: WHOLESALE_ENQUIRY_MESSAGE,
+    whatsappUrl: buildWhatsAppUrl(WHOLESALE_ENQUIRY_MESSAGE),
     email: '',
   },
   navigation: [

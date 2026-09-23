@@ -54,7 +54,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <div>Alok Dwivedi · +91 87872 01971</div>
           <div>Civil Line Rd, Saripur Jalalpur, Mirzapur</div>
           <WhatsAppButton
-            message="Hello Sahlok Eco Products, I would like to discuss a wholesale requirement for paper dona / paper plates. Please share product options, pricing and availability."
+            message={siteConfig.contact.wholesaleEnquiryMessage}
             size="sm"
             className="mt-2 self-start"
             onClick={onClose}

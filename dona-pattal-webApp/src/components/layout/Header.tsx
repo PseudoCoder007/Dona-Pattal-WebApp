@@ -42,7 +42,7 @@ export function Header({ className }: HeaderProps) {
           </Link>
 
           <WhatsAppButton
-            message="Hello Sahlok Eco Products, I would like to discuss a wholesale requirement for paper dona / paper plates. Please share product options, pricing and availability."
+            message={siteConfig.contact.wholesaleEnquiryMessage}
             size="sm"
           />
 
